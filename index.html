@@ -13,13 +13,13 @@
   <!-- Navigation Bar -->
   <nav>
     <ul>
-      <!-- Reorder navigation so that Education appears immediately after the Home section -->
-      <li><a href="#home">Home</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#interests">Interests</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <!-- Navigation links point to separate pages instead of on page anchors -->
+      <li><a href="index.html">Home</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="interests.html">Interests</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="work_experience.html">Work&nbsp;Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
@@ -37,133 +37,12 @@
     </div>
   </section>
 
-  <!-- Education Section moved here for earlier placement -->
-  <section id="education">
-    <h2>Education</h2>
-    <p><strong>The University of Alabama</strong>, Tuscaloosa, AL</p>
-    <p>Bachelor of Science in Aerospace Engineering, Expected May&nbsp;2026</p>
-    <p>Major GPA: 3.0</p>
-  </section>
-
-  <!-- Interests Section -->
-  <section id="interests">
-    <h2>Interests</h2>
-    <ul>
-      <li>Aerodynamics &amp; CFD</li>
-      <li>Rocket propulsion</li>
-      <li>Flight control systems</li>
-      <li>Robotics &amp; UAVs</li>
-      <li>3D printing &amp; manufacturing</li>
-    </ul>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="projects">
-    <h2>Projects</h2>
-    <!-- A.A.E.R.O. project details -->
-    <div class="project">
-      <h3>A.A.E.R.O. Drone Propeller Design</h3>
-      <ul>
-        <li>Lead design of a drone propeller with vortex inducers to evaluate aerodynamic performance.</li>
-        <li>Simulated propeller thrust and acoustic characteristics using Computational Fluid Dynamics (CFD) in ANSYS and SolidWorks and compared with real‑world test data.</li>
-        <li>Performed Finite Element Analysis (FEA) on designs to assess structural integrity and material performance.</li>
-        <li>Applied Geometric Dimensioning and Tolerancing (GD&amp;T) for precise manufacturing of components.</li>
-        <li>Conducted static test stand experiments measuring thrust, RPM and acoustics for multiple design iterations.</li>
-        <li>Utilized wind tunnel for aerodynamic data collection and model validation.</li>
-      </ul>
-    </div>
-    <!-- Alabama Rocketry project details -->
-    <div class="project">
-      <h3>Alabama Rocketry Association – Liquids Team</h3>
-      <ul>
-        <li>Collaborated on designing components for a single‑stage liquid propellant rocket, focusing on fluids systems.</li>
-        <li>Designed test stand and created P&amp;ID diagrams adhering to safety standards.</li>
-        <li>Performed hydrostatic proof testing of flight hardware to demonstrate tank compliance with MIL‑STD‑810G/SMCS‑016 qualification requirements.</li>
-        <li>Utilized a CNC Lathe to manufacture a graphite nozzle within design tolerances.</li>
-        <li>Assisted in setup and execution of multiple hot fire tests for LOX/Kerosene engine, including short‑duration and duration tests at Tuscaloosa National Airport, analyzing performance data to identify areas for improvement.</li>
-      </ul>
-    </div>
-    <!-- Genesis simulation project details -->
-    <div class="project">
-      <h3>Genesis Drone Simulation Project</h3>
-      <ul>
-        <li>Engineered a sophisticated quadcopter simulation in Python leveraging the Genesis physics engine, incorporating real‑time aerodynamics, rigid‑body dynamics, and control systems.</li>
-        <li>Integrated PID controllers for altitude hold, attitude stabilization (roll, pitch, yaw) and position maintenance, tuned with gains derived from engineering principles to achieve critical damping (ζ ≈ 0.7–1.0) and sub‑second settling times, preventing oscillations and flips.</li>
-        <li>Implemented manual flight controls via Pygame for intuitive WASD/spacebar inputs, mapping to differential RPM adjustments on propellers, alongside automated modes for hover and leveling using quaternion‑to‑Euler conversions and vector rotations.</li>
-        <li>Developed multi‑environment support for parallel drone instances, benchmarked for performance (e.g., &gt;1000 steps/sec on CUDA), with custom camera rendering (third‑person and minimap views) and HUD overlays displaying RPM, velocity, thrust, drag and Euler angles.</li>
-        <li>Optimized for realism by incorporating gravitational forces, empirical thrust/drag calculations and anti‑windup in PIDs, demonstrating proficiency in control theory, numerical methods and software.</li>
-      </ul>
-    </div>
-    <!-- Embed URCA poster and provide download link -->
-    <div class="project">
-      <h3>Research Poster</h3>
-      <p>The poster below provides additional details on the Genesis drone simulation project.</p>
-      <embed src="URCA_Poster_2025.pdf" type="application/pdf" width="100%" height="800px" />
-      <p style="text-align: center; margin-top: 0.5rem;">
-        <a href="URCA_Poster_2025.pdf" download>Download URCA&nbsp;Poster&nbsp;(PDF)</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <!-- A.A.E.R.O. experience -->
-    <h3>A.A.E.R.O. – Co‑Founder / CFD &amp; Testing Lead (Jan&nbsp;2025&nbsp;–&nbsp;Present)</h3>
-    <ul>
-      <li>Co‑founded a student team dedicated to drone propeller research and development.</li>
-      <li>Led design of drone propellers with vortex inducers to evaluate aerodynamic performance.</li>
-      <li>Executed CFD simulations in ANSYS/SolidWorks and compared results with experimental data.</li>
-      <li>Performed FEA on propeller designs to assess structural integrity and material performance.</li>
-      <li>Applied GD&amp;T principles to ensure precise manufacturing of components.</li>
-      <li>Designed and built a static test stand, measuring thrust, RPM and acoustics for multiple design iterations.</li>
-      <li>Collected aerodynamic data using a wind tunnel for model validation.</li>
-    </ul>
-
-    <!-- Alabama Rocketry experience -->
-    <h3>Alabama Rocketry Association – Liquids Team Member (Oct&nbsp;2023&nbsp;–&nbsp;Present)</h3>
-    <ul>
-      <li>Collaborated on designing components for a single‑stage liquid propellant rocket, focusing on fluids systems.</li>
-      <li>Developed test stand designs and created P&amp;ID diagrams adhering to safety standards.</li>
-      <li>Performed hydrostatic proof testing of flight hardware to demonstrate compliance with MIL‑STD‑810G/SMCS‑016.</li>
-      <li>Machined a graphite nozzle on a CNC lathe within design tolerances.</li>
-      <li>Supported multiple LOX/Kerosene engine hot fire tests at Tuscaloosa National Airport, analyzing performance data to drive improvements.</li>
-    </ul>
-
-    <!-- Genesis simulation experience -->
-    <h3>Genesis Drone Simulation – Personal Project (Aug&nbsp;2025&nbsp;–&nbsp;Present)</h3>
-    <ul>
-      <li>Engineered a quadcopter simulation in Python using the Genesis physics engine with real‑time aerodynamics, rigid‑body dynamics and control systems.</li>
-      <li>Implemented PID controllers for altitude hold, attitude stabilization and position maintenance, tuned for critical damping and sub‑second settling times.</li>
-      <li>Developed manual and automated flight modes via Pygame and quaternion‑to‑Euler conversions, including hover and leveling functions.</li>
-      <li>Added multi‑environment support for parallel drone instances, benchmarking performance (e.g., &gt;1000 steps/sec on CUDA) with custom camera rendering and HUD overlays.</li>
-      <li>Improved realism through gravitational forces, empirical thrust/drag calculations and anti‑windup techniques.</li>
-    </ul>
-
-    <!-- Work experience: Trinity Farm -->
-    <h3>Trinity Farm – Ranch Hand (May&nbsp;2022&nbsp;–&nbsp;Jan&nbsp;2024)</h3>
-    <ul>
-      <li>Provided daily care for horses, including feeding, grooming and medical assistance, ensuring animal health and safety.</li>
-      <li>Assisted customers and trainers with inquiries and wound treatment, honing communication and interpersonal skills.</li>
-      <li>Maintained farm infrastructure through mowing, fence repairs and machinery troubleshooting, sharpening mechanical problem‑solving abilities.</li>
-    </ul>
-
-    <!-- Work experience: NTB -->
-    <h3>National Tire and Battery (NTB) – Tire Technician (Aug&nbsp;2021&nbsp;–&nbsp;Feb&nbsp;2022)</h3>
-    <ul>
-      <li>Organized warehouse stock and maintained clean vehicle bays to optimize workflow and improve safety.</li>
-      <li>Advised customers on vehicle maintenance and repairs, building interpersonal and technical advisory skills.</li>
-      <li>Performed routine maintenance tasks including oil changes, tire repairs, battery installations and brake replacements.</li>
-      <li>Assisted mechanics with advanced repairs, gaining hands‑on experience in mechanical systems and diagnostics.</li>
-    </ul>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:fourievr1014@gmail.com">fourievr1014@gmail.com</a></p>
-    <p>Phone: <a href="tel:+16592109953">+1&nbsp;659&nbsp;210&nbsp;9953</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/fourie-van-rooyen/" target="_blank">linkedin.com/in/fourie-van-rooyen</a></p>
+  <!-- About Section on Home Page -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Fourie van Rooyen, a senior Aerospace Engineering student at The University of Alabama, driven by a love for aircraft, rockets, and everything beyond Earth’s atmosphere.</p>
+    <p>Through hands‑on work with Alabama Aerodynamics Experimental Research Operations and Alabama Rocketry Association, I’ve designed and tested propellers, supported liquid rocket engine hot fires, and built flight dynamics simulations in Python and MATLAB.</p>
+    <p>I thrive where engineering meets experimentation — turning bold ideas into real, testable systems. When I’m not building something or working, I’m usually out hiking, or playing pickleball with friends.</p>
   </section>
 
   <!-- Footer -->
