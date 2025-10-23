@@ -123,7 +123,10 @@ section {
   max-width: 1000px;
   margin: 0 auto;
   /* Reduce top padding so the Education and Interests sections appear directly under the hero */
+  /* Reduce top padding so the Education and Interests sections appear directly under the hero */
   padding: 1rem 2rem;
+  /* Move the container up to align the Education section with the name under the profile picture */
+  margin-top: -3rem;
 }
 
 .edu-interests section {
