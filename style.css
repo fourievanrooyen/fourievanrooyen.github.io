@@ -40,14 +40,20 @@ nav ul li a:hover {
 /* Hero Section container
    Reduce the top padding so the profile photo and text sit closer to the
    top of the viewport. */
+/* Hero container
+   Adjust the layout so the profile photo and text sit closer to the
+   top of the viewport. Remove the full viewport height so that the
+   Education and Interests sections appear immediately below the hero. */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* Reduce top padding to bring the hero content toward the top */
-  padding: 4rem 1rem 2rem;
-  min-height: 100vh;
+  /* Align items to the top instead of centering vertically */
+  justify-content: flex-start;
+  /* Reduce the top padding significantly */
+  padding: 2rem 1rem;
+  /* Allow the hero to size itself naturally instead of filling the viewport */
+  min-height: auto;
   text-align: center;
 }
 .hero .container {
@@ -91,7 +97,7 @@ nav ul li a:hover {
 /* Section Styles */
 section {
   /* Reduce padding for generic sections; specific sections are adjusted below */
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   max-width: 1000px;
   margin: 0 auto;
   scroll-margin-top: 80px;
