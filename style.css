@@ -178,10 +178,11 @@ section ul li::before {
 .hero-content {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  /* Align items to the start so that they sit next to each other */
+  justify-content: flex-start;
   flex-wrap: wrap;
-  /* Increase the horizontal space between the image/contact panel and the About section */
-  gap: 3rem;
+  /* Further increase the horizontal gap for a more professional look */
+  gap: 4rem;
 }
 
 .hero-left {
