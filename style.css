@@ -47,14 +47,15 @@ nav ul li a:hover {
 .hero {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* Align items to the top instead of centering vertically */
+  /* Align content to the left instead of centering horizontally */
+  align-items: flex-start;
+  /* Keep items aligned to the top of the container */
   justify-content: flex-start;
   /* Add extra top padding so the navigation bar does not overlap the hero */
   padding: 4rem 1rem 2rem;
   /* Allow the hero to size itself naturally instead of filling the viewport */
   min-height: auto;
-  text-align: center;
+  text-align: left;
 }
 .hero .container {
   display: flex;
@@ -179,7 +180,8 @@ section ul li::before {
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 2rem;
+  /* Increase the horizontal space between the image/contact panel and the About section */
+  gap: 3rem;
 }
 
 .hero-left {
