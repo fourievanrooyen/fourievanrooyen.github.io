@@ -1,70 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects - Fourie van Rooyen</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="work_experience.html">Work&nbsp;Experience</a></li>
-      <li><a href="documentation.html">Documentation</a></li>
-    </ul>
-  </nav>
-  <section id="projects" class="projects">
-    <h2>Projects</h2>
-    <!-- Capstone project details -->
-    <div class="project">
-      <h3>Capstone Project – Chief Engineer</h3>
-      <p><strong>Tuscaloosa, AL</strong> (Aug&nbsp;2025&nbsp;–&nbsp;Present)</p>
-      <ul>
-        <li>Led system‑level design of a fixed‑wing eVTOL reconnaissance aircraft, integrating distributed electric propulsion, solar‑film power augmentation and modular ISR payloads.</li>
-        <li>Defined mission requirements, Level&nbsp;I/II technical specifications and concept of operations (ConOps) in accordance with NASA MCR criteria and AIAA standards.</li>
-        <li>Conducted aerodynamic sizing and performance analysis (takeoff, climb, cruise, loiter and endurance) using CFD and analytical methods to inform configuration selection.</li>
-        <li>Performed propulsion sizing, weight and balance calculations, structural load estimation and control‑surface definition to support stability and control requirements.</li>
-        <li>Oversaw system architecture development including power distribution, sensor integration, avionics layout and redundancy strategies to meet mission reliability targets.</li>
-        <li>Directed risk analysis and preliminary SEMP/ICD development to support baseline design reviews and design verification planning.</li>
-      </ul>
+  <header>
+    <h1>Projects</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="work_experience.html">Work Experience</a>
+      <a href="documentation.html">Documentation</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="card-grid">
+      <!-- Capstone Project card -->
+      <div class="card">
+        <img
+          src="images/evtol.png"
+          alt="Fixed‑Wing eVTOL Reconnaissance Aircraft"
+        />
+        <div class="card-content">
+          <h4>Capstone Project – Chief Engineer</h4>
+          <p><em>Tuscaloosa, AL (Aug 2025 – Present)</em></p>
+          <ul>
+            <li>
+              Led system‑level design of a fixed‑wing eVTOL reconnaissance
+              aircraft, integrating distributed electric propulsion, solar-film
+              power augmentation and modular ISR payloads.
+            </li>
+            <li>
+              Defined mission requirements, Level I/II technical
+              specifications and concept of operations (ConOps) in accordance
+              with NASA MCR criteria and AIAA standards.
+            </li>
+            <li>
+              Conducted aerodynamic sizing and performance analysis using CFD
+              and analytical methods to inform configuration selection.
+            </li>
+            <li>
+              Performed propulsion sizing, weight and balance calculations,
+              structural load estimation and control‑surface definition to
+              support stability and control requirements.
+            </li>
+            <li>
+              Oversaw system architecture development including power
+              distribution, sensor integration, avionics layout and redundancy
+              strategies.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Drone Propeller card -->
+      <div class="card">
+        <img src="images/propeller.png" alt="Drone Propeller Design" />
+        <div class="card-content">
+          <h4>A.A.E.R.O. Drone Propeller Design</h4>
+          <ul>
+            <li>
+              Lead design of a drone propeller with vortex inducers to evaluate
+              aerodynamic performance.
+            </li>
+            <li>
+              Simulated propeller thrust and acoustic characteristics using
+              Computational Fluid Dynamics (CFD) in ANSYS and SolidWorks and
+              compared with real‑world test data.
+            </li>
+            <li>
+              Performed Finite Element Analysis (FEA) on designs to assess
+              structural integrity and material performance.
+            </li>
+            <li>
+              Applied Geometric Dimensioning and Tolerancing (GD&amp;T) for
+              precise manufacturing of components.
+            </li>
+            <li>
+              Conducted static test stand experiments measuring thrust, RPM
+              and acoustics for multiple design iterations.
+            </li>
+            <li>
+              Utilized wind tunnel for aerodynamic data collection and model
+              validation.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Liquid Rocket card -->
+      <div class="card">
+        <img src="images/rocket.png" alt="Liquid Rocket Engine Test" />
+        <div class="card-content">
+          <h4>Alabama Rocketry Association – Liquids Team</h4>
+          <ul>
+            <li>
+              Collaborated on designing components for a single-stage liquid
+              propellant rocket, focusing on fluids systems.
+            </li>
+            <li>
+              Designed test stand and created P&amp;ID diagrams adhering to
+              safety standards.
+            </li>
+            <li>
+              Performed hydrostatic proof testing of flight hardware to
+              demonstrate tank compliance with MIL‑STD‑810G/SMCS‑016 qualification
+              requirements.
+            </li>
+            <li>
+              Utilized a CNC lathe to manufacture a graphite nozzle within
+              design tolerances.
+            </li>
+            <li>
+              Assisted in setup and execution of multiple hot fire tests for
+              LOX/Kerosene engine, analyzing performance data to identify
+              areas for improvement.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Simulation Project card -->
+      <div class="card">
+        <img src="images/simulation.png" alt="Drone Simulation Project" />
+        <div class="card-content">
+          <h4>Genesis Drone Simulation Project</h4>
+          <ul>
+            <li>
+              Engineered a sophisticated quadcopter simulation in Python
+              leveraging the Genesis physics engine, incorporating real-time
+              aerodynamics, rigid-body dynamics, and control systems.
+            </li>
+            <li>
+              Integrated PID controllers for altitude hold, attitude
+              stabilization (roll, pitch, yaw) and position maintenance, tuned
+              with gains derived from engineering principles to achieve
+              critical damping and sub-second settling times.
+            </li>
+            <li>
+              Implemented manual flight controls via Pygame for intuitive
+              WASD/spacebar inputs, alongside automated modes for hover and
+              leveling using quaternion-to-Euler conversions and vector
+              rotations.
+            </li>
+            <li>
+              Developed multi-environment support for parallel drone
+              instances, benchmarked for performance (&gt;1000 steps/sec on
+              CUDA), with custom camera rendering and HUD overlays displaying
+              RPM, velocity, thrust, drag and Euler angles.
+            </li>
+            <li>
+              Optimized for realism by incorporating gravitational forces,
+              empirical thrust/drag calculations and anti-windup in PIDs.
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <!-- A.A.E.R.O. project details -->
-    <div class="project">
-      <h3>A.A.E.R.O. Drone Propeller Design</h3>
-      <ul>
-        <li>Lead design of a drone propeller with vortex inducers to evaluate aerodynamic performance.</li>
-        <li>Simulated propeller thrust and acoustic characteristics using Computational Fluid Dynamics (CFD) in ANSYS and SolidWorks and compared with real‑world test data.</li>
-        <li>Performed Finite Element Analysis (FEA) on designs to assess structural integrity and material performance.</li>
-        <li>Applied Geometric Dimensioning and Tolerancing (GD&amp;T) for precise manufacturing of components.</li>
-        <li>Conducted static test stand experiments measuring thrust, RPM and acoustics for multiple design iterations.</li>
-        <li>Utilized wind tunnel for aerodynamic data collection and model validation.</li>
-      </ul>
-    </div>
-    <!-- Alabama Rocketry project details -->
-    <div class="project">
-      <h3>Alabama Rocketry Association – Liquids Team</h3>
-      <ul>
-        <li>Collaborated on designing components for a single‑stage liquid propellant rocket, focusing on fluids systems.</li>
-        <li>Designed test stand and created P&amp;ID diagrams adhering to safety standards.</li>
-        <li>Performed hydrostatic proof testing of flight hardware to demonstrate tank compliance with MIL‑STD‑810G/SMCS‑016 qualification requirements.</li>
-        <li>Utilized a CNC lathe to manufacture a graphite nozzle within design tolerances.</li>
-        <li>Assisted in setup and execution of multiple hot fire tests for LOX/Kerosene engine, including short‑duration and duration tests at Tuscaloosa National Airport, analyzing performance data to identify areas for improvement.</li>
-      </ul>
-    </div>
-    <!-- Genesis simulation project details -->
-    <div class="project">
-      <h3>Genesis Drone Simulation Project</h3>
-      <ul>
-        <li>Engineered a sophisticated quadcopter simulation in Python leveraging the Genesis physics engine, incorporating real‑time aerodynamics, rigid‑body dynamics, and control systems.</li>
-        <li>Integrated PID controllers for altitude hold, attitude stabilization (roll, pitch, yaw) and position maintenance, tuned with gains derived from engineering principles to achieve critical damping (ζ ≈ 0.7–1.0) and sub‑second settling times, preventing oscillations and flips.</li>
-        <li>Implemented manual flight controls via Pygame for intuitive WASD/spacebar inputs, mapping to differential RPM adjustments on propellers, alongside automated modes for hover and leveling using quaternion‑to‑Euler conversions and vector rotations.</li>
-        <li>Developed multi‑environment support for parallel drone instances, benchmarked for performance (e.g., &gt;1000 steps/sec on CUDA), with custom camera rendering (third‑person and minimap views) and HUD overlays displaying RPM, velocity, thrust, drag and Euler angles.</li>
-        <li>Optimized for realism by incorporating gravitational forces, empirical thrust/drag calculations and anti‑windup in PIDs, demonstrating proficiency in control theory, numerical methods and software.</li>
-      </ul>
-    </div>
-  </section>
+  </div>
   <footer>
     &copy; 2025 Fourie van Rooyen. All rights reserved.
   </footer>
