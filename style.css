@@ -50,8 +50,8 @@ nav ul li a:hover {
   align-items: center;
   /* Align items to the top instead of centering vertically */
   justify-content: flex-start;
-  /* Reduce the top padding significantly */
-  padding: 2rem 1rem;
+  /* Add extra top padding so the navigation bar does not overlap the hero */
+  padding: 4rem 1rem 2rem;
   /* Allow the hero to size itself naturally instead of filling the viewport */
   min-height: auto;
   text-align: center;
@@ -108,6 +108,28 @@ section {
 #interests-home {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+/* Layout container for the Education and Interests sections
+   Place both sections side by side on wider screens and stack them on
+   narrower screens. */
+.edu-interests {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 2rem;
+}
+
+.edu-interests section {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .edu-interests {
+    flex-direction: column;
+  }
 }
 section h2 {
   color: #00b3ff;
