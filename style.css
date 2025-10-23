@@ -37,12 +37,16 @@ nav ul li a:hover {
 }
 
 /* Hero Section */
+/* Hero Section container
+   Reduce the top padding so the profile photo and text sit closer to the
+   top of the viewport. */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6rem 1rem 4rem;
+  /* Reduce top padding to bring the hero content toward the top */
+  padding: 4rem 1rem 2rem;
   min-height: 100vh;
   text-align: center;
 }
@@ -86,10 +90,18 @@ nav ul li a:hover {
 
 /* Section Styles */
 section {
-  padding: 4rem 2rem;
+  /* Reduce padding for generic sections; specific sections are adjusted below */
+  padding: 3rem 2rem;
   max-width: 1000px;
   margin: 0 auto;
   scroll-margin-top: 80px;
+}
+
+/* Bring the Education and Interests sections closer to the hero section */
+#education-home,
+#interests-home {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 section h2 {
   color: #00b3ff;
@@ -144,6 +156,13 @@ section ul li::before {
 
 .hero-left {
   max-width: 35%;
+  /* Left‑align text to ensure the profile information sits to the left of the page */
+  text-align: left;
+}
+
+/* Prevent the name from wrapping onto two lines */
+.hero-left h1 {
+  white-space: nowrap;
 }
 
 .hero-right {
