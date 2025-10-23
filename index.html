@@ -1,75 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fourie van Rooyen - Portfolio</title>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- External stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <ul>
-      <!-- Navigation links point to separate pages instead of on‑page anchors -->
-      <li><a href="index.html">Home</a></li>
-      <!-- Removed separate Education and Interests pages since these sections appear on the home page -->
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="work_experience.html">Work&nbsp;Experience</a></li>
-      <li><a href="documentation.html">Documentation</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <div class="hero-left">
-        <img src="profile.jpg" alt="Profile picture" class="profile-pic">
-        <h1>Fourie van Rooyen</h1>
-        <p class="subtitle">Senior Aerospace Engineering student at The University of Alabama</p>
-        <div class="social-icons">
-          <a href="mailto:fourievr1014@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="tel:+16592109953" title="Phone"><i class="fas fa-phone"></i></a>
-          <a href="https://github.com/fourievanrooyen" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/fourie-van-rooyen/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
+  <header>
+    <h1>Fourie van Rooyen</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="work_experience.html">Work Experience</a>
+      <a href="documentation.html">Documentation</a>
+    </nav>
+  </header>
+  <div class="container">
+    <section class="hero">
+      <!-- Profile picture -->
+      <img src="images/profile.png" alt="Fourie van Rooyen" />
+      <div class="intro">
+        <h2>Senior Aerospace Engineering Student</h2>
+        <p>
+          I’m Fourie van Rooyen, a senior Aerospace Engineering student at The
+          University of Alabama, driven by a love for aircraft, rockets, and
+          everything beyond Earth’s atmosphere. Through hands‑on work with
+          Alabama Aerodynamics Experimental Research Operations and Alabama
+          Rocketry Association, I’ve designed and tested propellers, supported
+          liquid rocket engine hot fires, and built flight dynamics simulations
+          in Python and MATLAB.
+        </p>
+        <p>
+          I thrive where engineering meets experimentation — turning bold
+          ideas into real, testable systems. When I’m not building something
+          or working, I’m usually out hiking or playing pickleball with
+          friends.
+        </p>
       </div>
-      <div class="hero-right">
-        <h2>About Me</h2>
-        <p>I’m Fourie van Rooyen, a senior Aerospace Engineering student at The University of Alabama, driven by a love for aircraft, rockets, and everything beyond Earth’s atmosphere.</p>
-        <p>Through hands‑on work with Alabama Aerodynamics Experimental Research Operations and Alabama Rocketry Association, I’ve designed and tested propellers, supported liquid rocket engine hot fires, and built flight dynamics simulations in Python and MATLAB.</p>
-        <p>I thrive where engineering meets experimentation — turning bold ideas into real, testable systems. When I’m not building something or working, I’m usually out hiking, or playing pickleball with friends.</p>
+    </section>
+    <div class="sections">
+      <div class="section">
+        <h3>Education</h3>
+        <p><strong>The University of Alabama, Tuscaloosa, AL</strong></p>
+        <p>Bachelor of Science in Aerospace Engineering, Expected May 2026</p>
+        <p>Major GPA: 3.0</p>
+      </div>
+      <div class="section">
+        <h3>Interests</h3>
+        <ul>
+          <li>Aerodynamics &amp; CFD</li>
+          <li>Rocket propulsion</li>
+          <li>Flight control systems</li>
+          <li>Robotics &amp; UAVs</li>
+          <li>3D printing &amp; manufacturing</li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- Education and Interests Sections on Home Page -->
-  <div class="edu-interests">
-    <section id="education-home">
-      <h2>Education</h2>
-      <p><strong>The University of Alabama</strong>, Tuscaloosa, AL</p>
-      <p>Bachelor of Science in Aerospace Engineering, Expected May&nbsp;2026</p>
-      <p>Major GPA: 3.0</p>
-    </section>
-
-    <section id="interests-home">
-      <h2>Interests</h2>
-      <ul>
-        <li>Aerodynamics &amp; CFD</li>
-        <li>Rocket propulsion</li>
-        <li>Flight control systems</li>
-        <li>Robotics &amp; UAVs</li>
-        <li>3D printing &amp; manufacturing</li>
-      </ul>
-    </section>
   </div>
-
-  <!-- Footer -->
   <footer>
     &copy; 2025 Fourie van Rooyen. All rights reserved.
   </footer>
-
 </body>
 </html>
