@@ -60,7 +60,8 @@ nav ul li a:hover {
 .hero .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* Align items to the start of the container so the hero content aligns to the left instead of being centered */
+  align-items: flex-start;
 }
 /* Profile picture styling */
 .profile-pic {
