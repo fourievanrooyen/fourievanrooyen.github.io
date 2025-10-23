@@ -182,7 +182,7 @@ section ul li::before {
   justify-content: flex-start;
   flex-wrap: wrap;
   /* Further increase the horizontal gap for a more professional look */
-  gap: 4rem;
+  gap: 6rem;
 }
 
 .hero-left {
