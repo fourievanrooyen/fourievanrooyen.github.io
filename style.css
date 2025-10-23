@@ -52,7 +52,8 @@ nav ul li a:hover {
   /* Keep items aligned to the top of the container */
   justify-content: flex-start;
   /* Add extra top padding so the navigation bar does not overlap the hero */
-  padding: 4rem 1rem 2rem;
+  /* Reduce bottom padding so that the next sections sit closer to the hero */
+  padding: 4rem 1rem 1rem;
   /* Allow the hero to size itself naturally instead of filling the viewport */
   min-height: auto;
   text-align: left;
@@ -121,7 +122,8 @@ section {
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 2rem;
+  /* Reduce top padding so the Education and Interests sections appear directly under the hero */
+  padding: 1rem 2rem;
 }
 
 .edu-interests section {
