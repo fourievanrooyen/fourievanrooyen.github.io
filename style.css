@@ -79,10 +79,12 @@ nav a:hover {
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
+    object-position: 40% 60%;
   border: 4px solid var(--primary-color);
 }
 
 .hero .intro {
+
   flex: 1;
   min-width: 280px;
 }
