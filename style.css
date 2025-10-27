@@ -193,13 +193,41 @@ nav a:hover {
   font-size: 0.95em;
 }
 
+
+/* New interest section layout */
+.interest-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.interest-columns ul {
+  flex: 1;
+  min-width: 200px;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.interest-columns li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.interest-columns li:before {
+  content: '\25BA'; /* small black right pointing pointer */
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
 .card-content ul li::before {
   content: '\2022'; /* bullet symbol */
   position: absolute;
   left: 0;
   color: var(--primary-color);
 }
-
+.
 footer {
   text-align: center;
   padding: 20px 0;
