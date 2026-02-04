@@ -24,6 +24,7 @@ body {
   line-height: 1.6;
 }
 
+/* Header */
 header {
   background: var(--secondary-color);
   padding: 20px;
@@ -48,7 +49,9 @@ nav a {
   margin-left: 20px;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
+  transition: color 0.3s, background-color 0.3s;
+  padding: 6px 10px;
+  border-radius: 10px;
 }
 
 nav a:first-child {
@@ -57,55 +60,71 @@ nav a:first-child {
 
 nav a:hover {
   color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.06);
 }
 
+/* Layout container */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
-/* Hero section on home page */
+/* =========================
+   HERO SECTION (Home page)
+   ========================= */
 .hero {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 40px;
-  padding: 40px 0;
+  justify-content: space-between;
+  gap: 56px;
+  padding: 48px 0 32px;
 }
+
+/* To move image to the RIGHT, uncomment:
+.hero { flex-direction: row-reverse; }
+*/
 
 .hero img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 340px;
+  height: 340px;
+  border-radius: 14px;            /* square with slight rounding */
   object-fit: cover;
-    object-position: 40% 60%;
+  object-position: 40% 60%;
   border: 4px solid var(--primary-color);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
 }
 
-.hero .intro {
-
+/* Your HTML uses id="intro" so we target that */
+#intro {
   flex: 1;
-  min-width: 280px;
+  min-width: 320px;
+  max-width: 720px;
 }
 
 .hero h2 {
-  margin-top: 0;
+  margin: 0 0 14px;
   color: var(--heading-color);
-  font-size: 2.2em;
+  font-size: clamp(1.8em, 3vw, 2.3em);
 }
 
-/* Generic section styling */
+#intro p {
+  margin: 0 0 14px;
+}
+
+/* =========================
+   HOME SECTIONS (Education / Interests)
+   ========================= */
 .sections {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .section {
-  flex: 1;
-  min-width: 280px;
+  min-width: 0;
 }
 
 .section h3 {
@@ -132,13 +151,41 @@ nav a:hover {
 }
 
 .section ul li::before {
-  content: '\25B8'; /* small black right pointing pointer */
+  content: '\25B8'; /* small right-pointing pointer */
   position: absolute;
   left: 0;
   color: var(--primary-color);
 }
 
-/* Card grid for projects, work experience and documentation */
+/* Interests columns */
+.interest-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.interest-columns ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.interest-columns li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.interest-columns li:before {
+  content: '\25BA'; /* right pointing pointer */
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+/* =========================
+   CARD GRID (Projects / Work / Documentation)
+   ========================= */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -161,11 +208,8 @@ nav a:hover {
   width: 100%;
   height: 180px;
   object-fit: cover;
-    filter: saturate(1.3) brightness(1.2);
-
+  filter: saturate(1.3) brightness(1.2);
 }
-  
-
 
 .card-content {
   padding: 20px;
@@ -193,41 +237,14 @@ nav a:hover {
   font-size: 0.95em;
 }
 
-
-/* New interest section layout */
-.interest-columns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.interest-columns ul {
-  flex: 1;
-  min-width: 200px;
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.interest-columns li {
-  margin-bottom: 8px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.interest-columns li:before {
-  content: '\25BA'; /* small black right pointing pointer */
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-}
 .card-content ul li::before {
   content: '\2022'; /* bullet symbol */
   position: absolute;
   left: 0;
   color: var(--primary-color);
 }
-.
+
+/* Footer (FIXED: removed stray '.' that broke your CSS) */
 footer {
   text-align: center;
   padding: 20px 0;
@@ -238,14 +255,35 @@ footer {
   border-top: 1px solid var(--primary-color);
 }
 
-@media (max-width: 768px) {
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 900px) {
   .hero {
     flex-direction: column;
     text-align: center;
+    gap: 24px;
+    padding: 36px 0 24px;
   }
+
   .hero img {
-    margin-bottom: 20px;
+    width: 260px;
+    height: 260px;
   }
+
+  #intro {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .sections {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-columns {
+    grid-template-columns: 1fr;
+  }
+
   nav a {
     margin-left: 10px;
     margin-right: 10px;
