@@ -1,3 +1,4 @@
+```css
 /*
  * Custom theme for Fourie van Rooyen's portfolio
  * A dark, modern palette with bright blue accents
@@ -24,7 +25,6 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
 header {
   background: var(--secondary-color);
   padding: 20px;
@@ -49,9 +49,7 @@ nav a {
   margin-left: 20px;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s, background-color 0.3s;
-  padding: 6px 10px;
-  border-radius: 10px;
+  transition: color 0.3s;
 }
 
 nav a:first-child {
@@ -60,71 +58,54 @@ nav a:first-child {
 
 nav a:hover {
   color: var(--primary-color);
-  background: rgba(255, 255, 255, 0.06);
 }
 
-/* Layout container */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
-/* =========================
-   HERO SECTION (Home page)
-   ========================= */
+/* Hero section on home page */
 .hero {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 56px;
-  padding: 48px 0 32px;
+  gap: 40px;
+  padding: 40px 0;
 }
 
-/* To move image to the RIGHT, uncomment:
-.hero { flex-direction: row-reverse; }
-*/
-
 .hero img {
-  width: 340px;
-  height: 340px;
-  border-radius: 14px;            /* square with slight rounding */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
   object-fit: cover;
   object-position: 40% 60%;
   border: 4px solid var(--primary-color);
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
-  flex-shrink: 0;
 }
 
-/* Your HTML uses id="intro" so we target that */
-#intro {
+.hero .intro {
   flex: 1;
-  min-width: 320px;
-  max-width: 720px;
+  min-width: 280px;
 }
 
 .hero h2 {
-  margin: 0 0 14px;
+  margin-top: 0;
   color: var(--heading-color);
-  font-size: clamp(1.8em, 3vw, 2.3em);
+  font-size: 2.2em;
 }
 
-#intro p {
-  margin: 0 0 14px;
-}
-
-/* =========================
-   HOME SECTIONS (Education / Interests)
-   ========================= */
+/* Generic section styling */
 .sections {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 40px;
-  margin-top: 12px;
+  margin-top: 20px;
 }
 
 .section {
-  min-width: 0;
+  flex: 1;
+  min-width: 280px;
 }
 
 .section h3 {
@@ -151,41 +132,13 @@ nav a:hover {
 }
 
 .section ul li::before {
-  content: '\25B8'; /* small right-pointing pointer */
+  content: "\25B8"; /* small black right pointing pointer */
   position: absolute;
   left: 0;
   color: var(--primary-color);
 }
 
-/* Interests columns */
-.interest-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.interest-columns ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.interest-columns li {
-  margin-bottom: 8px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.interest-columns li:before {
-  content: '\25BA'; /* right pointing pointer */
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-}
-
-/* =========================
-   CARD GRID (Projects / Work / Documentation)
-   ========================= */
+/* Card grid for projects, work experience and documentation */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -237,14 +190,42 @@ nav a:hover {
   font-size: 0.95em;
 }
 
-.card-content ul li::before {
-  content: '\2022'; /* bullet symbol */
+/* New interest section layout */
+.interest-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.interest-columns ul {
+  flex: 1;
+  min-width: 200px;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.interest-columns li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.interest-columns li::before {
+  content: "\25BA"; /* small black right pointing pointer */
   position: absolute;
   left: 0;
   color: var(--primary-color);
 }
 
-/* Footer (FIXED: removed stray '.' that broke your CSS) */
+.card-content ul li::before {
+  content: "\2022"; /* bullet symbol */
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+/* Footer (NOTE: fixed selector from ". footer" to "footer") */
 footer {
   text-align: center;
   padding: 20px 0;
@@ -255,33 +236,14 @@ footer {
   border-top: 1px solid var(--primary-color);
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .hero {
     flex-direction: column;
     text-align: center;
-    gap: 24px;
-    padding: 36px 0 24px;
   }
 
   .hero img {
-    width: 260px;
-    height: 260px;
-  }
-
-  #intro {
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  .sections {
-    grid-template-columns: 1fr;
-  }
-
-  .interest-columns {
-    grid-template-columns: 1fr;
+    margin-bottom: 20px;
   }
 
   nav a {
@@ -289,3 +251,4 @@ footer {
     margin-right: 10px;
   }
 }
+```
