@@ -1,153 +1,136 @@
-# Fourie van Rooyen - Portfolio Website
+# Fourie van Rooyen - Portfolio
 
-A clean, professional single-page portfolio showcasing aerospace engineering projects and experience.
+A clean, dark-themed single-page portfolio inspired by Eliel Smith's design.
 
-## Files Overview
+## Files
 
 ```
 portfolio/
-├── index.html          # Main page (all content here)
-├── style.css           # Styling (customize colors here)
-├── README.md           # This file
-├── profile.png         # Your profile photo
-├── evtol.png           # Capstone project image
-├── propeller.png       # A.A.E.R.O. project image
-├── rocket.png          # Rocketry project image
-├── simulation.png      # Drone simulation image
-├── Fourie_Resume.pdf              # Your resume
+├── index.html              # Main page
+├── style.css               # Styling
+├── profile.png             # Your profile photo
+├── evtol.png               # Capstone project image
+├── propeller.png           # A.A.E.R.O. project image
+├── rocket.png              # Rocketry project image
+├── simulation.png          # Simulation project image
+├── Fourie_Resume.pdf
 ├── Fourie_van_Rooyen_cover_letter.pdf
 ├── Letter_of_Recommendation.pdf
 └── URCA_Poster_2025.pdf
 ```
 
-## Quick Edits
+## Customization
 
 ### Change Colors
-Open `style.css` and modify the CSS variables at the top (lines 20-40):
+
+Edit the CSS variables at the top of `style.css`:
 
 ```css
 :root {
-  --color-primary: #00b4d8;        /* Main accent color */
-  --color-bg-dark: #0a1628;        /* Dark background */
-  --color-bg-main: #0d1f35;        /* Main background */
-  /* etc... */
+  /* Primary accent color */
+  --accent: #00a8e8;           /* Your blue */
+  --accent-hover: #00c2ff;
+  
+  /* Background colors */
+  --bg-body: #0d1117;          /* Darkest */
+  --bg-card: #1c2128;          /* Cards */
+  
+  /* Text colors */
+  --text-primary: #e6edf3;     /* Main text */
+  --text-secondary: #8b949e;   /* Muted text */
 }
 ```
 
-### Update Content
-Open `index.html` and find the section you want to edit:
+### Alternative Color Schemes
 
-- **About**: Search for `id="about"`
-- **Projects**: Search for `id="projects"`
-- **Experience**: Search for `id="experience"`
-- **Documents**: Search for `id="documents"`
-- **Contact**: Search for `id="contact"`
+**Alabama Crimson:**
+```css
+--accent: #9e1b32;
+--accent-hover: #c41e3a;
+```
+
+**Electric Purple:**
+```css
+--accent: #8b5cf6;
+--accent-hover: #a78bfa;
+```
+
+**Teal:**
+```css
+--accent: #14b8a6;
+--accent-hover: #2dd4bf;
+```
+
+### Edit Content
+
+All content is in `index.html`. Key sections:
+
+- **Hero**: `id="hero"` - Update tagline, title, subtitle
+- **About**: `id="about"` - Edit bio, interests
+- **Projects**: `id="projects"` - Add/remove project cards
+- **Experience**: `id="experience"` - Update work history
+- **Skills**: `id="skills"` - Modify skill tags
+- **Education**: `id="education"` - Update coursework
+- **Contact**: `id="contact"` - Update contact info
 
 ### Add a New Project
-Copy an existing project card in `index.html`:
+
+Copy this template inside `.projects-grid`:
 
 ```html
-<article class="project-card">
+<article class="project-card" data-category="research">
   <div class="project-image">
     <img src="YOUR_IMAGE.png" alt="Project Name">
   </div>
-  <div class="project-content">
-    <span class="project-label">Organization • Role</span>
-    <h3>Project Title</h3>
-    <p>Brief description of the project.</p>
-    <ul class="project-highlights">
-      <li>Key achievement 1</li>
-      <li>Key achievement 2</li>
+  <h3>Project Title — Your Role</h3>
+  <div class="project-meta">
+    <span class="tag tag-sm">Category</span>
+    <span class="project-date">Date Range</span>
+  </div>
+  <p>Brief description of the project.</p>
+  <div class="tags">
+    <span class="tag tag-sm">Tag1</span>
+    <span class="tag tag-sm">Tag2</span>
+  </div>
+  <div class="project-actions">
+    <button class="btn btn-sm btn-primary" onclick="toggleDetails(this)">Details</button>
+    <a href="#contact" class="btn-link">Contact →</a>
+  </div>
+  <div class="project-details">
+    <ul>
+      <li>Detail 1</li>
+      <li>Detail 2</li>
     </ul>
-    <div class="project-tags">
-      <span>Tag1</span>
-      <span>Tag2</span>
-    </div>
   </div>
 </article>
 ```
 
-### Add Work Experience
-Add a new timeline item:
+### Project Categories
 
-```html
-<div class="timeline-item">
-  <div class="timeline-marker"></div>
-  <div class="timeline-content">
-    <div class="timeline-header">
-      <h3>Job Title</h3>
-      <span class="timeline-company">Company Name</span>
-      <span class="timeline-date">Date Range</span>
-    </div>
-    <ul>
-      <li>Responsibility 1</li>
-      <li>Responsibility 2</li>
-    </ul>
-  </div>
-</div>
-```
-
-### Update Skills
-Find the skills section in `index.html` and add/remove skill tags:
-
-```html
-<span class="skill-tag">New Skill</span>
-```
-
-### Update Contact Info
-Search for `id="contact"` and update the email, phone, LinkedIn, and GitHub links.
+Projects can be filtered by category. Use `data-category`:
+- `capstone` - Capstone projects
+- `research` - Research/extracurricular
+- `personal` - Personal projects
 
 ## Deployment
 
 ### GitHub Pages
-1. Push all files to your GitHub repository
+1. Push all files to your repository
 2. Go to Settings → Pages
-3. Select "main" branch and click Save
-4. Your site will be at: `https://yourusername.github.io/repository-name/`
+3. Select branch and save
+4. Site will be at: `https://username.github.io/repo-name/`
 
-### Other Hosting
-Simply upload all files to your web host's public directory.
+## Features
 
-## Required Files
-Make sure these images are in the same folder:
-- `profile.png` - Your profile photo
-- `evtol.png` - eVTOL project image
-- `propeller.png` - Propeller project image
-- `rocket.png` - Rocket project image
-- `simulation.png` - Simulation project image
+- ✓ Dark theme with blue accents
+- ✓ Responsive design
+- ✓ Project filtering
+- ✓ Expandable project details
+- ✓ Contact form (opens email client)
+- ✓ Scroll animations
+- ✓ Sticky navigation
+- ✓ Mobile-friendly
 
-And these PDFs:
-- `Fourie_Resume.pdf`
-- `Fourie_van_Rooyen_cover_letter.pdf`
-- `Letter_of_Recommendation.pdf`
-- `URCA_Poster_2025.pdf`
+## Credits
 
-## Color Theme Ideas
-
-### Current (Aerospace Blue)
-```css
---color-primary: #00b4d8;
---color-bg-dark: #0a1628;
-```
-
-### Alternative - Crimson (Alabama)
-```css
---color-primary: #9e1b32;
---color-bg-dark: #1a0a0f;
-```
-
-### Alternative - Tech Green
-```css
---color-primary: #00ff87;
---color-bg-dark: #0a1a14;
-```
-
-### Alternative - Gold Accent
-```css
---color-primary: #ffd700;
---color-bg-dark: #1a1508;
-```
-
----
-
-Built with HTML, CSS, and vanilla JavaScript. No frameworks or build tools required.
+Design inspired by [Eliel Smith's portfolio](https://amon200.github.io/eliel-portfolio/)
