@@ -620,6 +620,7 @@ body {
 /* Cards need slight background for readability */
 .detail-card,
 .project-card,
+.experience-card,
 .timeline-content,
 .doc-card,
 .contact-item {
@@ -630,6 +631,7 @@ body {
 
 /* Fix: Ensure all content is visible */
 .project-card,
+.experience-card,
 .detail-card,
 .doc-card,
 .timeline-item {
@@ -1911,7 +1913,7 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================
-   16. EXPERIENCE CARDS (NEW GRID LAYOUT)
+   16. EXPERIENCE CARDS (MATCHING PROJECT CARDS)
    ============================================ */
 .experience-grid {
   display: grid;
@@ -1923,14 +1925,15 @@ h1, h2, h3, h4 {
   background: var(--color-bg-card);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  padding: var(--spacing-md);
   border-radius: var(--radius-lg);
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  transition: all var(--transition-normal);
+  cursor: default;
+  transition: all var(--transition-slow);
+  display: flex;
+  flex-direction: column;
   opacity: 0;
   transform: translateY(20px);
-  position: relative;
 }
 
 .experience-card.visible {
@@ -1940,74 +1943,35 @@ h1, h2, h3, h4 {
 
 .experience-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 180, 216, 0.3);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0, 180, 216, 0.25);
 }
 
-.experience-header {
-  display: flex;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
-}
-
-.experience-icon {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  max-width: 48px;
-  background: rgba(0, 180, 216, 0.15);
-  border-radius: var(--radius-md);
+/* Icon banner — replaces the project image area */
+.experience-icon-banner {
+  aspect-ratio: 16 / 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(0, 180, 216, 0.08) 0%, rgba(0, 180, 216, 0.03) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.experience-icon svg {
-  width: 24px;
-  height: 24px;
-  max-width: 24px;
-  max-height: 24px;
+.experience-icon-banner svg {
+  width: 64px;
+  height: 64px;
   color: var(--color-primary);
+  opacity: 0.6;
+  transition: all var(--transition-normal);
 }
 
-.experience-info {
-  flex: 1;
-  min-width: 0;
+.experience-card:hover .experience-icon-banner svg {
+  opacity: 0.85;
+  transform: scale(1.08);
 }
 
-.experience-info h3 {
-  font-size: 1.1rem;
-  color: var(--color-text-primary);
-  margin-bottom: 2px;
-}
-
-.experience-company {
-  display: block;
-  color: var(--color-primary);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.experience-date {
-  display: block;
-  color: var(--color-text-muted);
-  font-size: 0.8rem;
-}
-
-.experience-summary {
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.experience-card .card-hover-hint {
-  margin-top: var(--spacing-md);
-}
+/* Reuse .project-content, .project-meta, .project-summary, .project-tags, .btn-details
+   These are already defined in the projects section and will apply automatically. */
 
 /* ============================================
    17. RESPONSIVE UPDATES FOR NEW COMPONENTS
