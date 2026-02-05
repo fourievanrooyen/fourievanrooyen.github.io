@@ -130,7 +130,3 @@ Projects can be filtered by category. Use `data-category`:
 - ✓ Scroll animations
 - ✓ Sticky navigation
 - ✓ Mobile-friendly
-
-## Credits
-
-Design inspired by [Eliel Smith's portfolio](https://amon200.github.io/eliel-portfolio/)
