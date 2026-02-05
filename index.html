@@ -11,6 +11,34 @@
 </head>
 <body>
 
+  <!-- ===================== DEEP SPACE BACKGROUND ===================== -->
+  <div id="space-bg">
+    <!-- Nebula layers (parallax) -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    
+    <!-- Stars layers (parallax) -->
+    <div class="stars-layer" id="stars-far">
+      <div class="stars-small"></div>
+    </div>
+    <div class="stars-layer" id="stars-mid">
+      <div class="stars-medium"></div>
+    </div>
+    <div class="stars-layer" id="stars-near">
+      <div class="stars-large"></div>
+    </div>
+    
+    <!-- Shooting stars -->
+    <div class="shooting-stars">
+      <div class="shooting-star shooting-star-1"></div>
+      <div class="shooting-star shooting-star-2"></div>
+      <div class="shooting-star shooting-star-3"></div>
+      <div class="shooting-star shooting-star-4"></div>
+      <div class="shooting-star shooting-star-5"></div>
+    </div>
+  </div>
+
   <!-- ===================== NAVIGATION ===================== -->
   <nav class="main-nav" id="navbar">
     <div class="nav-container">
@@ -372,12 +400,12 @@
         </p>
         
         <div class="contact-links">
-          <a href="mailto:fourievr1014@gmail.com" class="contact-item">
+          <a href="/cdn-cgi/l/email-protection#3a5c554f48535f4c480b0a0b0e7a5d575b535614595557" class="contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            <span>fourievr1014@gmail.com</span>
+            <span><span class="__cf_email__" data-cfemail="41272e3433282437337071707501262c20282d6f222e2c">[email&#160;protected]</span></span>
           </a>
           
           <a href="tel:+16592109953" class="contact-item">
@@ -414,7 +442,50 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ============ DEEP SPACE PARALLAX ============
+    const starsFar = document.getElementById('stars-far');
+    const starsMid = document.getElementById('stars-mid');
+    const starsNear = document.getElementById('stars-near');
+    const nebula1 = document.querySelector('.nebula-1');
+    const nebula2 = document.querySelector('.nebula-2');
+    const nebula3 = document.querySelector('.nebula-3');
+    
+    let ticking = false;
+    
+    function updateParallax() {
+      const scrollY = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollY / maxScroll;
+      
+      // Stars move at different speeds (farther = slower)
+      if (starsFar) starsFar.style.transform = `translateY(${scrollY * 0.1}px)`;
+      if (starsMid) starsMid.style.transform = `translateY(${scrollY * 0.2}px)`;
+      if (starsNear) starsNear.style.transform = `translateY(${scrollY * 0.35}px)`;
+      
+      // Nebulas also move slowly and shift color intensity
+      if (nebula1) {
+        nebula1.style.transform = `translate(${scrollY * 0.05}px, ${scrollY * 0.08}px)`;
+        nebula1.style.opacity = 0.5 + (scrollPercent * 0.3);
+      }
+      if (nebula2) {
+        nebula2.style.transform = `translate(${-scrollY * 0.03}px, ${scrollY * 0.06}px)`;
+        nebula2.style.opacity = 0.4 + (scrollPercent * 0.25);
+      }
+      if (nebula3) {
+        nebula3.style.transform = `translate(${scrollY * 0.02}px, ${scrollY * 0.04}px)`;
+      }
+      
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+
     // ============ NAVIGATION ============
     // Scroll effect for navbar
     const navbar = document.getElementById('navbar');
@@ -464,15 +535,4 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    // Observe elements for animation
-    document.querySelectorAll('.project-card, .timeline-item, .doc-card, .detail-card').forEach(el => {
-      observer.observe(el);
-    });
-  </script>
-
-</body>
-</html>
+    
