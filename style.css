@@ -34,9 +34,9 @@
   /* Background Colors */
   --color-bg-dark: #0a1628;        /* Darkest background (hero, footer) */
   --color-bg-main: #0d1f35;        /* Main section background */
-  --color-bg-card: rgba(20, 39, 66, 0.75);        /* Card/container background - semi-transparent */
+  --color-bg-card: rgba(20, 39, 66, 0.88);        /* Card/container background - mostly opaque with slight blur */
   --color-bg-card-solid: #142742;  /* Solid version for specific elements */
-  --color-bg-hover: rgba(26, 51, 82, 0.85);       /* Hover state background - semi-transparent */
+  --color-bg-hover: rgba(26, 51, 82, 0.92);       /* Hover state background - mostly opaque with slight blur */
   
   /* Text Colors */
   --color-text-primary: #ffffff;   /* Main text (white) */
@@ -624,7 +624,7 @@ body {
 .doc-card,
 .contact-item {
   background: rgba(10, 20, 40, 0.7) !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(0, 180, 216, 0.1) !important;
 }
 
@@ -714,7 +714,7 @@ h1, h2, h3, h4 {
 
 .main-nav.scrolled {
   background: rgba(10, 22, 40, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
   box-shadow: var(--shadow-md);
 }
 
@@ -978,8 +978,8 @@ h1, h2, h3, h4 {
 
 .detail-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1036,8 +1036,8 @@ h1, h2, h3, h4 {
 /* Interests Section */
 .interests {
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1078,8 +1078,8 @@ h1, h2, h3, h4 {
 
 .project-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1201,8 +1201,8 @@ h1, h2, h3, h4 {
   appearance: none;
   outline: none;
   text-decoration: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .btn-details:hover {
@@ -1275,8 +1275,8 @@ h1, h2, h3, h4 {
 
 .timeline-content {
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1335,8 +1335,8 @@ h1, h2, h3, h4 {
 
 .doc-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1415,8 +1415,8 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: var(--spacing-sm);
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1449,8 +1449,8 @@ h1, h2, h3, h4 {
    ============================================ */
 .footer {
   background: rgba(10, 22, 40, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
@@ -1525,7 +1525,7 @@ h1, h2, h3, h4 {
     left: 0;
     right: 0;
     background: rgba(10, 22, 40, 0.98);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     flex-direction: column;
     padding: var(--spacing-md);
     gap: var(--spacing-sm);
@@ -1876,8 +1876,8 @@ h1, h2, h3, h4 {
   margin-top: var(--spacing-sm);
   padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   color: var(--color-text-muted);
@@ -1921,8 +1921,8 @@ h1, h2, h3, h4 {
 
 .experience-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
