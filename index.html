@@ -855,41 +855,39 @@
       if (!starsLayer) return;
       
       // Parallax speed multipliers (lower = slower movement = more depth)
-      const STARS_SPEED = 0.15;  // Stars move at 15% of scroll speed
-      const QUASAR_SPEEDS = [0.08, 0.12, 0.05]; // Different depths for each quasar
+      const STARS_SPEED = 0.15;
+      const QUASAR_SPEEDS = [0.08, 0.12, 0.05];
       
-      let ticking = false;
-      let lastScrollY = 0;
+      // Smooth interpolation values
+      let currentY = 0;
+      let targetY = 0;
+      const SMOOTHING = 0.08; // Lower = smoother but more lag, higher = more responsive
+      
+      function lerp(start, end, factor) {
+        return start + (end - start) * factor;
+      }
       
       function updateParallax() {
-        const scrollY = window.scrollY;
+        // Get target scroll position
+        targetY = window.scrollY;
         
-        // Move stars layer (negative direction creates downward parallax as you scroll down)
-        starsLayer.style.transform = `translateY(${-scrollY * STARS_SPEED}px)`;
+        // Smoothly interpolate current position toward target
+        currentY = lerp(currentY, targetY, SMOOTHING);
         
-        // Move quasars at different speeds for depth
+        // Apply transforms
+        starsLayer.style.transform = `translate3d(0, ${-currentY * STARS_SPEED}px, 0)`;
+        
         quasars.forEach((quasar, index) => {
           const speed = QUASAR_SPEEDS[index] || 0.1;
-          quasar.style.transform = `translateY(${-scrollY * speed}px)`;
+          quasar.style.transform = `translate3d(0, ${-currentY * speed}px, 0)`;
         });
         
-        ticking = false;
+        // Keep animating until we've caught up
+        requestAnimationFrame(updateParallax);
       }
       
-      function onScroll() {
-        lastScrollY = window.scrollY;
-        
-        if (!ticking) {
-          requestAnimationFrame(updateParallax);
-          ticking = true;
-        }
-      }
-      
-      // Listen for scroll events
-      window.addEventListener('scroll', onScroll, { passive: true });
-      
-      // Initial call in case page loads scrolled
-      updateParallax();
+      // Start the animation loop
+      requestAnimationFrame(updateParallax);
     })();
   </script>
 </body>
