@@ -132,57 +132,78 @@ body {
 }
 
 /* ============================================
-   NEBULA LAYERS - Subtle cosmic clouds
+   NEBULA LAYERS - Disabled for cleaner look
    ============================================ */
 .nebula {
+  display: none;
+}
+
+/* Quasar and bright cosmic phenomena layer */
+/* Quasar and bright cosmic phenomena - actual elements for parallax */
+.quasar {
   position: absolute;
-  width: 300%;
-  height: 300%;
-  top: -100%;
-  left: -100%;
-  opacity: 0.4;
+  border-radius: 50%;
   pointer-events: none;
-  will-change: transform;
 }
 
-/* Deep purple/blue nebula - primary */
-.nebula-1 {
-  background: 
-    /* Large diffuse blue nebula - upper left */
-    radial-gradient(ellipse 1200px 800px at 15% 20%, rgba(20, 60, 140, 0.12) 0%, transparent 60%),
-    /* Purple-magenta cloud - upper right */
-    radial-gradient(ellipse 900px 600px at 75% 15%, rgba(80, 20, 120, 0.1) 0%, transparent 55%),
-    /* Deep cyan accent - middle */
-    radial-gradient(ellipse 700px 500px at 35% 55%, rgba(0, 100, 150, 0.08) 0%, transparent 50%),
-    /* Distant purple haze - lower left */
-    radial-gradient(ellipse 1000px 700px at 10% 80%, rgba(60, 10, 100, 0.06) 0%, transparent 60%);
-  animation: nebulaDrift1 180s ease-in-out infinite alternate;
+/* Distant quasar 1 - bright blue-white core with jets */
+.quasar-1 {
+  width: 10px;
+  height: 10px;
+  top: 12%;
+  left: 75%;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(200, 220, 255, 0.8) 20%,
+    rgba(100, 150, 255, 0.5) 40%,
+    transparent 70%
+  );
+  box-shadow: 
+    0 0 25px 10px rgba(150, 180, 255, 0.7),
+    0 0 50px 20px rgba(100, 140, 220, 0.45),
+    0 0 100px 40px rgba(80, 120, 200, 0.25),
+    /* Quasar jets */
+    -80px -40px 50px 8px rgba(100, 150, 255, 0.2),
+    80px 40px 50px 8px rgba(100, 150, 255, 0.2);
+  animation: quasarPulse1 4s ease-in-out infinite;
 }
 
-/* Secondary nebula layer - warmer tones */
-.nebula-2 {
-  background: 
-    /* Rose/pink nebula - center right */
-    radial-gradient(ellipse 800px 600px at 80% 40%, rgba(100, 30, 80, 0.08) 0%, transparent 55%),
-    /* Teal accent - lower area */
-    radial-gradient(ellipse 600px 800px at 25% 75%, rgba(0, 120, 140, 0.1) 0%, transparent 50%),
-    /* Subtle orange/red distant nebula */
-    radial-gradient(ellipse 500px 400px at 60% 85%, rgba(120, 40, 20, 0.05) 0%, transparent 50%),
-    /* Blue highlight - top center */
-    radial-gradient(ellipse 700px 500px at 50% 5%, rgba(30, 80, 160, 0.08) 0%, transparent 55%);
-  animation: nebulaDrift2 220s ease-in-out infinite alternate;
+/* Distant quasar 2 - reddish/orange active galactic nucleus */
+.quasar-2 {
+  width: 8px;
+  height: 8px;
+  top: 55%;
+  left: 18%;
+  background: radial-gradient(circle, 
+    rgba(255, 250, 240, 1) 0%, 
+    rgba(255, 180, 140, 0.75) 25%,
+    rgba(200, 100, 80, 0.4) 50%,
+    transparent 70%
+  );
+  box-shadow: 
+    0 0 20px 8px rgba(255, 180, 150, 0.6),
+    0 0 45px 16px rgba(220, 140, 100, 0.4),
+    0 0 80px 32px rgba(180, 100, 80, 0.22);
+  animation: quasarPulse2 6s ease-in-out infinite;
 }
 
-/* Tertiary nebula - very subtle depth */
-.nebula-3 {
-  background: 
-    /* Very distant blue glow */
-    radial-gradient(ellipse 1500px 1000px at 40% 30%, rgba(15, 40, 100, 0.06) 0%, transparent 70%),
-    /* Subtle magenta wash */
-    radial-gradient(ellipse 800px 600px at 70% 60%, rgba(60, 20, 80, 0.04) 0%, transparent 55%),
-    /* Deep space cyan hint */
-    radial-gradient(ellipse 600px 400px at 20% 45%, rgba(0, 80, 120, 0.05) 0%, transparent 50%);
-  animation: nebulaDrift3 280s ease-in-out infinite alternate;
+/* Distant quasar 3 - purple/violet distant AGN */
+.quasar-3 {
+  width: 7px;
+  height: 7px;
+  top: 78%;
+  left: 65%;
+  background: radial-gradient(circle, 
+    rgba(255, 250, 255, 1) 0%, 
+    rgba(200, 160, 255, 0.75) 25%,
+    rgba(140, 100, 200, 0.4) 50%,
+    transparent 70%
+  );
+  box-shadow: 
+    0 0 16px 7px rgba(180, 150, 255, 0.55),
+    0 0 40px 14px rgba(150, 120, 220, 0.35),
+    0 0 70px 28px rgba(120, 90, 180, 0.2);
+  animation: quasarPulse3 8s ease-in-out infinite;
 }
 
 @keyframes nebulaDrift1 {
@@ -200,6 +221,60 @@ body {
 @keyframes nebulaDrift3 {
   0% { transform: translate(0, 0); }
   100% { transform: translate(2%, -3%); }
+}
+
+@keyframes quasarPulse1 {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.8);
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes quasarPulse2 {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% { 
+    opacity: 1; 
+    transform: scale(1.6);
+    filter: brightness(1.4);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+    filter: brightness(1.1);
+  }
+  75% { 
+    opacity: 1; 
+    transform: scale(1.5);
+    filter: brightness(1.3);
+  }
+}
+
+@keyframes quasarPulse3 {
+  0%, 100% { 
+    opacity: 0.5; 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  30% { 
+    opacity: 0.9; 
+    transform: scale(1.4);
+    filter: brightness(1.3);
+  }
+  60% { 
+    opacity: 1; 
+    transform: scale(1.7);
+    filter: brightness(1.5);
+  }
 }
 
 /* ============================================
@@ -378,6 +453,132 @@ body {
   position: absolute;
   pointer-events: none;
   will-change: transform, opacity, left, top;
+}
+
+/* ============================================
+   CROSS-FLARE STARS - Bright stars with light rays
+   ============================================ */
+.flare-star {
+  position: absolute;
+  pointer-events: none;
+}
+
+.flare-star-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(255, 255, 240, 0.9) 20%,
+    rgba(255, 250, 220, 0.6) 40%,
+    transparent 70%
+  );
+}
+
+/* Horizontal flare ray */
+.flare-ray-h {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 220, 0.1) 15%,
+    rgba(255, 255, 200, 0.4) 35%,
+    rgba(255, 255, 240, 0.9) 48%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 240, 0.9) 52%,
+    rgba(255, 255, 200, 0.4) 65%,
+    rgba(255, 255, 220, 0.1) 85%,
+    transparent 100%
+  );
+}
+
+/* Vertical flare ray */
+.flare-ray-v {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(255, 255, 220, 0.1) 15%,
+    rgba(255, 255, 200, 0.4) 35%,
+    rgba(255, 255, 240, 0.9) 48%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 240, 0.9) 52%,
+    rgba(255, 255, 200, 0.4) 65%,
+    rgba(255, 255, 220, 0.1) 85%,
+    transparent 100%
+  );
+}
+
+/* Diagonal flare rays */
+.flare-ray-d1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 200, 0.05) 20%,
+    rgba(255, 255, 220, 0.2) 40%,
+    rgba(255, 255, 240, 0.5) 50%,
+    rgba(255, 255, 220, 0.2) 60%,
+    rgba(255, 255, 200, 0.05) 80%,
+    transparent 100%
+  );
+}
+
+.flare-ray-d2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 200, 0.05) 20%,
+    rgba(255, 255, 220, 0.2) 40%,
+    rgba(255, 255, 240, 0.5) 50%,
+    rgba(255, 255, 220, 0.2) 60%,
+    rgba(255, 255, 200, 0.05) 80%,
+    transparent 100%
+  );
+}
+
+@keyframes flarePulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes flarePulseRotate {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) rotate(45deg) scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.1);
+  }
+}
+
+@keyframes flarePulseRotate2 {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.1);
+  }
 }
 
 /* Make sections transparent so space shows through */

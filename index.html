@@ -18,13 +18,18 @@
     <div class="nebula nebula-2"></div>
     <div class="nebula nebula-3"></div>
     
-    <!-- Star layers - different sizes -->
+    <!-- Star layers - different sizes (includes quasars for parallax) -->
     <div class="stars-layer" id="stars-layer">
       <div class="stars-tiny"></div>
       <div class="stars-small"></div>
       <div class="stars-medium"></div>
       <div class="stars-large"></div>
       <div class="stars-bright"></div>
+      
+      <!-- Quasars and bright cosmic phenomena -->
+      <div class="quasar quasar-1"></div>
+      <div class="quasar quasar-2"></div>
+      <div class="quasar quasar-3"></div>
     </div>
     
     <!-- Shooting stars container - JS controlled -->
@@ -497,20 +502,33 @@
     (function() {
       const starsLayer = document.getElementById('stars-layer');
       const shootingStarsContainer = document.getElementById('shooting-stars');
+      const nebula1 = document.querySelector('.nebula-1');
+      const nebula2 = document.querySelector('.nebula-2');
+      const nebula3 = document.querySelector('.nebula-3');
       
-      // Parallax scrolling for stars
+      // Parallax scrolling for stars and nebulas
       let ticking = false;
       
-      function updateStarsPosition() {
+      function updateParallax() {
         const scrollY = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = scrollY / docHeight;
         
-        // Move stars layer based on scroll (parallax effect)
-        // Stars move slower than scroll to create depth
-        const starsOffset = scrollPercent * 100; // percentage offset
+        // Stars move at base parallax rate
+        const starsOffset = scrollPercent * 100;
         if (starsLayer) {
           starsLayer.style.transform = `translateY(-${starsOffset}%)`;
+        }
+        
+        // Nebulas move at different rates for depth effect
+        if (nebula1) {
+          nebula1.style.transform = `translateY(-${scrollPercent * 30}%) translateX(${scrollPercent * 5}%)`;
+        }
+        if (nebula2) {
+          nebula2.style.transform = `translateY(-${scrollPercent * 50}%) translateX(-${scrollPercent * 8}%)`;
+        }
+        if (nebula3) {
+          nebula3.style.transform = `translateY(-${scrollPercent * 70}%) translateX(${scrollPercent * 3}%)`;
         }
         
         ticking = false;
@@ -518,12 +536,178 @@
       
       window.addEventListener('scroll', () => {
         if (!ticking) {
-          requestAnimationFrame(updateStarsPosition);
+          requestAnimationFrame(updateParallax);
           ticking = true;
         }
       });
 
-      // Shooting Stars System
+      // ============ CROSS-FLARE STARS ============
+      function createFlareStars() {
+        const container = starsLayer;
+        if (!container) return;
+        
+        // Create 12 cross-flare stars at random positions
+        for (let i = 0; i < 12; i++) {
+          const flareStar = document.createElement('div');
+          flareStar.className = 'flare-star';
+          
+          // Random position
+          const x = 5 + Math.random() * 90;
+          const y = Math.random() * 100;
+          
+          // Random size (base size for scaling)
+          const baseSize = 15 + Math.random() * 35;
+          const coreSize = baseSize * 0.15;
+          const rayLength = baseSize * 3;
+          const rayWidth = baseSize * 0.08;
+          const diagLength = baseSize * 2;
+          const diagWidth = baseSize * 0.05;
+          
+          // Random animation timing
+          const duration = 2 + Math.random() * 4;
+          const delay = Math.random() * 5;
+          
+          // Random warm color tint
+          const tints = [
+            { r: 255, g: 255, b: 255 },   // Pure white
+            { r: 255, g: 250, b: 220 },   // Warm white
+            { r: 255, g: 240, b: 200 },   // Golden white
+            { r: 220, g: 240, b: 255 },   // Cool white
+            { r: 255, g: 220, b: 255 },   // Pink white
+          ];
+          const tint = tints[Math.floor(Math.random() * tints.length)];
+          
+          flareStar.style.cssText = `
+            position: absolute;
+            left: ${x}%;
+            top: ${y}%;
+            width: ${baseSize}px;
+            height: ${baseSize}px;
+            pointer-events: none;
+          `;
+          
+          // Create the core
+          const core = document.createElement('div');
+          core.className = 'flare-star-core';
+          core.style.cssText = `
+            width: ${coreSize}px;
+            height: ${coreSize}px;
+            box-shadow: 
+              0 0 ${coreSize}px ${coreSize/2}px rgba(${tint.r}, ${tint.g}, ${tint.b}, 0.9),
+              0 0 ${coreSize * 2}px ${coreSize}px rgba(${tint.r}, ${tint.g}, ${tint.b}, 0.5);
+            animation: flarePulse ${duration}s ease-in-out ${delay}s infinite;
+          `;
+          
+          // Create horizontal ray
+          const rayH = document.createElement('div');
+          rayH.className = 'flare-ray-h';
+          rayH.style.cssText = `
+            width: ${rayLength}px;
+            height: ${rayWidth}px;
+            animation: flarePulse ${duration}s ease-in-out ${delay}s infinite;
+          `;
+          
+          // Create vertical ray
+          const rayV = document.createElement('div');
+          rayV.className = 'flare-ray-v';
+          rayV.style.cssText = `
+            width: ${rayWidth}px;
+            height: ${rayLength}px;
+            animation: flarePulse ${duration}s ease-in-out ${delay}s infinite;
+          `;
+          
+          // Create diagonal rays
+          const rayD1 = document.createElement('div');
+          rayD1.className = 'flare-ray-d1';
+          rayD1.style.cssText = `
+            width: ${diagLength}px;
+            height: ${diagWidth}px;
+            animation: flarePulseRotate ${duration}s ease-in-out ${delay}s infinite;
+          `;
+          
+          const rayD2 = document.createElement('div');
+          rayD2.className = 'flare-ray-d2';
+          rayD2.style.cssText = `
+            width: ${diagLength}px;
+            height: ${diagWidth}px;
+            animation: flarePulseRotate2 ${duration}s ease-in-out ${delay}s infinite;
+          `;
+          
+          flareStar.appendChild(rayD1);
+          flareStar.appendChild(rayD2);
+          flareStar.appendChild(rayH);
+          flareStar.appendChild(rayV);
+          flareStar.appendChild(core);
+          
+          container.appendChild(flareStar);
+        }
+      }
+      
+      createFlareStars();
+
+      // ============ RANDOM TWINKLING STARS ============
+      function createTwinklingStars() {
+        const container = starsLayer;
+        if (!container) return;
+        
+        // Create 60 randomly positioned twinkling stars
+        for (let i = 0; i < 60; i++) {
+          const star = document.createElement('div');
+          star.className = 'twinkle-star';
+          
+          // Random position across the tall stars layer
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          
+          // Random size (1-4px)
+          const size = 1 + Math.random() * 3;
+          
+          // Random twinkle duration (1-4 seconds)
+          const duration = 1 + Math.random() * 3;
+          
+          // Random delay so they don't all sync up
+          const delay = Math.random() * 5;
+          
+          // Random color tint
+          const colors = [
+            'rgba(255, 255, 255, 1)',
+            'rgba(200, 220, 255, 1)',
+            'rgba(255, 240, 220, 1)',
+            'rgba(220, 200, 255, 1)',
+            'rgba(200, 255, 255, 1)'
+          ];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          
+          star.style.cssText = `
+            position: absolute;
+            left: ${x}%;
+            top: ${y}%;
+            width: ${size}px;
+            height: ${size}px;
+            background: ${color};
+            border-radius: 50%;
+            box-shadow: 0 0 ${size * 2}px ${size / 2}px ${color.replace('1)', '0.5)')};
+            animation: randomTwinkle ${duration}s ease-in-out ${delay}s infinite;
+            pointer-events: none;
+          `;
+          
+          container.appendChild(star);
+        }
+      }
+      
+      // Add the CSS animation for random twinkling
+      const styleSheet = document.createElement('style');
+      styleSheet.textContent = `
+        @keyframes randomTwinkle {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+      `;
+      document.head.appendChild(styleSheet);
+      
+      createTwinklingStars();
+
+      // ============ SHOOTING STARS SYSTEM ============
       class ShootingStar {
         constructor(container) {
           this.container = container;
@@ -533,32 +717,32 @@
         }
         
         reset() {
-          // Random size (small, medium, large)
+          // Random size
           const sizes = [
-            { length: 80, thickness: 1, headSize: 3 },   // small
-            { length: 120, thickness: 1.5, headSize: 4 }, // medium  
-            { length: 180, thickness: 2, headSize: 6 },   // large
-            { length: 250, thickness: 2.5, headSize: 8 }  // extra large
+            { length: 100, thickness: 1.5, headSize: 4 },
+            { length: 150, thickness: 2, headSize: 5 },
+            { length: 220, thickness: 2.5, headSize: 7 },
+            { length: 300, thickness: 3, headSize: 9 }
           ];
           const size = sizes[Math.floor(Math.random() * sizes.length)];
           
-          // Random start position (from left or top edge)
-          const startFromTop = Math.random() > 0.3;
+          // All stars go top-left to bottom-right at angles between 25-45 degrees
+          this.angle = 25 + Math.random() * 20;
+          
+          // Start from left edge or top edge
+          const startFromTop = Math.random() > 0.4;
           if (startFromTop) {
-            this.x = Math.random() * window.innerWidth * 0.8;
+            this.x = Math.random() * window.innerWidth * 0.6;
             this.y = -50;
           } else {
-            this.x = -50;
-            this.y = Math.random() * window.innerHeight * 0.4;
+            this.x = -size.length;
+            this.y = Math.random() * window.innerHeight * 0.3;
           }
           
-          // Angle between 15-45 degrees
-          this.angle = 15 + Math.random() * 30;
+          this.speed = 6 + Math.random() * 8;
           
-          // Speed varies with size
-          this.speed = (3 + Math.random() * 5) * (size.length / 120);
-          
-          // Style the shooting star
+          // Simple setup: star moves down-right, tail trails behind (up-left)
+          // Element is rotated to match angle, gradient fades from left (tail) to right (head)
           this.element.style.cssText = `
             position: absolute;
             width: ${size.length}px;
@@ -566,22 +750,20 @@
             left: ${this.x}px;
             top: ${this.y}px;
             transform: rotate(${this.angle}deg);
-            transform-origin: right center;
             background: linear-gradient(90deg, 
-              transparent 0%, 
-              rgba(255,255,255,0.05) 10%,
-              rgba(255,255,255,0.3) 30%,
-              rgba(255,255,255,0.7) 60%, 
-              rgba(200,230,255,0.9) 85%,
+              transparent 0%,
+              rgba(255,255,255,0.02) 15%,
+              rgba(255,255,255,0.1) 35%,
+              rgba(255,255,255,0.35) 55%,
+              rgba(200,230,255,0.7) 75%,
               rgba(255,255,255,1) 100%
             );
-            border-radius: 50%;
+            border-radius: 100px;
             opacity: 0;
             pointer-events: none;
-            will-change: transform, opacity, left, top;
           `;
           
-          // Add glowing head
+          // Glowing head at the right end (leading edge)
           this.element.innerHTML = `
             <span style="
               position: absolute;
@@ -590,18 +772,20 @@
               transform: translateY(-50%);
               width: ${size.headSize}px;
               height: ${size.headSize}px;
-              background: radial-gradient(circle, #fff 0%, rgba(200,230,255,0.8) 40%, transparent 70%);
+              background: radial-gradient(circle, 
+                rgba(255,255,255,1) 0%, 
+                rgba(220,240,255,0.8) 40%,
+                transparent 100%
+              );
               border-radius: 50%;
               box-shadow: 
-                0 0 ${size.headSize * 2}px ${size.headSize/2}px rgba(255,255,255,0.8),
-                0 0 ${size.headSize * 4}px ${size.headSize}px rgba(150,200,255,0.5),
-                0 0 ${size.headSize * 6}px ${size.headSize * 1.5}px rgba(100,180,255,0.3);
+                0 0 ${size.headSize * 2}px ${size.headSize}px rgba(255,255,255,0.9),
+                0 0 ${size.headSize * 4}px ${size.headSize * 1.5}px rgba(180,210,255,0.5);
             "></span>
           `;
           
           this.length = size.length;
           this.active = false;
-          this.progress = 0;
         }
         
         start() {
@@ -622,9 +806,7 @@
           this.element.style.left = this.x + 'px';
           this.element.style.top = this.y + 'px';
           
-          // Check if off screen
-          if (this.x > window.innerWidth + this.length || 
-              this.y > window.innerHeight + this.length) {
+          if (this.x > window.innerWidth + this.length || this.y > window.innerHeight + 100) {
             this.active = false;
             this.element.style.opacity = '0';
           }
@@ -633,13 +815,10 @@
 
       // Create shooting star pool
       const shootingStars = [];
-      const maxShootingStars = 8;
-      
-      for (let i = 0; i < maxShootingStars; i++) {
+      for (let i = 0; i < 10; i++) {
         shootingStars.push(new ShootingStar(shootingStarsContainer));
       }
       
-      // Spawn shooting stars randomly
       function spawnShootingStar() {
         const inactiveStar = shootingStars.find(s => !s.active);
         if (inactiveStar) {
@@ -648,25 +827,22 @@
         }
       }
       
-      // Animation loop
       function animate() {
         shootingStars.forEach(star => star.update());
         requestAnimationFrame(animate);
       }
       animate();
       
-      // Random interval for shooting stars (every 2-6 seconds)
       function scheduleNextStar() {
-        const delay = 2000 + Math.random() * 4000;
+        const delay = 1500 + Math.random() * 3500;
         setTimeout(() => {
           spawnShootingStar();
           scheduleNextStar();
         }, delay);
       }
       
-      // Start with a few shooting stars
-      setTimeout(() => spawnShootingStar(), 1000);
-      setTimeout(() => spawnShootingStar(), 3000);
+      setTimeout(() => spawnShootingStar(), 500);
+      setTimeout(() => spawnShootingStar(), 2000);
       scheduleNextStar();
       
     })();
