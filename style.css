@@ -145,7 +145,6 @@ body {
   border-radius: 50%;
   pointer-events: none;
   will-change: transform;
-  transition: transform 0.1s linear;
 }
 
 /* Distant quasar 1 - bright blue-white core with jets */
@@ -317,7 +316,6 @@ body {
   top: 0;
   left: 0;
   will-change: transform;
-  transition: transform 0.1s linear;
 }
 
 /* Base styles for all star layers */
