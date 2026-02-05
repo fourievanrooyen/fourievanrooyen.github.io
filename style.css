@@ -1973,6 +1973,26 @@ h1, h2, h3, h4 {
 /* Reuse .project-content, .project-meta, .project-summary, .project-tags, .btn-details
    These are already defined in the projects section and will apply automatically. */
 
+/* Experience card image contain — for logos that shouldn't be cropped */
+.experience-image-contain {
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.experience-image-contain img {
+  object-fit: contain !important;
+  padding: 1rem;
+}
+
+/* Modal hero image contain variant */
+.modal-hero-contain {
+  object-fit: contain !important;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+}
+
 /* ============================================
    17. RESPONSIVE UPDATES FOR NEW COMPONENTS
    ============================================ */
