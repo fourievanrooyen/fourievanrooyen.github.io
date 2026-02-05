@@ -637,8 +637,8 @@ body {
 }
 
 .interests {
-  background: rgba(10, 20, 40, 0.5);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 20, 40, 0.7);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(0, 180, 216, 0.1);
 }
