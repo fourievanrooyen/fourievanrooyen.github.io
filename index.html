@@ -846,6 +846,51 @@
       scheduleNextStar();
       
     })();
+
+    // ============ PARALLAX SCROLL SYNC ============
+    (function() {
+      const starsLayer = document.getElementById('stars-layer');
+      const quasars = document.querySelectorAll('.quasar');
+      
+      if (!starsLayer) return;
+      
+      // Parallax speed multipliers (lower = slower movement = more depth)
+      const STARS_SPEED = 0.15;  // Stars move at 15% of scroll speed
+      const QUASAR_SPEEDS = [0.08, 0.12, 0.05]; // Different depths for each quasar
+      
+      let ticking = false;
+      let lastScrollY = 0;
+      
+      function updateParallax() {
+        const scrollY = window.scrollY;
+        
+        // Move stars layer (negative direction creates downward parallax as you scroll down)
+        starsLayer.style.transform = `translateY(${-scrollY * STARS_SPEED}px)`;
+        
+        // Move quasars at different speeds for depth
+        quasars.forEach((quasar, index) => {
+          const speed = QUASAR_SPEEDS[index] || 0.1;
+          quasar.style.transform = `translateY(${-scrollY * speed}px)`;
+        });
+        
+        ticking = false;
+      }
+      
+      function onScroll() {
+        lastScrollY = window.scrollY;
+        
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+      
+      // Listen for scroll events
+      window.addEventListener('scroll', onScroll, { passive: true });
+      
+      // Initial call in case page loads scrolled
+      updateParallax();
+    })();
   </script>
 </body>
 </html>
