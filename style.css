@@ -1832,28 +1832,39 @@ h1, h2, h3, h4 {
 }
 
 .card-hover-hint {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   margin-top: var(--spacing-sm);
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
   color: var(--color-text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   transition: all var(--transition-normal);
 }
 
 .card-hover-hint svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
   transition: transform var(--transition-normal);
 }
 
-.project-card:hover .card-hover-hint {
+.project-card:hover .card-hover-hint,
+.experience-card:hover .card-hover-hint {
+  background: rgba(0, 180, 216, 0.15);
+  border-color: rgba(0, 180, 216, 0.3);
   color: var(--color-primary);
 }
 
-.project-card:hover .card-hover-hint svg {
-  transform: translate(3px, -3px);
+.project-card:hover .card-hover-hint svg,
+.experience-card:hover .card-hover-hint svg {
+  transform: translate(2px, -2px);
 }
 
 /* Remove the old project highlights from cards since details are in modal */
@@ -1905,17 +1916,26 @@ h1, h2, h3, h4 {
   width: 48px;
   height: 48px;
   min-width: 48px;
+  max-width: 48px;
   background: rgba(0, 180, 216, 0.15);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .experience-icon svg {
   width: 24px;
   height: 24px;
+  max-width: 24px;
+  max-height: 24px;
   color: var(--color-primary);
+}
+
+.experience-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .experience-info h3 {
