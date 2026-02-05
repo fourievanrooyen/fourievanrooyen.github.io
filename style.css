@@ -98,9 +98,348 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: var(--color-text-primary);
-  background-color: var(--color-bg-main);
+  background-color: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   DEEP SPACE BACKGROUND SYSTEM
+   ============================================ */
+
+/* Space container - holds all space layers */
+#space-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  overflow: hidden;
+  /* Deep space gradient - pure black with subtle deep blue hints */
+  background: 
+    radial-gradient(ellipse 150% 100% at 50% 0%, #030812 0%, #000000 50%),
+    linear-gradient(180deg, 
+      #000000 0%, 
+      #010309 10%,
+      #020611 25%,
+      #010408 40%,
+      #000204 60%,
+      #000102 80%,
+      #000000 100%
+    );
+}
+
+/* ============================================
+   NEBULA LAYERS - Subtle cosmic clouds
+   ============================================ */
+.nebula {
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  opacity: 0.4;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Deep purple/blue nebula - primary */
+.nebula-1 {
+  background: 
+    /* Large diffuse blue nebula - upper left */
+    radial-gradient(ellipse 1200px 800px at 15% 20%, rgba(20, 60, 140, 0.12) 0%, transparent 60%),
+    /* Purple-magenta cloud - upper right */
+    radial-gradient(ellipse 900px 600px at 75% 15%, rgba(80, 20, 120, 0.1) 0%, transparent 55%),
+    /* Deep cyan accent - middle */
+    radial-gradient(ellipse 700px 500px at 35% 55%, rgba(0, 100, 150, 0.08) 0%, transparent 50%),
+    /* Distant purple haze - lower left */
+    radial-gradient(ellipse 1000px 700px at 10% 80%, rgba(60, 10, 100, 0.06) 0%, transparent 60%);
+  animation: nebulaDrift1 180s ease-in-out infinite alternate;
+}
+
+/* Secondary nebula layer - warmer tones */
+.nebula-2 {
+  background: 
+    /* Rose/pink nebula - center right */
+    radial-gradient(ellipse 800px 600px at 80% 40%, rgba(100, 30, 80, 0.08) 0%, transparent 55%),
+    /* Teal accent - lower area */
+    radial-gradient(ellipse 600px 800px at 25% 75%, rgba(0, 120, 140, 0.1) 0%, transparent 50%),
+    /* Subtle orange/red distant nebula */
+    radial-gradient(ellipse 500px 400px at 60% 85%, rgba(120, 40, 20, 0.05) 0%, transparent 50%),
+    /* Blue highlight - top center */
+    radial-gradient(ellipse 700px 500px at 50% 5%, rgba(30, 80, 160, 0.08) 0%, transparent 55%);
+  animation: nebulaDrift2 220s ease-in-out infinite alternate;
+}
+
+/* Tertiary nebula - very subtle depth */
+.nebula-3 {
+  background: 
+    /* Very distant blue glow */
+    radial-gradient(ellipse 1500px 1000px at 40% 30%, rgba(15, 40, 100, 0.06) 0%, transparent 70%),
+    /* Subtle magenta wash */
+    radial-gradient(ellipse 800px 600px at 70% 60%, rgba(60, 20, 80, 0.04) 0%, transparent 55%),
+    /* Deep space cyan hint */
+    radial-gradient(ellipse 600px 400px at 20% 45%, rgba(0, 80, 120, 0.05) 0%, transparent 50%);
+  animation: nebulaDrift3 280s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaDrift1 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(3%, 2%) rotate(0.5deg) scale(1.02); }
+  100% { transform: translate(5%, 4%) rotate(1deg) scale(1); }
+}
+
+@keyframes nebulaDrift2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-2%, 3%) rotate(-0.3deg); }
+  100% { transform: translate(-4%, 5%) rotate(-0.8deg); }
+}
+
+@keyframes nebulaDrift3 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(2%, -3%); }
+}
+
+/* ============================================
+   STAR LAYERS - Multiple sizes and colors
+   ============================================ */
+.stars-layer {
+  position: absolute;
+  width: 100%;
+  height: 400%; /* Tall enough for parallax scrolling */
+  top: 0;
+  left: 0;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Base styles for all star layers */
+.stars-tiny,
+.stars-small,
+.stars-medium,
+.stars-large,
+.stars-bright {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+}
+
+/* Tiny stars - most numerous, faintest */
+.stars-tiny {
+  background-image: 
+    radial-gradient(0.5px 0.5px at 23px 45px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 67px 123px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 145px 67px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 234px 189px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 312px 45px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 89px 234px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 178px 156px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 267px 78px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 356px 212px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 45px 178px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 134px 289px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 223px 334px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 378px 123px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 456px 267px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 512px 89px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 589px 345px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 634px 178px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 701px 56px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 445px 390px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 523px 445px, rgba(255,255,255,0.35), transparent);
+  background-size: 750px 480px;
+  animation: twinkleTiny 6s ease-in-out infinite alternate;
+}
+
+/* Small stars */
+.stars-small {
+  background-image: 
+    radial-gradient(1px 1px at 50px 100px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 150px 50px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 250px 180px, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 350px 80px, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 450px 200px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 100px 250px, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 200px 150px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 300px 220px, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 400px 30px, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 500px 120px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 80px 300px, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 180px 350px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 280px 280px, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 380px 320px, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 480px 380px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 550px 50px, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 600px 180px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 650px 100px, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 700px 250px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 750px 150px, rgba(255,255,255,0.55), transparent);
+  background-size: 820px 420px;
+  animation: twinkleSmall 5s ease-in-out infinite alternate;
+}
+
+/* Medium stars */
+.stars-medium {
+  background-image: 
+    radial-gradient(1.5px 1.5px at 120px 80px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 320px 160px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 520px 60px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 220px 280px, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1.5px 1.5px at 420px 340px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 620px 200px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 80px 180px, rgba(220,230,255,0.95), transparent),
+    radial-gradient(1.5px 1.5px at 680px 320px, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1.5px 1.5px at 180px 380px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 580px 420px, rgba(255,240,230,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 750px 100px, rgba(230,240,255,0.95), transparent),
+    radial-gradient(1.5px 1.5px at 380px 450px, rgba(255,255,255,0.85), transparent);
+  background-size: 850px 500px;
+  animation: twinkleMedium 7s ease-in-out infinite alternate-reverse;
+}
+
+/* Large stars - fewer, brighter */
+.stars-large {
+  background-image: 
+    radial-gradient(2px 2px at 200px 150px, #fff, transparent),
+    radial-gradient(2.5px 2.5px at 500px 250px, rgba(200,220,255,1), transparent),
+    radial-gradient(2px 2px at 350px 400px, #fff, transparent),
+    radial-gradient(2.5px 2.5px at 650px 100px, rgba(255,240,220,1), transparent),
+    radial-gradient(2px 2px at 100px 350px, rgba(220,200,255,1), transparent),
+    radial-gradient(2.5px 2.5px at 450px 50px, rgba(255,250,240,1), transparent),
+    radial-gradient(2px 2px at 750px 300px, rgba(200,230,255,1), transparent),
+    radial-gradient(2.5px 2.5px at 300px 200px, rgba(255,220,200,1), transparent);
+  background-size: 900px 480px;
+  animation: twinkleLarge 8s ease-in-out infinite alternate;
+}
+
+/* Bright stars - very few, prominent, with subtle color and glow */
+.stars-bright {
+  background-image: 
+    /* Bright white-blue star */
+    radial-gradient(3px 3px at 180px 120px, rgba(255,255,255,1), rgba(200,220,255,0.5) 50%, transparent 100%),
+    /* Warm yellow-white star */
+    radial-gradient(3.5px 3.5px at 580px 280px, rgba(255,250,240,1), rgba(255,230,180,0.4) 50%, transparent 100%),
+    /* Cool blue star */
+    radial-gradient(3px 3px at 380px 450px, rgba(220,240,255,1), rgba(180,200,255,0.4) 50%, transparent 100%),
+    /* Brilliant white star */
+    radial-gradient(4px 4px at 720px 180px, rgba(255,255,255,1), rgba(255,255,255,0.3) 50%, transparent 100%),
+    /* Subtle red giant hint */
+    radial-gradient(3px 3px at 120px 380px, rgba(255,240,230,1), rgba(255,200,180,0.3) 50%, transparent 100%);
+  background-size: 900px 550px;
+  animation: twinkleBright 10s ease-in-out infinite alternate;
+}
+
+/* Star twinkle animations - different timings create natural feel */
+@keyframes twinkleTiny {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes twinkleSmall {
+  0%, 100% { opacity: 0.6; }
+  30% { opacity: 0.8; }
+  70% { opacity: 0.65; }
+}
+
+@keyframes twinkleMedium {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes twinkleLarge {
+  0%, 100% { opacity: 0.8; }
+  25% { opacity: 1; }
+  75% { opacity: 0.85; }
+}
+
+@keyframes twinkleBright {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+/* ============================================
+   SHOOTING STARS CONTAINER
+   ============================================ */
+.shooting-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Base shooting star styles (JS creates the actual stars) */
+.shooting-star {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity, left, top;
+}
+
+/* Make sections transparent so space shows through */
+.section {
+  position: relative;
+  z-index: 1;
+}
+
+.hero,
+.about,
+.projects,
+.experience,
+.documents,
+.contact,
+.footer {
+  background: transparent !important;
+}
+
+/* Add subtle section separators */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(0,0,0,0) 0%,
+    rgba(5,10,25,0.3) 20%,
+    rgba(5,10,25,0.4) 50%,
+    rgba(5,10,25,0.3) 80%,
+    rgba(0,0,0,0) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Cards need slight background for readability */
+.detail-card,
+.project-card,
+.timeline-content,
+.doc-card,
+.contact-item {
+  background: rgba(10, 20, 40, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 180, 216, 0.1) !important;
+}
+
+/* Fix: Ensure all content is visible */
+.project-card,
+.detail-card,
+.doc-card,
+.timeline-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.interests {
+  background: rgba(10, 20, 40, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 180, 216, 0.1);
 }
 
 .container {
@@ -268,21 +607,14 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--gradient-hero);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle grid pattern */
+/* Hero doesn't need the section separator */
 .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(0, 180, 216, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 180, 216, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
+  display: none;
 }
 
 .hero-content {
