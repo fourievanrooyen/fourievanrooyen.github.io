@@ -3,31 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fourie van Rooyen - Portfolio</title>
+  <title>Fourie van Rooyen | Aerospace Engineering</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- ===================== NAVIGATION ===================== -->
-  <nav class="navbar" id="navbar">
+  <nav class="main-nav" id="navbar">
     <div class="nav-container">
-      <a href="#hero" class="nav-logo">
-        <span class="status-dot"></span>
-        Fourie van Rooyen
-      </a>
+      <a href="#hero" class="nav-logo">FVR</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
+        <li><a href="#documents">Documents</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li>
-          <button class="theme-toggle" aria-label="Toggle theme">✦</button>
-        </li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span>
@@ -37,457 +30,403 @@
     </div>
   </nav>
 
-  <main class="main-content">
-
-    <!-- ===================== HERO SECTION ===================== -->
-    <section id="hero" class="hero">
-      <div class="hero-content">
-        <div class="hero-text">
-          <p class="hero-tagline">Aerospace Engineering • Applied Aerodynamics</p>
-          <h1 class="hero-title">Engineering systems with precision, curiosity, and hands-on validation.</h1>
-          <p class="hero-subtitle">Aerospace Engineering student at The University of Alabama.</p>
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="Fourie_Resume.pdf" target="_blank" class="btn btn-secondary">Open Resume (PDF)</a>
-          </div>
-        </div>
-        <div class="hero-right">
-          <div class="hero-image-container">
-            <img src="profile.png" alt="Fourie van Rooyen" class="hero-image">
-          </div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-value">May 2026</span>
-              <span class="stat-label">B.S. Graduation</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-value">3.0</span>
-              <span class="stat-label">Major GPA</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-value">Dean's List</span>
-              <span class="stat-label">Fall 2025</span>
-            </div>
-          </div>
+  <!-- ===================== HERO SECTION ===================== -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Aerospace Engineering Student</p>
+        <h1 class="hero-title">Fourie van Rooyen</h1>
+        <p class="hero-subtitle">
+          Applied aerodynamics, propulsion systems, and experimental validation. 
+          Bridging simulation with real-world performance through CAD, CFD, FEA, and hands-on testing.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
-    </section>
+      <div class="hero-image">
+        <img src="profile.png" alt="Fourie van Rooyen">
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    <!-- ===================== ABOUT SECTION ===================== -->
-    <section id="about" class="section">
-      <h2 class="section-title">About</h2>
-      <p class="section-intro">
-        Welcome to my portfolio — I'm a senior Aerospace Engineering student with a focus on applied aerodynamics, 
-        propulsion systems, and experimental validation. I use CAD, CFD, FEA, and multiphysics analysis in ANSYS 
-        and SolidWorks, alongside MATLAB and Python, to evaluate aerodynamic performance and structural response 
-        under realistic conditions. I work best in hands-on environments that demand both analytical rigor and 
-        practical execution.
-      </p>
+  <!-- ===================== ABOUT SECTION ===================== -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
       
-      <div class="about-grid">
-        <div class="card">
-          <h3>What I bring</h3>
-          <ul class="about-list">
-            <li>Strong foundation in aerodynamics, structures, and propulsion — I connect theory to hardware.</li>
-            <li>Hands-on prototyping and testing: I validate designs with real data, then iterate.</li>
-            <li>Cross-functional collaboration across subsystems, from CFD to manufacturing.</li>
-          </ul>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I'm a senior Aerospace Engineering student at The University of Alabama with a strong 
+            emphasis on applied aerodynamics, propulsion, and experimental validation. My technical 
+            interests lie in using CAD, CFD, FEA, and multiphysics analysis—primarily in ANSYS and 
+            SolidWorks—alongside MATLAB and Python to evaluate aerodynamic performance, structural 
+            response, and system behavior under realistic operating conditions.
+          </p>
+          <p>
+            I work best in hands-on, multidisciplinary environments that demand both analytical rigor 
+            and practical execution. Whether refining aerodynamic models, interpreting test data, or 
+            supporting experimental setups, I'm motivated by closing the loop between analysis and 
+            real-world performance.
+          </p>
         </div>
         
-        <div class="card">
-          <h3>Interests</h3>
-          <div class="tags">
-            <span class="tag">UAV Design 🛩️</span>
-            <span class="tag">Propulsion 🔥</span>
-            <span class="tag">CFD 💨</span>
-            <span class="tag">Rockets 🚀</span>
-            <span class="tag">Defense 🛡️</span>
-            <span class="tag">Additive Mfg 🖨️</span>
+        <div class="about-details">
+          <!-- Education Card -->
+          <div class="detail-card">
+            <h3>Education</h3>
+            <p class="institution">The University of Alabama</p>
+            <p class="degree">B.S. Aerospace Engineering</p>
+            <p class="date">Expected May 2026</p>
+            <p class="honors">Dean's List Fall 2025 • Major GPA: 3.0</p>
           </div>
           
-          <h3 class="mt-md">Outside academia</h3>
-          <div class="tags">
-            <span class="tag">Hockey 🏒</span>
-            <span class="tag">Rugby 🏉</span>
-            <span class="tag">Hiking 🥾</span>
-            <span class="tag">Cars 🚗</span>
+          <!-- Skills Card -->
+          <div class="detail-card">
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">SolidWorks</span>
+              <span class="skill-tag">CATIA</span>
+              <span class="skill-tag">ANSYS CFD/FEA</span>
+              <span class="skill-tag">MATLAB</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">CNC Machining</span>
+              <span class="skill-tag">3D Printing</span>
+              <span class="skill-tag">GD&T</span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- ===================== PROJECTS SECTION ===================== -->
-    <section id="projects" class="section">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-intro">Here you can filter my projects by category — Capstone, Research, and Personal:</p>
       
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="capstone">Capstone</button>
-        <button class="filter-btn" data-filter="research">Research</button>
-        <button class="filter-btn" data-filter="personal">Personal</button>
+      <!-- Interests -->
+      <div class="interests">
+        <h3>Areas of Interest</h3>
+        <div class="interests-grid">
+          <span>UAV & eVTOL Design</span>
+          <span>Propulsion & CFD Simulation</span>
+          <span>Mission Systems Architecture</span>
+          <span>Additive Manufacturing</span>
+          <span>Reusable Launch Systems</span>
+          <span>Sustainable Aviation</span>
+          <span>Space Propulsion</span>
+          <span>Defense Systems</span>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS SECTION ===================== -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
       
       <div class="projects-grid">
         
         <!-- Project 1: Capstone -->
-        <article class="project-card" data-category="capstone">
+        <article class="project-card featured">
           <div class="project-image">
-            <img src="evtol.png" alt="eVTOL UAV Design">
+            <img src="evtol.png" alt="Fixed-Wing eVTOL Reconnaissance UAV">
           </div>
-          <h3>Capstone Project — Chief Engineer</h3>
-          <div class="project-meta">
-            <span class="tag tag-sm">Capstone</span>
-            <span class="project-date">Aug 2025 — Present</span>
-          </div>
-          <p>Fixed-wing eVTOL reconnaissance UAV with distributed electric propulsion and solar-film wing augmentation.</p>
-          <div class="tags">
-            <span class="tag tag-sm">ANSYS</span>
-            <span class="tag tag-sm">CFD</span>
-            <span class="tag tag-sm">FEA</span>
-            <span class="tag tag-sm">FSI</span>
-            <span class="tag tag-sm">SolidWorks</span>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-sm btn-primary" onclick="toggleDetails(this)">Details</button>
-            <a href="#contact" class="btn-link">Contact →</a>
-          </div>
-          <div class="project-details">
-            <ul>
-              <li>Defined mission requirements, Level I/II specs, and ConOps following NASA NPR 7123.1D</li>
+          <div class="project-content">
+            <span class="project-label">Capstone Project • Chief Engineer</span>
+            <h3>eVTOL Reconnaissance UAV</h3>
+            <p>
+              Led system-level design of a fixed-wing eVTOL reconnaissance UAV integrating distributed 
+              electric propulsion, solar-film wing augmentation, and modular payload architecture within 
+              FAA Part 107 constraints.
+            </p>
+            <ul class="project-highlights">
+              <li>Defined mission requirements and ConOps following NASA NPR 7123.1D</li>
               <li>Executed full aerodynamic, structural, and thermal analyses in ANSYS</li>
-              <li>Validated structural deflections below 1mm via two-way FSI</li>
-              <li>Conducted crush testing; identified 7% gyroid infill as optimal</li>
-              <li>Oversaw cross-subsystem integration for PDR readiness</li>
+              <li>Validated structural deflections below 1mm under flight loads via FSI</li>
+              <li>Identified 7% gyroid infill as optimal through experimental crush testing</li>
             </ul>
+            <div class="project-tags">
+              <span>ANSYS</span>
+              <span>SolidWorks</span>
+              <span>CFD</span>
+              <span>FEA</span>
+              <span>FSI</span>
+            </div>
           </div>
         </article>
         
         <!-- Project 2: A.A.E.R.O. -->
-        <article class="project-card" data-category="research">
+        <article class="project-card">
           <div class="project-image">
-            <img src="propeller.png" alt="Propeller CFD Analysis">
+            <img src="propeller.png" alt="Drone Propeller Design">
           </div>
-          <h3>A.A.E.R.O. — Propeller Optimization</h3>
-          <div class="project-meta">
-            <span class="tag tag-sm">Research</span>
-            <span class="project-date">Jan 2025 — Present</span>
-          </div>
-          <p>CFD-driven propeller design with vortex inducers, comparing conventional, alular, toroidal, and forward-swept geometries.</p>
-          <div class="tags">
-            <span class="tag tag-sm">CFD</span>
-            <span class="tag tag-sm">FEA</span>
-            <span class="tag tag-sm">Wind Tunnel</span>
-            <span class="tag tag-sm">GD&T</span>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-sm btn-primary" onclick="toggleDetails(this)">Details</button>
-            <a href="URCA_Poster_2025.pdf" target="_blank" class="btn-link">View Poster →</a>
-          </div>
-          <div class="project-details">
-            <ul>
-              <li>Lead design of propeller with vortex inducers for aerodynamic evaluation</li>
-              <li>Simulated thrust and acoustic characteristics in ANSYS and SolidWorks</li>
+          <div class="project-content">
+            <span class="project-label">A.A.E.R.O. • Co-Founder / CFD Lead</span>
+            <h3>UAV Propeller Research</h3>
+            <p>
+              Lead design of drone propeller with vortex inducers, simulating thrust and acoustic 
+              characteristics using CFD in ANSYS and SolidWorks, validated through wind tunnel 
+              and static test stand experiments.
+            </p>
+            <ul class="project-highlights">
+              <li>Evaluated conventional, alular, toroidal, and forward-swept geometries</li>
               <li>Performed FEA for structural integrity and material performance</li>
-              <li>Conducted static test stand experiments measuring thrust, RPM, acoustics</li>
-              <li>Utilized wind tunnel for data collection and model validation</li>
+              <li>Applied GD&T for precise manufacturing specifications</li>
             </ul>
+            <div class="project-tags">
+              <span>CFD</span>
+              <span>FEA</span>
+              <span>Wind Tunnel</span>
+              <span>GD&T</span>
+            </div>
           </div>
         </article>
         
         <!-- Project 3: Rocketry -->
-        <article class="project-card" data-category="research">
+        <article class="project-card">
           <div class="project-image">
             <img src="rocket.png" alt="Liquid Rocket Engine">
           </div>
-          <h3>Alabama Rocketry — Liquids Team</h3>
-          <div class="project-meta">
-            <span class="tag tag-sm">Research</span>
-            <span class="project-date">Oct 2023 — Present</span>
-          </div>
-          <p>Single-stage liquid propellant rocket development focusing on fluids systems, test stand design, and hot fire testing.</p>
-          <div class="tags">
-            <span class="tag tag-sm">Propulsion</span>
-            <span class="tag tag-sm">CNC</span>
-            <span class="tag tag-sm">Testing</span>
-            <span class="tag tag-sm">P&ID</span>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-sm btn-primary" onclick="toggleDetails(this)">Details</button>
-            <a href="#contact" class="btn-link">Contact →</a>
-          </div>
-          <div class="project-details">
-            <ul>
-              <li>Designed test stand and created P&ID diagrams adhering to safety standards</li>
-              <li>Performed hydrostatic proof testing per MIL-STD-810G/SMC-S016</li>
-              <li>Machined graphite nozzle using CNC lathe within tolerances</li>
-              <li>Assisted in LOX/Kerosene engine hot fire tests at Tuscaloosa Airport</li>
+          <div class="project-content">
+            <span class="project-label">Alabama Rocketry Association</span>
+            <h3>Liquid Propellant Rocket</h3>
+            <p>
+              Collaborated on designing components for a single-stage liquid propellant rocket, 
+              focusing on fluids systems, test stand design, and hot fire test execution.
+            </p>
+            <ul class="project-highlights">
+              <li>Designed test stand and created P&ID diagrams</li>
+              <li>Performed hydrostatic proof testing per MIL-STD-810G</li>
+              <li>Machined graphite nozzle using CNC lathe</li>
+              <li>Assisted LOX/Kerosene engine hot fire tests</li>
             </ul>
+            <div class="project-tags">
+              <span>Propulsion</span>
+              <span>CNC Machining</span>
+              <span>Testing</span>
+            </div>
           </div>
         </article>
         
         <!-- Project 4: Simulation -->
-        <article class="project-card" data-category="personal">
+        <article class="project-card">
           <div class="project-image">
             <img src="simulation.png" alt="Drone Simulation">
           </div>
-          <h3>Genesis Drone Simulation</h3>
-          <div class="project-meta">
-            <span class="tag tag-sm">Personal</span>
-            <span class="project-date">Aug 2025 — Present</span>
-          </div>
-          <p>High-fidelity quadcopter simulation in Python using Genesis physics engine with real-time aerodynamics and controls.</p>
-          <div class="tags">
-            <span class="tag tag-sm">Python</span>
-            <span class="tag tag-sm">Controls</span>
-            <span class="tag tag-sm">CUDA</span>
-            <span class="tag tag-sm">PID</span>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-sm btn-primary" onclick="toggleDetails(this)">Details</button>
-            <a href="#contact" class="btn-link">Contact →</a>
-          </div>
-          <div class="project-details">
-            <ul>
-              <li>Designed and tuned PID controllers achieving sub-second settling times</li>
-              <li>Implemented manual and autonomous flight modes with differential RPM control</li>
-              <li>Scaled to parallel multi-environment execution (>1000 steps/s on CUDA)</li>
-              <li>Built custom visualization with HUD overlays for RPM, velocity, thrust</li>
+          <div class="project-content">
+            <span class="project-label">Personal Project</span>
+            <h3>Genesis Drone Simulation</h3>
+            <p>
+              Built a high-fidelity quadcopter simulation in Python using the Genesis physics engine, 
+              modeling real-time aerodynamics, rigid-body dynamics, and control systems.
+            </p>
+            <ul class="project-highlights">
+              <li>Designed PID controllers achieving sub-second settling times</li>
+              <li>Implemented manual and autonomous flight modes</li>
+              <li>Scaled to >1000 steps/sec on CUDA with parallel environments</li>
             </ul>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>Controls</span>
+              <span>Simulation</span>
+              <span>CUDA</span>
+            </div>
           </div>
         </article>
         
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===================== EXPERIENCE SECTION ===================== -->
-    <section id="experience" class="section">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-intro">Roles that shaped my engineering toolkit:</p>
+  <!-- ===================== EXPERIENCE SECTION ===================== -->
+  <section id="experience" class="section experience">
+    <div class="container">
+      <h2 class="section-title">Work Experience</h2>
       
-      <div class="experience-list">
+      <div class="timeline">
         
-        <div class="experience-item card">
-          <div class="exp-date">Aug 2025 — Present</div>
-          <div class="exp-content">
-            <h3>Lab Technician</h3>
-            <p class="exp-company">The Cube, Tuscaloosa, AL</p>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Lab Technician</h3>
+              <span class="timeline-company">The Cube, Tuscaloosa, AL</span>
+              <span class="timeline-date">Aug 2025 – Present</span>
+            </div>
             <ul>
-              <li>Operate and maintain FDM/FFF 3D printers, resin printers, waterjet systems, and laser engravers</li>
+              <li>Operate and maintain FDM/FFF printers, resin printers, waterjet systems, and laser engravers</li>
               <li>Execute 3D printing with engineering-grade materials (Nylon, PC, carbon-fiber composites)</li>
+              <li>Support resin printing workflows including part orientation, washing, UV curing</li>
               <li>Train users on additive manufacturing best practices and safety standards</li>
             </ul>
           </div>
         </div>
         
-        <div class="experience-item card">
-          <div class="exp-date">May 2022 — Jan 2024</div>
-          <div class="exp-content">
-            <h3>Ranch Hand</h3>
-            <p class="exp-company">Trinity Farm</p>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Ranch Hand</h3>
+              <span class="timeline-company">Trinity Farm</span>
+              <span class="timeline-date">May 2022 – Jan 2024</span>
+            </div>
             <ul>
               <li>Provided daily care for horses including feeding, grooming, and medical assistance</li>
-              <li>Maintained farm infrastructure; machinery troubleshooting and repairs</li>
+              <li>Maintained farm infrastructure through mowing, fence repairs, and machinery troubleshooting</li>
             </ul>
           </div>
         </div>
         
-        <div class="experience-item card">
-          <div class="exp-date">Aug 2021 — Feb 2022</div>
-          <div class="exp-content">
-            <h3>Tire Technician</h3>
-            <p class="exp-company">National Tire and Battery</p>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Tire Technician</h3>
+              <span class="timeline-company">National Tire and Battery</span>
+              <span class="timeline-date">Aug 2021 – Feb 2022</span>
+            </div>
             <ul>
-              <li>Performed routine maintenance: oil changes, tire repairs, brake replacements</li>
-              <li>Assisted mechanics with advanced repairs and vehicle diagnostics</li>
+              <li>Performed routine maintenance: oil changes, tire repairs, battery installations, brake replacements</li>
+              <li>Assisted mechanics with advanced repairs and diagnostics</li>
             </ul>
           </div>
         </div>
         
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===================== SKILLS SECTION ===================== -->
-    <section id="skills" class="section">
-      <h2 class="section-title">Skills</h2>
-      <p class="section-intro">Tools & capabilities I use most often:</p>
-      
-      <div class="skills-grid">
-        <div class="card">
-          <h3>Software</h3>
-          <div class="tags">
-            <span class="tag">SolidWorks</span>
-            <span class="tag">CATIA</span>
-            <span class="tag">ANSYS</span>
-            <span class="tag">MATLAB</span>
-            <span class="tag">Python</span>
-            <span class="tag">Jira</span>
-          </div>
-        </div>
-        
-        <div class="card">
-          <h3>Engineering</h3>
-          <div class="tags">
-            <span class="tag">CFD</span>
-            <span class="tag">FEA</span>
-            <span class="tag">GD&T (ASME Y14.5)</span>
-            <span class="tag">Aerodynamics</span>
-            <span class="tag">Propulsion</span>
-            <span class="tag">Structures</span>
-          </div>
-        </div>
-        
-        <div class="card">
-          <h3>Hardware</h3>
-          <div class="tags">
-            <span class="tag">CNC Mill</span>
-            <span class="tag">CNC Lathe</span>
-            <span class="tag">3D Printing</span>
-            <span class="tag">Wind Tunnel</span>
-            <span class="tag">Hot Fire Testing</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== EDUCATION SECTION ===================== -->
-    <section id="education" class="section">
-      <h2 class="section-title">Education</h2>
-      <p class="section-intro">Current program and coursework focus areas:</p>
-      
-      <div class="education-grid">
-        <div class="card">
-          <h3>The University of Alabama — Aerospace Engineering (B.S.)</h3>
-          <p class="edu-location">Tuscaloosa, Alabama • Expected: May 2026</p>
-          <div class="tags mt-sm">
-            <span class="tag">Aerospace Engineering</span>
-            <span class="tag">Dean's List</span>
-          </div>
-        </div>
-        
-        <div class="card">
-          <h3>Relevant Coursework</h3>
-          <ul class="coursework-list">
-            <li>Flight Dynamics & Control (AEM 468)</li>
-            <li>Aircraft Structural Design (AEM 451)</li>
-            <li>Space Propulsion (AEM 428)</li>
-            <li>Computational Fluid Dynamics (AEM 420)</li>
-            <li>Compressible Flow (AEM 413)</li>
-            <li>Propulsion Systems (AEM 408)</li>
-            <li>Senior Design I & II (AEM 402/404)</li>
-            <li>Aerodynamics (AEM 313)</li>
-            <li>Fluid Mechanics (AEM 311)</li>
-            <li>Applied Numerical Methods (ME 349)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== DOCUMENTS SECTION ===================== -->
-    <section id="documents" class="section">
-      <h2 class="section-title">Documents</h2>
-      <p class="section-intro">Downloadable documentation:</p>
+  <!-- ===================== DOCUMENTS SECTION ===================== -->
+  <section id="documents" class="section documents">
+    <div class="container">
+      <h2 class="section-title">Documentation</h2>
       
       <div class="docs-grid">
-        <a href="Fourie_Resume.pdf" target="_blank" class="doc-card card">
+        
+        <a href="Fourie_Resume.pdf" class="doc-card" target="_blank">
+          <div class="doc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10,9 9,9 8,9"/>
+            </svg>
+          </div>
           <h3>Resume</h3>
-          <p>Experience, education, and skills</p>
-          <span class="btn-link">Download PDF →</span>
+          <p>Experience, education, and skills overview</p>
+          <span class="doc-download">Download PDF →</span>
         </a>
         
-        <a href="Fourie_van_Rooyen_cover_letter.pdf" target="_blank" class="doc-card card">
+        <a href="Fourie_van_Rooyen_cover_letter.pdf" class="doc-card" target="_blank">
+          <div class="doc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
           <h3>Cover Letter</h3>
-          <p>Professional introduction</p>
-          <span class="btn-link">Download PDF →</span>
+          <p>Professional introduction and qualifications</p>
+          <span class="doc-download">Download PDF →</span>
         </a>
         
-        <a href="Letter_of_Recommendation.pdf" target="_blank" class="doc-card card">
-          <h3>Recommendation</h3>
-          <p>From A.A.E.R.O. Lead</p>
-          <span class="btn-link">Download PDF →</span>
+        <a href="Letter_of_Recommendation.pdf" class="doc-card" target="_blank">
+          <div class="doc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3>Letter of Recommendation</h3>
+          <p>From A.A.E.R.O. Team Lead</p>
+          <span class="doc-download">Download PDF →</span>
         </a>
         
-        <a href="URCA_Poster_2025.pdf" target="_blank" class="doc-card card">
+        <a href="URCA_Poster_2025.pdf" class="doc-card" target="_blank">
+          <div class="doc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21,15 16,10 5,21"/>
+            </svg>
+          </div>
           <h3>Research Poster</h3>
-          <p>URCA 2025 propeller research</p>
-          <span class="btn-link">Download PDF →</span>
+          <p>URCA 2025 propeller research presentation</p>
+          <span class="doc-download">Download PDF →</span>
         </a>
-      </div>
-    </section>
-
-    <!-- ===================== CONTACT SECTION ===================== -->
-    <section id="contact" class="section">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-intro">Ways to reach me — always open to new opportunities!</p>
-      
-      <div class="contact-grid">
-        <div class="card">
-          <h3>Reach out</h3>
-          
-          <div class="contact-item">
-            <div class="contact-info">
-              <span class="contact-label">Email</span>
-              <span class="contact-value">fourievr1014@gmail.com</span>
-            </div>
-            <a href="mailto:fourievr1014@gmail.com" class="btn btn-sm btn-secondary">Open</a>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-info">
-              <span class="contact-label">Phone</span>
-              <span class="contact-value">(659) 210-9953</span>
-            </div>
-            <a href="tel:+16592109953" class="btn btn-sm btn-secondary">Open</a>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-info">
-              <span class="contact-label">LinkedIn</span>
-              <span class="contact-value">LinkedIn Profile</span>
-            </div>
-            <a href="https://www.linkedin.com/in/fourie-van-rooyen/" target="_blank" class="btn btn-sm btn-secondary">Open</a>
-          </div>
-        </div>
         
-        <div class="card">
-          <h3>Message</h3>
-          <form class="contact-form" onsubmit="handleSubmit(event)">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="4" placeholder="What would you like to talk about?"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-          </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT SECTION ===================== -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      
+      <div class="contact-content">
+        <p class="contact-intro">
+          I'm currently seeking internship and full-time opportunities in aerospace engineering. 
+          Feel free to reach out to discuss potential collaborations or positions.
+        </p>
+        
+        <div class="contact-links">
+          <a href="mailto:fourievr1014@gmail.com" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>fourievr1014@gmail.com</span>
+          </a>
+          
+          <a href="tel:+16592109953" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>+1 659 210 9953</span>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/fourie-van-rooyen/" target="_blank" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            <span>LinkedIn Profile</span>
+          </a>
+          
+          <a href="https://github.com/fourie-van-rooyen" target="_blank" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            <span>GitHub Portfolio</span>
+          </a>
         </div>
       </div>
-    </section>
-
-  </main>
+    </div>
+  </section>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
-    <div class="footer-content">
-      <p>© 2026 Fourie van Rooyen • All Rights Reserved • Built with HTML/CSS/JS</p>
-      <a href="#hero" class="back-to-top">Back to top ↑</a>
+    <div class="container">
+      <p>&copy; 2026 Fourie van Rooyen. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Navigation scroll effect
+    // ============ NAVIGATION ============
+    // Scroll effect for navbar
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     });
 
-    // Mobile nav toggle
+    // Mobile navigation toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     
@@ -496,6 +435,7 @@
       navToggle.classList.toggle('active');
     });
 
+    // Close mobile menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
@@ -503,7 +443,7 @@
       });
     });
 
-    // Smooth scroll
+    // ============ SMOOTH SCROLL ============
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -514,55 +454,24 @@
       });
     });
 
-    // Project filtering
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    // ============ SCROLL ANIMATIONS ============
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        
-        projectCards.forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = 'block';
-            setTimeout(() => card.style.opacity = '1', 10);
-          } else {
-            card.style.opacity = '0';
-            setTimeout(() => card.style.display = 'none', 300);
-          }
-        });
-      });
-    });
-
-    // Project details toggle
-    function toggleDetails(btn) {
-      const card = btn.closest('.project-card');
-      const details = card.querySelector('.project-details');
-      details.classList.toggle('open');
-      btn.textContent = details.classList.contains('open') ? 'Hide' : 'Details';
-    }
-
-    // Contact form
-    function handleSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-      const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-      window.location.href = `mailto:fourievr1014@gmail.com?subject=${subject}&body=${body}`;
-    }
-
-    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, observerOptions);
 
-    document.querySelectorAll('.card, .project-card, .experience-item').forEach(el => observer.observe(el));
+    // Observe elements for animation
+    document.querySelectorAll('.project-card, .timeline-item, .doc-card, .detail-card').forEach(el => {
+      observer.observe(el);
+    });
   </script>
 
 </body>

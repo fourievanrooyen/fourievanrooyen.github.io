@@ -31,11 +31,11 @@
   --color-primary-light: #48cae4;  /* Lighter version for hovers */
   --color-primary-dark: #0096c7;   /* Darker version for active states */
   
-  /* Background Colors - semi-transparent to show stars */
-  --color-bg-dark: rgba(6, 14, 28, 0.9);        /* Darkest background (hero, footer) */
-  --color-bg-main: rgba(8, 20, 38, 0.85);        /* Main section background */
-  --color-bg-card: rgba(14, 30, 52, 0.9);        /* Card/container background */
-  --color-bg-hover: rgba(20, 42, 68, 0.95);       /* Hover state background */
+  /* Background Colors */
+  --color-bg-dark: #0a1628;        /* Darkest background (hero, footer) */
+  --color-bg-main: #0d1f35;        /* Main section background */
+  --color-bg-card: #142742;        /* Card/container background */
+  --color-bg-hover: #1a3352;       /* Hover state background */
   
   /* Text Colors */
   --color-text-primary: #ffffff;   /* Main text (white) */
@@ -98,120 +98,9 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: var(--color-text-primary);
-  background-color: #020408;
+  background-color: var(--color-bg-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* ============================================
-   DEEP SPACE BACKGROUND
-   ============================================ */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background: 
-    /* Nebula glow - subtle blue/purple clouds */
-    radial-gradient(ellipse at 15% 15%, rgba(0, 120, 180, 0.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 85%, rgba(80, 0, 120, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(0, 180, 216, 0.03) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 20%, rgba(0, 100, 150, 0.04) 0%, transparent 40%),
-    /* Deep space base */
-    linear-gradient(180deg, #010205 0%, #030610 30%, #020408 70%, #010204 100%);
-}
-
-/* Stars layer */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-image: 
-    /* Bright stars */
-    radial-gradient(1.2px 1.2px at 100px 50px, #fff, transparent),
-    radial-gradient(1px 1px at 200px 150px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1.5px 1.5px at 300px 80px, #fff, transparent),
-    radial-gradient(1px 1px at 400px 200px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 500px 100px, #fff, transparent),
-    radial-gradient(1.2px 1.2px at 600px 250px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 700px 50px, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 800px 180px, rgba(255,255,255,0.85), transparent),
-    radial-gradient(1px 1px at 150px 220px, #fff, transparent),
-    radial-gradient(1px 1px at 250px 30px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1.2px 1.2px at 350px 270px, #fff, transparent),
-    radial-gradient(1px 1px at 450px 120px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 550px 300px, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 650px 70px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 750px 240px, #fff, transparent),
-    radial-gradient(1px 1px at 50px 150px, rgba(255,255,255,0.75), transparent),
-    radial-gradient(1.2px 1.2px at 180px 90px, #fff, transparent),
-    radial-gradient(1px 1px at 280px 180px, rgba(255,255,255,0.85), transparent),
-    radial-gradient(1px 1px at 380px 40px, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 480px 260px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 580px 160px, #fff, transparent),
-    radial-gradient(1px 1px at 680px 290px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1.2px 1.2px at 780px 110px, #fff, transparent),
-    /* Dimmer distant stars */
-    radial-gradient(0.8px 0.8px at 75px 200px, rgba(180,200,255,0.4), transparent),
-    radial-gradient(0.8px 0.8px at 175px 280px, rgba(180,200,255,0.35), transparent),
-    radial-gradient(0.8px 0.8px at 275px 130px, rgba(180,200,255,0.4), transparent),
-    radial-gradient(0.8px 0.8px at 375px 190px, rgba(180,200,255,0.3), transparent),
-    radial-gradient(0.8px 0.8px at 475px 70px, rgba(180,200,255,0.45), transparent),
-    radial-gradient(0.8px 0.8px at 575px 230px, rgba(180,200,255,0.35), transparent),
-    radial-gradient(0.8px 0.8px at 675px 140px, rgba(180,200,255,0.4), transparent),
-    radial-gradient(0.8px 0.8px at 775px 300px, rgba(180,200,255,0.3), transparent),
-    radial-gradient(0.8px 0.8px at 125px 60px, rgba(180,200,255,0.4), transparent),
-    radial-gradient(0.8px 0.8px at 225px 250px, rgba(180,200,255,0.35), transparent),
-    radial-gradient(0.8px 0.8px at 325px 100px, rgba(180,200,255,0.4), transparent),
-    radial-gradient(0.8px 0.8px at 425px 220px, rgba(180,200,255,0.3), transparent),
-    radial-gradient(0.8px 0.8px at 525px 50px, rgba(180,200,255,0.45), transparent),
-    radial-gradient(0.8px 0.8px at 625px 170px, rgba(180,200,255,0.35), transparent),
-    radial-gradient(0.8px 0.8px at 725px 80px, rgba(180,200,255,0.4), transparent);
-  background-size: 850px 350px;
-  animation: twinkle 6s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.8; }
-  100% { opacity: 1; }
-}
-
-/* Shooting star effect */
-body .container::before {
-  content: '';
-  position: fixed;
-  top: 15%;
-  left: -150px;
-  width: 150px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), rgba(0,180,216,0.5), transparent);
-  animation: shootingStar 15s linear infinite;
-  opacity: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-@keyframes shootingStar {
-  0% { 
-    transform: translateX(0) translateY(0) rotate(15deg); 
-    opacity: 0; 
-  }
-  1% { opacity: 1; }
-  3% { 
-    transform: translateX(calc(100vw + 300px)) translateY(200px) rotate(15deg); 
-    opacity: 0; 
-  }
-  100% { 
-    transform: translateX(calc(100vw + 300px)) translateY(200px) rotate(15deg); 
-    opacity: 0; 
-  }
 }
 
 .container {
@@ -379,14 +268,21 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: transparent;
+  background: var(--gradient-hero);
   position: relative;
   overflow: hidden;
 }
 
-/* Remove grid pattern - stars are the background now */
+/* Subtle grid pattern */
 .hero::before {
-  display: none;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 180, 216, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 180, 216, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
 }
 
 .hero-content {
