@@ -624,8 +624,7 @@ body {
 .timeline-content,
 .doc-card,
 .contact-item {
-  background: rgba(10, 20, 40, 0.7) !important;
-  backdrop-filter: blur(3px);
+  background: rgba(10, 20, 40, 0.85) !important;
   border: 1px solid rgba(0, 180, 216, 0.1) !important;
 }
 
@@ -640,8 +639,7 @@ body {
 }
 
 .interests {
-  background: rgba(10, 20, 40, 0.5);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 20, 40, 0.85);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(0, 180, 216, 0.1);
 }
@@ -980,8 +978,6 @@ h1, h2, h3, h4 {
 
 .detail-card {
   background: #142742;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1038,8 +1034,6 @@ h1, h2, h3, h4 {
 /* Interests Section */
 .interests {
   background: #142742;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1119,8 +1113,6 @@ h1, h2, h3, h4 {
 
 .project-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1242,8 +1234,6 @@ h1, h2, h3, h4 {
   appearance: none;
   outline: none;
   text-decoration: none;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
 }
 
 .btn-details:hover {
@@ -1316,8 +1306,6 @@ h1, h2, h3, h4 {
 
 .timeline-content {
   background: var(--color-bg-card);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1376,8 +1364,6 @@ h1, h2, h3, h4 {
 
 .doc-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1456,8 +1442,6 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: var(--spacing-sm);
   background: var(--color-bg-card);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1967,8 +1951,6 @@ h1, h2, h3, h4 {
 
 .experience-card {
   background: var(--color-bg-card);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
