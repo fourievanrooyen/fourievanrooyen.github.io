@@ -1023,14 +1023,14 @@ h1, h2, h3, h4 {
 }
 
 .skill-tag {
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.6) 0%, rgba(15, 40, 70, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
   color: rgba(180, 220, 255, 0.95);
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid rgba(100, 180, 255, 0.15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(100, 180, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Skills Section - Full Width Categorized */
@@ -1084,10 +1084,10 @@ h1, h2, h3, h4 {
   color: rgba(180, 220, 255, 0.95);
   font-size: 0.9rem;
   padding: 0.45rem 0.9rem;
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.6) 0%, rgba(15, 40, 70, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
   border-radius: 999px;
-  border: 1px solid rgba(100, 180, 255, 0.15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(100, 180, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* About Extras - What I Bring + Interests Row */
@@ -1207,13 +1207,13 @@ h1, h2, h3, h4 {
 .project-category {
   display: inline-block;
   padding: 0.3rem 0.7rem;
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.6) 0%, rgba(15, 40, 70, 0.8) 100%);
-  border: 1px solid rgba(100, 180, 255, 0.15);
+  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
+  border: 1px solid rgba(100, 180, 255, 0.12);
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 500;
   color: rgba(180, 220, 255, 0.95);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .project-date {
@@ -1237,25 +1237,25 @@ h1, h2, h3, h4 {
 }
 
 .project-tags span {
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.6) 0%, rgba(15, 40, 70, 0.8) 100%);
-  border: 1px solid rgba(100, 180, 255, 0.15);
+  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
+  border: 1px solid rgba(100, 180, 255, 0.12);
   color: rgba(180, 220, 255, 0.95);
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 500;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-details {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  background: rgba(0, 180, 216, 0.15);
-  border: 1px solid rgba(0, 180, 216, 0.4);
-  border-radius: 6px;
-  color: #00b4d8;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
+  border: 1px solid rgba(100, 180, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(180, 220, 255, 0.95);
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
@@ -1267,12 +1267,13 @@ h1, h2, h3, h4 {
   appearance: none;
   outline: none;
   text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-details:hover {
-  background: rgba(0, 180, 216, 0.3);
-  border-color: #00b4d8;
-  box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+  background: linear-gradient(135deg, rgba(40, 100, 160, 0.5) 0%, rgba(20, 60, 100, 0.65) 100%);
+  border-color: rgba(100, 180, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 8px rgba(0, 140, 200, 0.25);
   transform: translateY(-2px);
 }
 
@@ -1871,14 +1872,14 @@ h1, h2, h3, h4 {
 }
 
 .modal-tags span {
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.6) 0%, rgba(15, 40, 70, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
   color: rgba(180, 220, 255, 0.95);
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid rgba(100, 180, 255, 0.15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(100, 180, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Modal Documents */
