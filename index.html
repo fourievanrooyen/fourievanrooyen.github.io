@@ -1262,4 +1262,16 @@
       function scheduleNextStar() {
         const delay = 1500 + Math.random() * 3500;
         setTimeout(() => {
-          spawnShootin
+          spawnShootingStar();
+          scheduleNextStar();
+        }, delay);
+      }
+      
+      setTimeout(() => spawnShootingStar(), 500);
+      setTimeout(() => spawnShootingStar(), 2000);
+      scheduleNextStar();
+      
+    })();
+  </script>
+</body>
+</html>
