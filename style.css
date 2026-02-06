@@ -1031,6 +1031,33 @@ h1, h2, h3, h4 {
   font-weight: 500;
 }
 
+/* Skills Section - Full Width Categorized */
+.skills-section {
+  margin-top: var(--spacing-md);
+}
+
+.skills-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.skills-column h4 {
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+}
+
+.skills-column .skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
 /* Interests Section */
 .interests {
   background: #142742;
@@ -1534,6 +1561,10 @@ h1, h2, h3, h4 {
     grid-template-columns: 1fr;
   }
   
+  .skills-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1581,6 +1612,10 @@ h1, h2, h3, h4 {
   }
   
   .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-columns {
     grid-template-columns: 1fr;
   }
   
