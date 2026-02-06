@@ -905,10 +905,10 @@ h1, h2, h3, h4 {
 
 /* Hero Image */
 .hero-image img {
-  width: 300px;
-  height: 300px;
+  width: 380px;
+  height: 420px;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 20%;
   border-radius: var(--radius-lg);
   border: 3px solid var(--color-primary);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
