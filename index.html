@@ -293,6 +293,69 @@
             <button class="btn-details" onclick="openModal('project-sim')">Details</button>
           </div>
         </article>
+
+        <!-- Project 5: CFD Class -->
+        <article class="project-card">
+          <div class="project-image project-image-icon">
+            <div class="project-icon-banner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:64px;height:64px;color:var(--color-primary);">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                <path d="M8 12c0-2.2 1.8-4 4-4"/>
+                <path d="M6 12c0-3.3 2.7-6 6-6"/>
+                <path d="M4 12c0-4.4 3.6-8 8-8"/>
+                <path d="M16 12c0 2.2-1.8 4-4 4"/>
+                <path d="M18 12c0 3.3-2.7 6-6 6"/>
+                <path d="M20 12c0 4.4-3.6 8-8 8"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Computational Fluid Dynamics — ANSYS Coursework</h3>
+            <div class="project-meta">
+              <span class="project-category">Academic</span>
+              <span class="project-date">University of Alabama</span>
+            </div>
+            <p class="project-summary">
+              Applied ANSYS Fluent and SolidWorks Flow Simulation to model incompressible and compressible flow regimes, including boundary layer analysis, turbulence modeling, and mesh convergence studies.
+            </p>
+            <div class="project-tags">
+              <span>ANSYS Fluent</span>
+              <span>CFD</span>
+              <span>Turbulence</span>
+              <span>Meshing</span>
+            </div>
+            <button class="btn-details" onclick="openModal('project-cfd')">Details</button>
+          </div>
+        </article>
+
+        <!-- Project 6: Flight Mechanics -->
+        <article class="project-card">
+          <div class="project-image project-image-icon">
+            <div class="project-icon-banner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:64px;height:64px;color:var(--color-primary);">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22l-4-9-9-4L22 2z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Flight Mechanics & Stability Analysis — Coursework</h3>
+            <div class="project-meta">
+              <span class="project-category">Academic</span>
+              <span class="project-date">University of Alabama</span>
+            </div>
+            <p class="project-summary">
+              Analyzed longitudinal and lateral-directional stability, aircraft performance envelopes, and dynamic response characteristics using MATLAB-based tools and classical flight mechanics theory.
+            </p>
+            <div class="project-tags">
+              <span>MATLAB</span>
+              <span>Stability</span>
+              <span>Dynamics</span>
+              <span>Controls</span>
+            </div>
+            <button class="btn-details" onclick="openModal('project-flight')">Details</button>
+          </div>
+        </article>
         
       </div>
     </div>
@@ -721,6 +784,103 @@
             </svg>
             <span>Resume</span>
           </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="project-cfd">
+    <div class="modal-header">
+      <div class="modal-icon-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:80px;height:80px;color:var(--color-primary);">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M8 12c0-2.2 1.8-4 4-4"/>
+          <path d="M6 12c0-3.3 2.7-6 6-6"/>
+          <path d="M4 12c0-4.4 3.6-8 8-8"/>
+          <path d="M16 12c0 2.2-1.8 4-4 4"/>
+          <path d="M18 12c0 3.3-2.7 6-6 6"/>
+          <path d="M20 12c0 4.4-3.6 8-8 8"/>
+        </svg>
+      </div>
+      <div class="modal-title-section">
+        <span class="modal-label">Academic Coursework • The University of Alabama</span>
+        <h2>Computational Fluid Dynamics (CFD)</h2>
+        <p class="modal-date">Tuscaloosa, AL</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-description">
+        <h3>Course Overview</h3>
+        <p>
+          Rigorous coursework in computational fluid dynamics covering the fundamentals of numerical methods for solving the Navier-Stokes equations, turbulence modeling, and practical CFD simulation workflows. Hands-on experience with industry-standard tools including ANSYS Fluent and SolidWorks Flow Simulation applied to aerospace-relevant flow problems.
+        </p>
+      </div>
+      <div class="modal-details">
+        <h3>Key Topics & Skills</h3>
+        <ul>
+          <li>Modeled incompressible and compressible flow regimes using ANSYS Fluent, applying RANS-based turbulence models (k-ε, k-ω SST) to predict aerodynamic behavior.</li>
+          <li>Performed structured and unstructured mesh generation with systematic mesh convergence studies to ensure solution independence and accuracy.</li>
+          <li>Analyzed boundary layer development, separation, and flow transition over airfoils and bluff bodies, correlating CFD results with theoretical predictions.</li>
+          <li>Conducted pressure distribution, velocity contour, and streamline visualization to characterize flow topology around aerospace geometries.</li>
+          <li>Validated simulation outputs against experimental data and analytical solutions, developing critical assessment skills for numerical accuracy.</li>
+          <li>Applied post-processing techniques to extract aerodynamic coefficients (lift, drag, moment) and evaluate design performance metrics.</li>
+        </ul>
+      </div>
+      <div class="modal-tech">
+        <h3>Technologies & Tools</h3>
+        <div class="modal-tags">
+          <span>ANSYS Fluent</span>
+          <span>SolidWorks Flow Sim</span>
+          <span>Mesh Generation</span>
+          <span>RANS Turbulence</span>
+          <span>Post-Processing</span>
+          <span>MATLAB</span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="project-flight">
+    <div class="modal-header">
+      <div class="modal-icon-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:80px;height:80px;color:var(--color-primary);">
+          <path d="M22 2L11 13"/>
+          <path d="M22 2L15 22l-4-9-9-4L22 2z"/>
+        </svg>
+      </div>
+      <div class="modal-title-section">
+        <span class="modal-label">Academic Coursework • The University of Alabama</span>
+        <h2>Flight Mechanics & Stability Analysis</h2>
+        <p class="modal-date">Tuscaloosa, AL</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-description">
+        <h3>Course Overview</h3>
+        <p>
+          Comprehensive study of aircraft performance, static and dynamic stability, and flight dynamics. Covered classical flight mechanics theory with application to both conventional and unconventional configurations, developing analytical and computational tools for predicting aircraft behavior across the flight envelope.
+        </p>
+      </div>
+      <div class="modal-details">
+        <h3>Key Topics & Skills</h3>
+        <ul>
+          <li>Analyzed longitudinal and lateral-directional static stability derivatives, determining trim conditions and control surface sizing for stable flight.</li>
+          <li>Evaluated dynamic stability modes—phugoid, short period, Dutch roll, spiral, and roll—using eigenvalue analysis and time-domain simulation in MATLAB.</li>
+          <li>Computed aircraft performance parameters including rate of climb, range, endurance, takeoff/landing distances, and V-n diagrams for structural load factor limits.</li>
+          <li>Applied thin airfoil theory, lifting line theory, and panel methods to estimate aerodynamic coefficients used in stability and control calculations.</li>
+          <li>Modeled equations of motion for 6-DOF rigid body dynamics, linearized about trim for small perturbation analysis and transfer function derivation.</li>
+          <li>Directly applied flight mechanics knowledge to the capstone eVTOL UAV project, computing aerodynamic performance and predicting dynamic characteristics of the ORCA vehicle.</li>
+        </ul>
+      </div>
+      <div class="modal-tech">
+        <h3>Technologies & Tools</h3>
+        <div class="modal-tags">
+          <span>MATLAB</span>
+          <span>Stability Analysis</span>
+          <span>6-DOF Dynamics</span>
+          <span>Aerodynamic Theory</span>
+          <span>Performance Analysis</span>
+          <span>Control Design</span>
         </div>
       </div>
     </div>
