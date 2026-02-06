@@ -330,13 +330,8 @@
 
         <!-- Project 6: Flight Mechanics -->
         <article class="project-card">
-          <div class="project-image project-image-icon">
-            <div class="project-icon-banner">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:64px;height:64px;color:var(--color-primary);">
-                <path d="M22 2L11 13"/>
-                <path d="M22 2L15 22l-4-9-9-4L22 2z"/>
-              </svg>
-            </div>
+          <div class="project-image">
+            <img src="flightmechanics.png" alt="Flight Mechanics">
           </div>
           <div class="project-content">
             <h3>Flight Mechanics & Stability Analysis — Coursework</h3>
@@ -521,12 +516,12 @@
         </p>
         
         <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#c5a3aab0b7aca0b3b7f4f5f4f185a2a8a4aca9eba6aaa8" class="contact-item">
+          <a href="mailto:fourievr1014@gmail.com" class="contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            <span><span class="__cf_email__" data-cfemail="fa9c958f88939f8c88cbcacbceba9d979b9396d4999597">[email&#160;protected]</span></span>
+            <span>fourievr1014@gmail.com</span>
           </a>
           
           <a href="tel:+16592109953" class="contact-item">
@@ -842,12 +837,7 @@
 
   <template id="project-flight">
     <div class="modal-header">
-      <div class="modal-icon-header">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:80px;height:80px;color:var(--color-primary);">
-          <path d="M22 2L11 13"/>
-          <path d="M22 2L15 22l-4-9-9-4L22 2z"/>
-        </svg>
-      </div>
+      <img src="flightmechanics.png" alt="Flight Mechanics" class="modal-hero-image">
       <div class="modal-title-section">
         <span class="modal-label">Academic Coursework • The University of Alabama</span>
         <h2>Flight Mechanics & Stability Analysis</h2>
@@ -1011,7 +1001,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // ============ MODAL FUNCTIONS ============
     function openModal(templateId) {
       const template = document.getElementById(templateId);
@@ -1433,4 +1423,14 @@
       function scheduleNextStar() {
         const delay = 1500 + Math.random() * 3500;
         setTimeout(() => {
-          spawnSh
+          spawnShootingStar();
+          scheduleNextStar();
+        }, delay);
+      }
+      scheduleNextStar();
+      
+    })();
+  </script>
+
+</body>
+</html>
