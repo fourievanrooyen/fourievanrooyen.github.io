@@ -1326,6 +1326,30 @@ h1, h2, h3, h4 {
   background: linear-gradient(135deg, rgba(0, 180, 216, 0.08) 0%, rgba(10, 20, 40, 0.4) 100%);
 }
 
+.modal-gallery {
+  margin-top: var(--spacing-md);
+}
+
+.modal-gallery h3 {
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.modal-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.modal-gallery-image {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 180, 216, 0.15);
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.2);
+}
+
 /* ============================================
    8. EXPERIENCE SECTION
    ============================================ */
