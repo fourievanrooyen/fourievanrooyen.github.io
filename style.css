@@ -1946,6 +1946,10 @@ h1, h2, h3, h4 {
 }
 
 /* Modal Documents */
+.modal-documents h3 {
+  margin-top: var(--spacing-md);
+}
+
 .modal-doc-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -2000,10 +2004,6 @@ h1, h2, h3, h4 {
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .card-hover-hint {
