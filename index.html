@@ -1642,4 +1642,16 @@
       }
       animate();
       
-      function scheduleNe
+      function scheduleNextShootingStar() {
+        const delay = 2000 + Math.random() * 5000;
+        setTimeout(() => {
+          spawnShootingStar();
+          scheduleNextShootingStar();
+        }, delay);
+      }
+      
+      scheduleNextShootingStar();
+    })();
+  </script>
+</body>
+</html>
