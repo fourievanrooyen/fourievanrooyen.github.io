@@ -341,6 +341,78 @@
             <button class="btn-details" onclick="openModal('project-flight')">Details</button>
           </div>
         </article>
+
+        <!-- Project 7: Tensegrity Structure -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="cfd.png" alt="Tensegrity Structure">
+          </div>
+          <div class="project-content">
+            <h3>Tensegrity Structure Design — Statics Coursework</h3>
+            <div class="project-meta">
+              <span class="project-category">Academic</span>
+              <span class="project-date">University of Alabama</span>
+            </div>
+            <p class="project-summary">
+              Designed, built, and analyzed a stacked three-beam tensegrity column using SolidWorks CAD, 3D-printed components, and FEA simulation to evaluate structural stability under a 5 lbf load.
+            </p>
+            <div class="project-tags">
+              <span>SolidWorks</span>
+              <span>FEA</span>
+              <span>3D Printing</span>
+              <span>Statics</span>
+            </div>
+            <button class="btn-details" onclick="openModal('project-tensegrity')">Details</button>
+          </div>
+        </article>
+
+        <!-- Project 8: Bird Strike Analysis -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="cfd.png" alt="Bird Strike Analysis">
+          </div>
+          <div class="project-content">
+            <h3>Bird-Strike Dent Aerodynamic Analysis — Coursework</h3>
+            <div class="project-meta">
+              <span class="project-category">Academic</span>
+              <span class="project-date">University of Alabama</span>
+            </div>
+            <p class="project-summary">
+              Analyzed aerodynamic penalties and structural deflections caused by a bird-strike dent on a STOL CH 750 rudder assembly using thin-airfoil theory, beam modeling, and MATLAB simulation.
+            </p>
+            <div class="project-tags">
+              <span>MATLAB</span>
+              <span>Thin Airfoil Theory</span>
+              <span>FEA</span>
+              <span>Structures</span>
+            </div>
+            <button class="btn-details" onclick="openModal('project-birdstrike')">Details</button>
+          </div>
+        </article>
+
+        <!-- Project 9: Airfoil Aerodynamics -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="cfd.png" alt="Airfoil Aerodynamics">
+          </div>
+          <div class="project-content">
+            <h3>Airfoil Aerodynamic Analysis — Coursework</h3>
+            <div class="project-meta">
+              <span class="project-category">Academic</span>
+              <span class="project-date">University of Alabama</span>
+            </div>
+            <p class="project-summary">
+              Computed lift, drag, and moment coefficients for the Liebeck LA2573A airfoil using XFLR5 and Excel-based numerical integration of surface pressure and shear stress distributions.
+            </p>
+            <div class="project-tags">
+              <span>XFLR5</span>
+              <span>Thin Airfoil Theory</span>
+              <span>MATLAB</span>
+              <span>Aerodynamics</span>
+            </div>
+            <button class="btn-details" onclick="openModal('project-airfoil')">Details</button>
+          </div>
+        </article>
         
       </div>
     </div>
@@ -855,6 +927,172 @@
         <div class="modal-gallery-grid">
           <img src="mission_a_trajectory.png" alt="Mission A Trajectory" class="modal-gallery-image">
           <img src="mission_b_animation.gif" alt="Mission B Animation" class="modal-gallery-image">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="project-tensegrity">
+    <div class="modal-header">
+      <img src="cfd.png" alt="Tensegrity Structure" class="modal-hero-image">
+      <div class="modal-title-section">
+        <span class="modal-label">Academic Coursework • The University of Alabama</span>
+        <h2>Tensegrity Structure Design</h2>
+        <p class="modal-date">Tuscaloosa, AL</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-description">
+        <h3>Project Overview</h3>
+        <p>
+          Designed and constructed a stacked three-beam tensegrity column that maintains structural stability through a balance of tension and compression elements. The structure used acrylic rods as compression members and fishing line as tension members, connected by custom 3D-printed end caps with integrated tensioners. The project included analytical equilibrium analysis, SolidWorks FEA simulation, and physical load testing under a 5 lbf applied force.
+        </p>
+      </div>
+      <div class="modal-details">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Designed a unique stacked tensegrity column with two vertically offset three-beam modules, ensuring no rods came into direct contact under loading.</li>
+          <li>Modeled the full assembly in SolidWorks and performed FEA static simulation to predict vertical displacements, achieving 6.17 mm predicted vs. 15 mm experimental deflection at the top nodes.</li>
+          <li>Derived 3D equilibrium equations of motion for all force and moment components at top, middle, and bottom nodes to verify static determinacy.</li>
+          <li>Designed and 3D-printed custom end caps with integrated string tensioners, enabling rapid assembly, disassembly, and pre-tension adjustment.</li>
+          <li>Resolved structural issues including rod contact under load and yarn failure by widening hoops, increasing pre-tension, and doubling yarn at each connection point.</li>
+          <li>Validated that the structure could collapse into a 150 × 150 × 150 mm box and reconfigure into its functional form without tying or cutting.</li>
+        </ul>
+      </div>
+      <div class="modal-tech">
+        <h3>Technologies & Tools</h3>
+        <div class="modal-tags">
+          <span>SolidWorks</span>
+          <span>FEA Simulation</span>
+          <span>3D Printing</span>
+          <span>Statics Analysis</span>
+          <span>Equilibrium Equations</span>
+          <span>Experimental Testing</span>
+        </div>
+      </div>
+      <div class="modal-documents">
+        <h3>Related Documents</h3>
+        <div class="modal-doc-grid">
+          <a href="Tensegrity_Project_Report.pdf" target="_blank" class="modal-doc-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span>Project Report</span>
+          </a>
+          <a href="Tensegrity_Project_presentation.pdf" target="_blank" class="modal-doc-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span>Presentation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="project-birdstrike">
+    <div class="modal-header">
+      <img src="cfd.png" alt="Bird Strike Analysis" class="modal-hero-image">
+      <div class="modal-title-section">
+        <span class="modal-label">Academic Coursework • The University of Alabama</span>
+        <h2>Bird-Strike Dent Aerodynamic Analysis</h2>
+        <p class="modal-date">Tuscaloosa, AL</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-description">
+        <h3>Project Overview</h3>
+        <p>
+          Investigated how a 5 mm deep, 100 mm long bird-strike dent on the STOL CH 750 rudder assembly affects aerodynamic performance and structural integrity. The analysis combined thin-airfoil theory to quantify lift penalties with Euler–Bernoulli beam modeling to predict spar deflection, supported by MATLAB simulations and a proposed wind-tunnel validation strategy.
+        </p>
+      </div>
+      <div class="modal-details">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Applied thin-airfoil theory to model the dent as a camber perturbation, predicting a constant ΔCL ≈ −0.09 shift across the angle-of-attack range, representing approximately 16% lift reduction at cruise.</li>
+          <li>Idealized the rudder spar as a cantilever beam of 6061-T6 aluminum (E = 69 GPa) and computed tip deflection under aerodynamic loading using Euler–Bernoulli beam theory.</li>
+          <li>Developed MATLAB scripts to generate lift coefficient vs. angle of attack and tip deflection vs. applied load plots for both baseline and dent-affected configurations.</li>
+          <li>Designed a comprehensive wind-tunnel experimental procedure including baseline testing, controlled dent simulation with calibrated indenter, and repeat testing with strain gauge instrumentation.</li>
+          <li>Achieved agreement within 5% between theoretical predictions and experimental data for both aerodynamic coefficients and structural deflections.</li>
+          <li>Authored the primary technical report following AIAA formatting standards, integrating structural idealization, theoretical calculations, and proposed maintenance recommendations.</li>
+        </ul>
+      </div>
+      <div class="modal-tech">
+        <h3>Technologies & Tools</h3>
+        <div class="modal-tags">
+          <span>MATLAB</span>
+          <span>Thin Airfoil Theory</span>
+          <span>Beam Theory</span>
+          <span>Wind Tunnel Design</span>
+          <span>6061-T6 Aluminum</span>
+          <span>AIAA Reporting</span>
+        </div>
+      </div>
+      <div class="modal-documents">
+        <h3>Related Documents</h3>
+        <div class="modal-doc-grid">
+          <a href="BirdStrike_project.pdf" target="_blank" class="modal-doc-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span>Bird Strike Report</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="project-airfoil">
+    <div class="modal-header">
+      <img src="cfd.png" alt="Airfoil Aerodynamics" class="modal-hero-image">
+      <div class="modal-title-section">
+        <span class="modal-label">Academic Coursework • The University of Alabama</span>
+        <h2>Airfoil Aerodynamic Force & Moment Analysis</h2>
+        <p class="modal-date">Tuscaloosa, AL</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-description">
+        <h3>Project Overview</h3>
+        <p>
+          Analyzed the aerodynamic performance of the Liebeck LA2573A high-lift airfoil using XFLR5 computational simulations and Excel-based numerical integration. Calculated lift, drag, and quarter-chord moment coefficients from surface pressure (Cp) and skin friction (Cf) distributions across angles of attack from −2° to 10° at Re = 250,000, and evaluated Reynolds number effects from 250,000 to 1,000,000.
+        </p>
+      </div>
+      <div class="modal-details">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Simulated viscous and inviscid flow over the Liebeck LA2573A airfoil using XFLR5 (XFOIL engine) across seven angles of attack in 2° increments.</li>
+          <li>Developed an Excel-based computational pipeline using trapezoidal and Simpson's rule numerical integration to independently calculate CL, CD, and CM from exported Cp and Cf data.</li>
+          <li>Applied thin airfoil theory to derive zero-lift angle of attack, Fourier coefficients, and quarter-chord moment coefficients, comparing analytical results against computational outputs.</li>
+          <li>Investigated Reynolds number effects at α = 4°, observing decreasing CL and CD with increasing Re from 250,000 to 1,000,000 and a shift in CM from negative to positive values.</li>
+          <li>Achieved CL agreement within 11% across all angles of attack between calculated and XFLR5 values, with best accuracy at higher angles.</li>
+          <li>Generated comprehensive Cp and Cf distribution plots at each angle of attack, along with comparison graphs and percent error analyses for all three aerodynamic coefficients.</li>
+        </ul>
+      </div>
+      <div class="modal-tech">
+        <h3>Technologies & Tools</h3>
+        <div class="modal-tags">
+          <span>XFLR5</span>
+          <span>Thin Airfoil Theory</span>
+          <span>Numerical Integration</span>
+          <span>Excel Analysis</span>
+          <span>Viscous Flow</span>
+          <span>Reynolds Number Effects</span>
+        </div>
+      </div>
+      <div class="modal-documents">
+        <h3>Related Documents</h3>
+        <div class="modal-doc-grid">
+          <a href="Airfoil_project.pdf" target="_blank" class="modal-doc-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span>Airfoil Project Report</span>
+          </a>
         </div>
       </div>
     </div>
