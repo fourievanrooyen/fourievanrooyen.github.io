@@ -1231,9 +1231,8 @@ h1, h2, h3, h4 {
   border: none;
   border-radius: 0;
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--color-text-muted);
-  box-shadow: none;
 }
 
 .project-date {
