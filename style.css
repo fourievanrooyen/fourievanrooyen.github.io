@@ -1038,14 +1038,16 @@ h1, h2, h3, h4 {
 }
 
 .skill-tag {
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
-  color: rgba(180, 220, 255, 0.95);
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1px solid rgba(100, 180, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 180, 216, 0.08);
+  color: rgba(160, 200, 235, 0.85);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 400;
+  border: none;
+  border-left: 2px solid rgba(0, 180, 216, 0.3);
+  box-shadow: none;
+  letter-spacing: 0.01em;
 }
 
 /* Skills Section - Full Width Categorized */
@@ -1095,13 +1097,16 @@ h1, h2, h3, h4 {
 }
 
 .interests-grid span {
-  color: rgba(180, 220, 255, 0.95);
-  font-size: 0.9rem;
-  padding: 0.45rem 0.9rem;
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
-  border-radius: 999px;
-  border: 1px solid rgba(100, 180, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: rgba(160, 200, 235, 0.85);
+  font-size: 0.87rem;
+  font-weight: 400;
+  padding: 0.4rem 0.85rem;
+  background: rgba(0, 180, 216, 0.08);
+  border-radius: var(--radius-sm);
+  border: none;
+  border-left: 2px solid rgba(0, 180, 216, 0.3);
+  box-shadow: none;
+  letter-spacing: 0.01em;
 }
 
 /* About Extras - What I Bring + Interests Row */
@@ -1252,14 +1257,16 @@ h1, h2, h3, h4 {
 }
 
 .project-tags span {
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
-  border: 1px solid rgba(100, 180, 255, 0.12);
-  color: rgba(180, 220, 255, 0.95);
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 180, 216, 0.08);
+  border: none;
+  border-left: 2px solid rgba(0, 180, 216, 0.3);
+  color: rgba(160, 200, 235, 0.85);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.73rem;
+  font-weight: 400;
+  box-shadow: none;
+  letter-spacing: 0.01em;
 }
 
 .btn-details {
@@ -1937,14 +1944,16 @@ h1, h2, h3, h4 {
 }
 
 .modal-tags span {
-  background: linear-gradient(135deg, rgba(30, 80, 130, 0.35) 0%, rgba(15, 40, 70, 0.5) 100%);
-  color: rgba(180, 220, 255, 0.95);
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1px solid rgba(100, 180, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 180, 216, 0.08);
+  color: rgba(160, 200, 235, 0.85);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 400;
+  border: none;
+  border-left: 2px solid rgba(0, 180, 216, 0.3);
+  box-shadow: none;
+  letter-spacing: 0.01em;
 }
 
 /* Modal Documents */
