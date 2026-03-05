@@ -1675,7 +1675,7 @@
         fetch(COUNTER_API + '/up')
           .then(r => r.json())
           .then(data => {
-            document.getElementById('visitor-count').textContent = data.value || '—';
+            document.getElementById('visitor-count').textContent = data.count || '—';
           })
           .catch(() => {
             document.getElementById('visitor-count').textContent = '—';
@@ -1685,7 +1685,7 @@
         fetch(COUNTER_API)
           .then(r => r.json())
           .then(data => {
-            document.getElementById('visitor-count').textContent = data.value || '—';
+            document.getElementById('visitor-count').textContent = data.count || '—';
           })
           .catch(() => {
             document.getElementById('visitor-count').textContent = '—';
