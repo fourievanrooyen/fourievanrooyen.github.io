@@ -1660,79 +1660,153 @@
 
     // ============ VISITOR COUNTER ============
     (function() {
-      const COUNTER_API = 'https://counterapi.com/api/fourievanrooyen.github.io/view/portfolio';
+      // CounterAPI V1 is public and works on static sites such as GitHub Pages.
+      // Format: https://api.counterapi.dev/v1/:namespace/:name/:action
+      const COUNTER_API = 'https://api.counterapi.dev/v1/fourievanrooyen-portfolio/visitors';
       const SECRET_WORD = 'counter';
+      const OWNER_KEY = 'portfolio_owner';
+      const COUNTED_KEY = 'portfolio_unique_visitor_counted';
+
       let typedKeys = '';
       let counterVisible = false;
 
-      // Check if this visitor is the site owner
+      const visitorCountElement = document.getElementById('visitor-count');
+      const overlay = document.getElementById('visitor-counter-overlay');
+
+      function setCounterDisplay(value) {
+        if (!visitorCountElement) return;
+        visitorCountElement.textContent = Number.isFinite(value) ? value.toLocaleString() : '—';
+      }
+
+      function setCounterError() {
+        setCounterDisplay(NaN);
+      }
+
+      function extractCounterValue(payload) {
+        if (typeof payload === 'number') return payload;
+        if (!payload || typeof payload !== 'object') return NaN;
+
+        // CounterAPI responses have changed over time. Support the common shapes:
+        // { count: 12 }, { value: 12 }, { data: 12 }, and nested result/data objects.
+        const directKeys = ['count', 'value', 'data'];
+        for (const key of directKeys) {
+          const value = payload[key];
+          if (typeof value === 'number') return value;
+          if (typeof value === 'string' && value.trim() !== '' && !Number.isNaN(Number(value))) {
+            return Number(value);
+          }
+        }
+
+        for (const key of ['result', 'counter']) {
+          const nestedValue = extractCounterValue(payload[key]);
+          if (Number.isFinite(nestedValue)) return nestedValue;
+        }
+
+        return NaN;
+      }
+
+      async function requestCounter(action = '') {
+        const url = action ? `${COUNTER_API}/${action}` : COUNTER_API;
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Counter request failed: ${response.status}`);
+        }
+        const payload = await response.json();
+        const value = extractCounterValue(payload);
+        if (!Number.isFinite(value)) {
+          console.warn('Unexpected counter response:', payload);
+        }
+        return value;
+      }
+
       function isOwner() {
-        return localStorage.getItem('portfolio_owner') === 'true';
+        return localStorage.getItem(OWNER_KEY) === 'true';
       }
 
-      // On page load: increment counter only for non-owners
-      if (!isOwner()) {
-        fetch(COUNTER_API)
-          .then(r => r.json())
-          .then(data => {
-            document.getElementById('visitor-count').textContent = data.value || '—';
-          })
-          .catch(() => {
-            document.getElementById('visitor-count').textContent = '—';
-          });
-      } else {
-        // Owner: just read the current count without incrementing
-        fetch(COUNTER_API + '?readOnly=true')
-          .then(r => r.json())
-          .then(data => {
-            document.getElementById('visitor-count').textContent = data.value || '—';
-          })
-          .catch(() => {
-            document.getElementById('visitor-count').textContent = '—';
-          });
+      function hasAlreadyBeenCounted() {
+        return localStorage.getItem(COUNTED_KEY) === 'true';
       }
 
-      // Listen for the secret word typed on the keyboard
+      function markAsCounted() {
+        localStorage.setItem(COUNTED_KEY, 'true');
+      }
+
+      function enableOwnerMode() {
+        const wasOwner = isOwner();
+        const hadBeenCounted = hasAlreadyBeenCounted();
+
+        localStorage.setItem(OWNER_KEY, 'true');
+        localStorage.removeItem(COUNTED_KEY);
+
+        // If this browser was counted before owner mode was enabled, reverse that count once.
+        if (!wasOwner && hadBeenCounted) {
+          requestCounter('down')
+            .then(setCounterDisplay)
+            .catch(() => requestCounter().then(setCounterDisplay).catch(setCounterError));
+        } else {
+          requestCounter().then(setCounterDisplay).catch(setCounterError);
+        }
+      }
+
+      function checkOwnerUrlFlag() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('owner') === 'true' || window.location.hash === '#owner') {
+          localStorage.setItem(OWNER_KEY, 'true');
+        }
+      }
+
+      async function initializeVisitorCounter() {
+        checkOwnerUrlFlag();
+
+        try {
+          let count;
+          if (isOwner() || hasAlreadyBeenCounted()) {
+            count = await requestCounter();
+          } else {
+            count = await requestCounter('up');
+            markAsCounted();
+          }
+          setCounterDisplay(count);
+        } catch (error) {
+          console.error('Visitor counter failed:', error);
+          setCounterError();
+        }
+      }
+
+      initializeVisitorCounter();
+
+      // Type the secret word anywhere on the page to reveal Mission Control.
+      // Owner shortcut: visit the site with ?owner=true once, or type the secret word.
       document.addEventListener('keydown', function(e) {
-        // Ignore if user is typing in an input/textarea
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
         typedKeys += e.key.toLowerCase();
-
-        // Keep only the last N characters (length of secret word)
         if (typedKeys.length > SECRET_WORD.length) {
           typedKeys = typedKeys.slice(-SECRET_WORD.length);
         }
 
         if (typedKeys === SECRET_WORD) {
           typedKeys = '';
-          // Mark as owner on first reveal
-          if (!isOwner()) {
-            localStorage.setItem('portfolio_owner', 'true');
-          }
+          enableOwnerMode();
           toggleVisitorCounter();
         }
       });
 
-      // Toggle the counter overlay
       window.toggleVisitorCounter = function() {
-        const overlay = document.getElementById('visitor-counter-overlay');
+        if (!overlay) return;
+
         counterVisible = !counterVisible;
-        if (counterVisible) {
-          overlay.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        } else {
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
-        }
+        overlay.classList.toggle('active', counterVisible);
+        document.body.style.overflow = counterVisible ? 'hidden' : '';
       };
 
-      // Close on clicking the overlay background
-      document.getElementById('visitor-counter-overlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-          toggleVisitorCounter();
-        }
-      });
+      if (overlay) {
+        overlay.addEventListener('click', function(e) {
+          if (e.target === this) {
+            toggleVisitorCounter();
+          }
+        });
+      }
     })();
   </script>
 </body>
