@@ -1660,7 +1660,7 @@
 
     // ============ VISITOR COUNTER ============
     (function() {
-      const COUNTER_API = 'https://api.counterapi.dev/v1/fourievanrooyen-portfolio/visitors';
+      const COUNTER_API = 'https://counterapi.com/api/fourievanrooyen.github.io/view/portfolio';
       const SECRET_WORD = 'counter';
       let typedKeys = '';
       let counterVisible = false;
@@ -1672,20 +1672,20 @@
 
       // On page load: increment counter only for non-owners
       if (!isOwner()) {
-        fetch(COUNTER_API + '/up')
+        fetch(COUNTER_API)
           .then(r => r.json())
           .then(data => {
-            document.getElementById('visitor-count').textContent = data.count || '—';
+            document.getElementById('visitor-count').textContent = data.value || '—';
           })
           .catch(() => {
             document.getElementById('visitor-count').textContent = '—';
           });
       } else {
         // Owner: just read the current count without incrementing
-        fetch(COUNTER_API)
+        fetch(COUNTER_API + '?readOnly=true')
           .then(r => r.json())
           .then(data => {
-            document.getElementById('visitor-count').textContent = data.count || '—';
+            document.getElementById('visitor-count').textContent = data.value || '—';
           })
           .catch(() => {
             document.getElementById('visitor-count').textContent = '—';
