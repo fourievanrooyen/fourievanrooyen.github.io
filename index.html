@@ -4,172 +4,192 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fourie van Rooyen | Aerospace Engineering</title>
+  <meta name="description" content="Aerospace engineer — applied aerodynamics, propulsion, CFD/FEA, and flight test. Portfolio of Fourie van Rooyen.">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div id="space-bg">
-    <div class="nebula nebula-1"></div>
-    <div class="nebula nebula-2"></div>
-    <div class="nebula nebula-3"></div>
-    
-    <div class="stars-layer" id="stars-layer">
-      <div class="stars-tiny"></div>
-      <div class="stars-small"></div>
-      <div class="stars-medium"></div>
-      <div class="stars-large"></div>
-      <div class="stars-bright"></div>
-      
-      <div class="quasar quasar-1"></div>
-      <div class="quasar quasar-2"></div>
-      <div class="quasar quasar-3"></div>
-    </div>
-    
-    <div class="shooting-stars" id="shooting-stars"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Night sky: far field + Milky Way / bright stars / scintillation + meteors -->
+  <div id="sky" aria-hidden="true">
+    <canvas id="sky-far"></canvas>
+    <canvas id="sky-near"></canvas>
+    <canvas id="sky-anim"></canvas>
   </div>
 
   <nav class="main-nav" id="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">FVR</a>
-      <ul class="nav-links">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">FVR<span>_</span></a>
+      <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#documents">Documents</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
       </button>
     </div>
+    <div class="nav-progress" id="nav-progress"></div>
   </nav>
 
+  <main id="main">
+
+  <!-- ================= HERO ================= -->
   <section id="hero" class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <p class="hero-eyebrow">Aerospace Engineer</p>
-        <h1 class="hero-title">Fourie van Rooyen</h1>
-        <p class="hero-subtitle">
-          Applied aerodynamics, propulsion systems, and experimental validation. 
-          Bridging simulation with real-world performance through CAD, CFD, FEA, and hands-on testing.
-        </p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow hero-eyebrow">Aerospace Engineer</p>
+          <h1>Fourie<br>van Rooyen</h1>
+          <p class="hero-sub">
+            Applied aerodynamics, propulsion systems, and experimental validation.
+            Bridging simulation with real-world performance through CAD, CFD, FEA,
+            and hands-on testing.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View projects</a>
+            <a href="Fourie_Resume.pdf" target="_blank" class="link-plain">Resume (PDF)</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="profile.png" alt="Fourie van Rooyen" fetchpriority="high">
+          <span class="tick" aria-hidden="true"></span>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="profile.png" alt="Fourie van Rooyen">
+
+      <!-- flight data from the ORCA capstone program -->
+      <div class="hero-stats" aria-label="ORCA capstone flight data">
+        <div>
+          <div class="stat-v">10.5&ndash;11.2</div>
+          <div class="stat-l">Cruise L/D &middot; ANSYS CFD</div>
+        </div>
+        <div>
+          <div class="stat-v">&ge; 2.0</div>
+          <div class="stat-l">Structural FoS &middot; primary structure</div>
+        </div>
+        <div>
+          <div class="stat-v">1.41</div>
+          <div class="stat-l">VTOL thrust-to-weight</div>
+        </div>
+        <div>
+          <div class="stat-v">Demonstrated</div>
+          <div class="stat-l">VTOL &rarr; cruise &rarr; VTOL transition</div>
+        </div>
       </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+
+      <p class="sky-readout">
+        <span class="dot" aria-hidden="true"></span>
+        Sky render &mdash; <span id="sky-stars">&mdash;</span> stars &middot; 7 spectral classes &middot; meteors logged: <span id="sky-meteors">0</span>
+      </p>
     </div>
   </section>
 
-  <section id="about" class="section about">
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class="section">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
-      
-      <div class="about-content">
+      <div class="section-head">
+        <p class="eyebrow">01 &middot; Profile</p>
+        <h2>About</h2>
+      </div>
+
+      <div class="about-grid">
         <div class="about-text">
           <p>
-            I am a recent Aerospace Engineering graduate from the University of Alabama with a strong focus on applied aerodynamics, 
-            propulsion, and experimental validation. My experience centers on CAD-driven design and high-fidelity analysis using CFD, 
-            FEA, and multiphysics tools—primarily ANSYS and SolidWorks—supported by MATLAB and Python for performance evaluation, data 
-            processing, and system-level modeling. I work best in hands-on, multidisciplinary environments where analytical predictions 
-            are validated through testing, iteration, and real-world performance, and I am motivated by closing the gap between simulation 
+            I am a recent Aerospace Engineering graduate from the University of Alabama with a strong focus on applied
+            aerodynamics, propulsion, and experimental validation. My experience centers on CAD-driven design and
+            high-fidelity analysis using CFD, FEA, and multiphysics tools&mdash;primarily ANSYS and SolidWorks&mdash;supported
+            by MATLAB and Python for performance evaluation, data processing, and system-level modeling.
+          </p>
+          <p>
+            I work best in hands-on, multidisciplinary environments where analytical predictions are validated through
+            testing, iteration, and real-world performance, and I am motivated by closing the gap between simulation
             and physical behavior.
           </p>
         </div>
-        
-        <div class="about-details">
-          <div class="detail-card">
-            <h3>Education</h3>
-            <p class="institution">The University of Alabama</p>
-            <p class="degree">B.S. Aerospace Engineering</p>
-            <p class="degree">Minor in Mechanical Engineering</p>
-            <p class="date">May 2026</p>
-            <p class="honors">Dean's List Fall 2025</p>
-          </div>
+
+        <div class="panel">
+          <h3>Education</h3>
+          <p class="edu-line"><strong>The University of Alabama</strong></p>
+          <p class="edu-line">B.S. Aerospace Engineering</p>
+          <p class="edu-line">Minor in Mechanical Engineering</p>
+          <p class="edu-meta">May 2026 &middot; Dean's List Fall 2025</p>
         </div>
       </div>
-      
-      <div class="skills-section detail-card">
+
+      <div class="panel">
         <h3>Skills</h3>
-        <div class="skills-columns">
-          <div class="skills-column">
-            <h4>Engineering & Design</h4>
-            <div class="skills-grid">
-              <span class="skill-tag">SolidWorks</span>
-              <span class="skill-tag">CATIA</span>
-              <span class="skill-tag">ANSYS CFD/FEA</span>
-              <span class="skill-tag">GD&T (ASME Y14.5)</span>
-              <span class="skill-tag">Systems Engineering</span>
-              <span class="skill-tag">Aerodynamic Analysis</span>
-            </div>
+        <div class="skills-grid">
+          <div>
+            <h4>Engineering &amp; Design</h4>
+            <ul>
+              <li>SolidWorks</li>
+              <li>CATIA</li>
+              <li>ANSYS CFD / FEA</li>
+              <li>GD&amp;T (ASME Y14.5)</li>
+              <li>Systems Engineering</li>
+              <li>Aerodynamic Analysis</li>
+            </ul>
           </div>
-          <div class="skills-column">
-            <h4>Programming & Software</h4>
-            <div class="skills-grid">
-              <span class="skill-tag">MATLAB</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">Delphi 10</span>
-              <span class="skill-tag">Jira</span>
-              <span class="skill-tag">Git/GitHub</span>
-              <span class="skill-tag">Microsoft Office</span>
-            </div>
+          <div>
+            <h4>Programming &amp; Software</h4>
+            <ul>
+              <li>MATLAB</li>
+              <li>Python</li>
+              <li>Delphi 10</li>
+              <li>Jira</li>
+              <li>Git / GitHub</li>
+              <li>Microsoft Office</li>
+            </ul>
           </div>
-          <div class="skills-column">
-            <h4>Manufacturing & Lab</h4>
-            <div class="skills-grid">
-              <span class="skill-tag">CNC Mill & Lathe</span>
-              <span class="skill-tag">FDM/FFF 3D Printing</span>
-              <span class="skill-tag">Resin Printing</span>
-              <span class="skill-tag">Waterjet Cutting</span>
-              <span class="skill-tag">Laser Engraving</span>
-              <span class="skill-tag">Composites</span>
-            </div>
+          <div>
+            <h4>Manufacturing &amp; Lab</h4>
+            <ul>
+              <li>CNC Mill &amp; Lathe</li>
+              <li>FDM/FFF 3D Printing</li>
+              <li>Resin Printing</li>
+              <li>Waterjet Cutting</li>
+              <li>Laser Engraving</li>
+              <li>Composites</li>
+            </ul>
           </div>
-          <div class="skills-column">
+          <div>
             <h4>Interpersonal</h4>
-            <div class="skills-grid">
-              <span class="skill-tag">Team Leadership</span>
-              <span class="skill-tag">Project Management</span>
-              <span class="skill-tag">Technical Writing</span>
-              <span class="skill-tag">Cross-Team Collaboration</span>
-              <span class="skill-tag">Problem Solving</span>
-              <span class="skill-tag">Mentoring & Training</span>
-            </div>
+            <ul>
+              <li>Team Leadership</li>
+              <li>Project Management</li>
+              <li>Technical Writing</li>
+              <li>Cross-Team Collaboration</li>
+              <li>Problem Solving</li>
+              <li>Mentoring &amp; Training</li>
+            </ul>
           </div>
         </div>
       </div>
-      
+
       <div class="about-extras">
-        <div class="detail-card">
-          <h3>Why me</h3>
-          <ul>
-            <li>Full design-cycle experience — from CAD concept through CFD/FEA simulation to physical testing and validation</li>
+        <div>
+          <h3 class="eyebrow eyebrow-block">Why me</h3>
+          <ul class="why-list">
+            <li>Full design-cycle experience &mdash; from CAD concept through CFD/FEA simulation to physical testing and validation</li>
             <li>Hands-on manufacturing skills spanning CNC machining, 3D printing with engineering-grade materials, and waterjet cutting</li>
             <li>Proven leadership as Chief Engineer on a capstone eVTOL UAV and Co-Founder of a research group</li>
             <li>Strong cross-disciplinary teamwork in fast-paced, deadline-driven environments</li>
             <li>Reliable, detail-oriented, and driven to close the gap between simulation and real-world performance</li>
           </ul>
         </div>
-        
-        <div class="detail-card">
-          <h3>Interests</h3>
-          <div class="interests-grid">
+        <div>
+          <h3 class="eyebrow eyebrow-block">Interests</h3>
+          <div class="interests">
             <span>Space Exploration</span>
             <span>Propulsion Systems</span>
             <span>Aviation</span>
-            <span>UAV & eVTOL Technology</span>
+            <span>UAV &amp; eVTOL Technology</span>
             <span>Testing</span>
             <span>Reusable Launch Vehicles</span>
             <span>Rugby</span>
@@ -180,463 +200,389 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <section id="projects" class="section projects">
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects" class="section">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
-      
+      <div class="section-head">
+        <p class="eyebrow">02 &middot; Work</p>
+        <h2>Projects</h2>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All <span class="filter-count">/ 9</span></button>
+        <button class="filter-btn" data-filter="hardware" aria-pressed="false">Hardware &amp; Test <span class="filter-count">/ 4</span></button>
+        <button class="filter-btn" data-filter="analysis" aria-pressed="false">Aero Analysis <span class="filter-count">/ 4</span></button>
+        <button class="filter-btn" data-filter="software" aria-pressed="false">Simulation <span class="filter-count">/ 1</span></button>
+      </div>
+
       <div class="projects-grid">
-        
-        <article class="project-card">
-          <div class="project-image">
-            <img src="evtol.png" alt="Fixed-Wing eVTOL Reconnaissance UAV">
+
+        <article class="project-card featured" data-category="hardware">
+          <div class="card-media">
+            <img src="evtol.png" alt="Fixed-wing eVTOL reconnaissance UAV">
           </div>
-          <div class="project-content">
-            <h3>eVTOL Reconnaissance UAV — Chief Engineer</h3>
-            <div class="project-meta">
-              <span class="project-category">Capstone</span>
-              <span class="project-date">Aug 2025 — May 2026</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Capstone &middot; Chief Engineer</span>
+              <span class="date">Aug 2025 &mdash; May 2026</span>
             </div>
-            <p class="project-summary">
-              Fixed-wing eVTOL tiltrotor UAV combining vertical takeoff with efficient forward flight. Completed full design lifecycle (MCR→PFAR), achieved stable VTOL hover, and demonstrated a successful VTOL→cruise→VTOL transition in field testing.
+            <h3>eVTOL Reconnaissance UAV (ORCA)</h3>
+            <p class="summary">
+              Fixed-wing eVTOL tiltrotor UAV combining vertical takeoff with efficient forward flight.
+              Completed full design lifecycle (MCR&rarr;PFAR), achieved stable VTOL hover, and demonstrated
+              a successful VTOL&rarr;cruise&rarr;VTOL transition in field testing.
             </p>
-            <div class="project-tags">
-              <span>ANSYS</span>
-              <span>SolidWorks</span>
-              <span>CFD</span>
-              <span>CAD</span>
-              <span>FEA</span>
-              <span>Testing</span>
-              <span>Technical Writing</span>
+            <div class="card-tags">
+              <span>ANSYS</span><span>SolidWorks</span><span>CFD</span><span>FEA</span><span>ArduPilot</span><span>Flight Test</span>
             </div>
-            <button class="btn-details" onclick="openModal('project-capstone')">Details</button>
+            <button class="btn-details" onclick="openModal('project-capstone')">Mission details</button>
           </div>
         </article>
-        
-        <article class="project-card">
-          <div class="project-image">
-            <img src="propeller.png" alt="Drone Propeller Design">
+
+        <article class="project-card" data-category="hardware">
+          <div class="card-media">
+            <img src="propeller.png" alt="Drone propeller designs" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>UAV Propeller Research — CFD Lead</h3>
-            <div class="project-meta">
-              <span class="project-category">Research</span>
-              <span class="project-date">Jan 2025 — May 2026</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Research &middot; CFD Lead</span>
+              <span class="date">Jan 2025 &mdash; May 2026</span>
             </div>
-            <p class="project-summary">
-              Lead design of drone propellers with vortex inducers, simulating thrust and acoustic characteristics using CFD, validated through wind tunnel testing.
+            <h3>UAV Propeller Research</h3>
+            <p class="summary">
+              Lead design of drone propellers with vortex inducers, simulating thrust and acoustic
+              characteristics using CFD, validated through wind tunnel testing.
             </p>
-            <div class="project-tags">
-              <span>CFD</span>
-              <span>FEA</span>
-              <span>Wind Tunnel</span>
-              <span>GD&T</span>
-              <span>CAD</span>
+            <div class="card-tags">
+              <span>CFD</span><span>FEA</span><span>Wind Tunnel</span><span>GD&amp;T</span><span>CAD</span>
             </div>
             <button class="btn-details" onclick="openModal('project-aero')">Details</button>
           </div>
         </article>
-        
-        <article class="project-card">
-          <div class="project-image">
-            <img src="rocket.png" alt="Liquid Rocket Engine">
+
+        <article class="project-card" data-category="hardware">
+          <div class="card-media">
+            <img src="rocket.png" alt="Liquid propellant rocket" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Liquid Propellant Rocket — Liquids Team</h3>
-            <div class="project-meta">
-              <span class="project-category">Extracurricular</span>
-              <span class="project-date">Oct 2023 — May 2026</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Rocketry &middot; Liquids Team</span>
+              <span class="date">Oct 2023 &mdash; May 2026</span>
             </div>
-            <p class="project-summary">
-              Collaborated on designing components for a single-stage liquid propellant rocket, focusing on fluids systems and hot fire test execution.
+            <h3>Liquid Propellant Rocket</h3>
+            <p class="summary">
+              Collaborated on designing components for a single-stage liquid propellant rocket,
+              focusing on fluids systems and hot fire test execution.
             </p>
-            <div class="project-tags">
-              <span>Propulsion</span>
-              <span>CNC</span>
-              <span>Testing</span>
-              <span>Design</span>
-              <span>Thermodynamics</span>
+            <div class="card-tags">
+              <span>Propulsion</span><span>CNC</span><span>Testing</span><span>Thermodynamics</span>
             </div>
             <button class="btn-details" onclick="openModal('project-rocket')">Details</button>
           </div>
         </article>
-        
-        <article class="project-card">
-          <div class="project-image">
-            <img src="simulation.png" alt="Drone Simulation">
+
+        <article class="project-card" data-category="software">
+          <div class="card-media">
+            <img src="simulation.png" alt="Quadcopter simulation" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Genesis Drone Simulation — Personal Project</h3>
-            <div class="project-meta">
-              <span class="project-category">Personal</span>
-              <span class="project-date">Aug 2025 — May 2026</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Personal</span>
+              <span class="date">Aug 2025 &mdash; May 2026</span>
             </div>
-            <p class="project-summary">
-              High-fidelity quadcopter simulation in Python using the Genesis physics engine, modeling real-time aerodynamics and PID control systems.
+            <h3>Genesis Drone Simulation</h3>
+            <p class="summary">
+              High-fidelity quadcopter simulation in Python using the Genesis physics engine,
+              modeling real-time aerodynamics and PID control systems.
             </p>
-            <div class="project-tags">
-              <span>Python</span>
-              <span>Controls</span>
-              <span>CUDA</span>
-              <span>PID</span>
-              <span>Physics</span>
+            <div class="card-tags">
+              <span>Python</span><span>Controls</span><span>CUDA</span><span>PID</span><span>Physics</span>
             </div>
             <button class="btn-details" onclick="openModal('project-sim')">Details</button>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-image">
-            <img src="cfd.png" alt="CFD Class">
+        <article class="project-card" data-category="analysis">
+          <div class="card-media">
+            <img src="cfd.png" alt="CFD coursework" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Computational Fluid Dynamics — ANSYS Coursework</h3>
-            <div class="project-meta">
-              <span class="project-category">Academic</span>
-              <span class="project-date">University of Alabama</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Academic</span>
+              <span class="date">University of Alabama</span>
             </div>
-            <p class="project-summary">
-              Applied ANSYS Fluent to model incompressible and compressible flow regimes, including boundary layer analysis, turbulence modeling, and mesh convergence studies.
+            <h3>Computational Fluid Dynamics</h3>
+            <p class="summary">
+              Applied ANSYS Fluent to model incompressible and compressible flow regimes, including
+              boundary layer analysis, turbulence modeling, and mesh convergence studies.
             </p>
-            <div class="project-tags">
-              <span>ANSYS Fluent</span>
-              <span>CFD</span>
-              <span>Turbulence</span>
-              <span>Meshing</span>
-              <span>Post-Processing</span>
+            <div class="card-tags">
+              <span>ANSYS Fluent</span><span>Turbulence</span><span>Meshing</span><span>Post-Processing</span>
             </div>
             <button class="btn-details" onclick="openModal('project-cfd')">Details</button>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-image">
-            <img src="flightmechanics.png" alt="Flight Mechanics">
+        <article class="project-card" data-category="analysis">
+          <div class="card-media">
+            <img src="flightmechanics.png" alt="Flight mechanics analysis" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Flight Mechanics & Stability Analysis — Coursework</h3>
-            <div class="project-meta">
-              <span class="project-category">Academic</span>
-              <span class="project-date">University of Alabama</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Academic</span>
+              <span class="date">University of Alabama</span>
             </div>
-            <p class="project-summary">
-              Analyzed longitudinal and lateral-directional stability, aircraft performance envelopes, and dynamic response characteristics using MATLAB-based tools and classical flight mechanics theory.
+            <h3>Flight Mechanics &amp; Stability Analysis</h3>
+            <p class="summary">
+              Analyzed longitudinal and lateral-directional stability, aircraft performance envelopes,
+              and dynamic response characteristics using MATLAB-based tools and classical flight mechanics theory.
             </p>
-            <div class="project-tags">
-              <span>MATLAB</span>
-              <span>Stability</span>
-              <span>Dynamics</span>
-              <span>Controls</span>
-              <span>Python</span>
-              <span>Orbital Mechanics</span>
+            <div class="card-tags">
+              <span>MATLAB</span><span>Stability</span><span>Dynamics</span><span>Orbital Mechanics</span>
             </div>
             <button class="btn-details" onclick="openModal('project-flight')">Details</button>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-image">
-            <img src="tensegrity.png" alt="Tensegrity Structure">
+        <article class="project-card" data-category="hardware">
+          <div class="card-media">
+            <img src="tensegrity.png" alt="Tensegrity structure" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Tensegrity Structure Design — Statics Coursework</h3>
-            <div class="project-meta">
-              <span class="project-category">Academic</span>
-              <span class="project-date">University of Alabama</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Academic</span>
+              <span class="date">University of Alabama</span>
             </div>
-            <p class="project-summary">
-              Designed, built, and analyzed a stacked three-beam tensegrity column using SolidWorks CAD, 3D-printed components, and FEA simulation to evaluate structural stability under a 5 lbf load.
+            <h3>Tensegrity Structure Design</h3>
+            <p class="summary">
+              Designed, built, and analyzed a stacked three-beam tensegrity column using SolidWorks CAD,
+              3D-printed components, and FEA simulation to evaluate structural stability under a 5 lbf load.
             </p>
-            <div class="project-tags">
-              <span>SolidWorks</span>
-              <span>FEA</span>
-              <span>3D Printing</span>
-              <span>Statics</span>
-              <span>CAD</span>
+            <div class="card-tags">
+              <span>SolidWorks</span><span>FEA</span><span>3D Printing</span><span>Statics</span>
             </div>
             <button class="btn-details" onclick="openModal('project-tensegrity')">Details</button>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-image">
-            <img src="birdstrike.png" alt="Bird Strike Analysis">
+        <article class="project-card" data-category="analysis">
+          <div class="card-media">
+            <img src="birdstrike.png" alt="Bird strike dent analysis" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Bird-Strike Dent Aerodynamic Analysis — Coursework</h3>
-            <div class="project-meta">
-              <span class="project-category">Academic</span>
-              <span class="project-date">University of Alabama</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Academic</span>
+              <span class="date">University of Alabama</span>
             </div>
-            <p class="project-summary">
-              Analyzed aerodynamic penalties and structural deflections caused by a bird-strike dent on a STOL CH 750 rudder assembly using thin-airfoil theory, beam modeling, and MATLAB simulation.
+            <h3>Bird-Strike Dent Aerodynamic Analysis</h3>
+            <p class="summary">
+              Analyzed aerodynamic penalties and structural deflections caused by a bird-strike dent on a
+              STOL CH 750 rudder assembly using thin-airfoil theory, beam modeling, and MATLAB simulation.
             </p>
-            <div class="project-tags">
-              <span>MATLAB</span>
-              <span>Thin Airfoil Theory</span>
-              <span>FEA</span>
-              <span>Structures</span>
+            <div class="card-tags">
+              <span>MATLAB</span><span>Thin Airfoil Theory</span><span>FEA</span><span>Structures</span>
             </div>
             <button class="btn-details" onclick="openModal('project-birdstrike')">Details</button>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-image">
-            <img src="airfoil.png" alt="Airfoil Aerodynamics">
+        <article class="project-card" data-category="analysis">
+          <div class="card-media">
+            <img src="airfoil.png" alt="Airfoil aerodynamic analysis" loading="lazy">
           </div>
-          <div class="project-content">
-            <h3>Airfoil Aerodynamic Analysis — Coursework</h3>
-            <div class="project-meta">
-              <span class="project-category">Academic</span>
-              <span class="project-date">University of Alabama</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="cat">Academic</span>
+              <span class="date">University of Alabama</span>
             </div>
-            <p class="project-summary">
-              Computed lift, drag, and moment coefficients for the Liebeck LA2573A airfoil using XFLR5 and Excel-based numerical integration of surface pressure and shear stress distributions.
+            <h3>Airfoil Aerodynamic Analysis</h3>
+            <p class="summary">
+              Computed lift, drag, and moment coefficients for the Liebeck LA2573A airfoil using XFLR5 and
+              Excel-based numerical integration of surface pressure and shear stress distributions.
             </p>
-            <div class="project-tags">
-              <span>XFLR5</span>
-              <span>Thin Airfoil Theory</span>
-              <span>MATLAB</span>
-              <span>Aerodynamics</span>
-              <span>Excel</span>
+            <div class="card-tags">
+              <span>XFLR5</span><span>Thin Airfoil Theory</span><span>MATLAB</span><span>Excel</span>
             </div>
             <button class="btn-details" onclick="openModal('project-airfoil')">Details</button>
           </div>
         </article>
-        
+
       </div>
     </div>
   </section>
 
-  <section id="experience" class="section experience">
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience" class="section">
     <div class="container">
-      <h2 class="section-title">Work Experience</h2>
-      
-      <div class="experience-grid">
-        
-        <article class="experience-card">
-          <div class="project-image experience-image-contain">
-            <img src="thecube.png" alt="The Cube">
-          </div>
-          <div class="project-content">
-            <h3>Lab Technician</h3>
-            <div class="project-meta">
-              <span class="project-category">The Cube, Tuscaloosa, AL</span>
-              <span class="project-date">Aug 2025 – May 2026</span>
-            </div>
-            <p class="project-summary">
-              Operate and maintain advanced manufacturing equipment including 3D printers, waterjet systems, and laser engravers. Execute printing with engineering-grade materials and train users on best practices.
-            </p>
-            <div class="project-tags">
-              <span>3D Printing</span>
-              <span>Waterjet Cutting</span>
-              <span>Laser Engraving</span>
-              <span>FDM/FFF</span>
-            </div>
-            <button class="btn-details" onclick="openModal('exp-cube')">Details</button>
-          </div>
-        </article>
-        
-        <article class="experience-card">
-          <div class="project-image experience-image-contain">
-            <img src="Trinity farm.png" alt="Trinity Farm">
-          </div>
-          <div class="project-content">
-            <h3>Ranch Hand</h3>
-            <div class="project-meta">
-              <span class="project-category">Trinity Farm</span>
-              <span class="project-date">May 2022 – Jan 2024</span>
-            </div>
-            <p class="project-summary">
-              Provided daily care for horses and maintained farm infrastructure through equipment operation, fence repairs, and machinery troubleshooting. Developed strong work ethic and mechanical aptitude.
-            </p>
-            <div class="project-tags">
-              <span>Equipment</span>
-              <span>Maintenance</span>
-              <span>Hand Tools</span>
-            </div>
-            <button class="btn-details" onclick="openModal('exp-farm')">Details</button>
-          </div>
-        </article>
-        
-        <article class="experience-card">
-          <div class="project-image experience-image-contain">
-            <img src="ntb.png" alt="National Tire and Battery">
-          </div>
-          <div class="project-content">
-            <h3>Tire Technician</h3>
-            <div class="project-meta">
-              <span class="project-category">National Tire and Battery</span>
-              <span class="project-date">Aug 2021 – Feb 2022</span>
-            </div>
-            <p class="project-summary">
-              Performed routine vehicle maintenance including oil changes, tire repairs, battery installations, and brake replacements. Assisted mechanics with advanced diagnostics and repairs.
-            </p>
-            <div class="project-tags">
-              <span>Automotive</span>
-              <span>Diagnostics</span>
-              <span>Maintenance</span>
-              <span>Troubleshooting</span>
-              <span>Vehicle Maintenance</span>
-            </div>
-            <button class="btn-details" onclick="openModal('exp-ntb')">Details</button>
-          </div>
-        </article>
-        
+      <div class="section-head">
+        <p class="eyebrow">03 &middot; Record</p>
+        <h2>Work Experience</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <p class="timeline-date">Aug 2025 &mdash; May 2026</p>
+          <h3>Lab Technician</h3>
+          <p class="org">The Cube &middot; Tuscaloosa, AL</p>
+          <p>
+            Operate and maintain advanced manufacturing equipment including 3D printers, waterjet systems,
+            and laser engravers. Execute printing with engineering-grade materials and train users on best practices.
+          </p>
+          <button class="btn-details" onclick="openModal('exp-cube')">Details</button>
+        </div>
+
+        <div class="timeline-item">
+          <p class="timeline-date">May 2022 &mdash; Jan 2024</p>
+          <h3>Ranch Hand</h3>
+          <p class="org">Trinity Farm</p>
+          <p>
+            Provided daily care for horses and maintained farm infrastructure through equipment operation,
+            fence repairs, and machinery troubleshooting. Developed strong work ethic and mechanical aptitude.
+          </p>
+          <button class="btn-details" onclick="openModal('exp-farm')">Details</button>
+        </div>
+
+        <div class="timeline-item">
+          <p class="timeline-date">Aug 2021 &mdash; Feb 2022</p>
+          <h3>Tire Technician</h3>
+          <p class="org">National Tire and Battery</p>
+          <p>
+            Performed routine vehicle maintenance including oil changes, tire repairs, battery installations,
+            and brake replacements. Assisted mechanics with advanced diagnostics and repairs.
+          </p>
+          <button class="btn-details" onclick="openModal('exp-ntb')">Details</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="documents" class="section documents">
+  <!-- ================= DOCUMENTS ================= -->
+  <section id="documents" class="section">
     <div class="container">
-      <h2 class="section-title">Documentation</h2>
-      
-      <div class="docs-grid">
-        
-        <a href="Fourie_Resume.pdf" class="doc-card" target="_blank">
-          <div class="doc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14,2 14,8 20,8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10,9 9,9 8,9"/>
-            </svg>
-          </div>
-          <h3>Resume</h3>
-          <p>Experience, education, and skills overview</p>
-          <span class="doc-download">Download PDF →</span>
-        </a>
-        
-        <a href="Fourie_van_Rooyen_cover_letter.pdf" class="doc-card" target="_blank">
-          <div class="doc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          <h3>Cover Letter</h3>
-          <p>Professional introduction and qualifications</p>
-          <span class="doc-download">Download PDF →</span>
-        </a>
+      <div class="section-head">
+        <p class="eyebrow">04 &middot; Records</p>
+        <h2>Documentation</h2>
+      </div>
 
-        <a href="ORCA_Portfolio_Project_Documentation.pdf" class="doc-card" target="_blank">
-          <div class="doc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14,2 14,8 20,8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-            </svg>
-          </div>
-          <h3>ORCA Project Documentation</h3>
-          <p>Full capstone case study — MCR through PFAR</p>
-          <span class="doc-download">Download PDF →</span>
+      <div class="doc-list">
+        <a href="Fourie_Resume.pdf" target="_blank" class="doc-row">
+          <span>
+            <span class="doc-name">Resume</span>
+            <span class="doc-desc" style="display:block">Experience, education, and skills overview</span>
+          </span>
+          <span class="doc-type">PDF &nearr;</span>
         </a>
-        
-        <a href="Letter of Recommendation.pdf" class="doc-card" target="_blank">
-          <div class="doc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-          </div>
-          <h3>Letter of Recommendation</h3>
-          <p>From A.A.E.R.O. Team Lead</p>
-          <span class="doc-download">Download PDF →</span>
+        <a href="Fourie van Rooyen cover letter.pdf" target="_blank" class="doc-row">
+          <span>
+            <span class="doc-name">Cover Letter</span>
+            <span class="doc-desc" style="display:block">Professional introduction and qualifications</span>
+          </span>
+          <span class="doc-type">PDF &nearr;</span>
         </a>
-        
-        <a href="Rec Letter Jinwei Shen.pdf" class="doc-card" target="_blank">
-          <div class="doc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-          </div>
-          <h3>Letter of Recommendation</h3>
-          <p>From Dr. Jinwei Shen, Associate Professor</p>
-          <span class="doc-download">Download PDF →</span>
+        <a href="ORCA_Portfolio_Project_Documentation.pdf" target="_blank" class="doc-row">
+          <span>
+            <span class="doc-name">ORCA Project Documentation</span>
+            <span class="doc-desc" style="display:block">Full capstone case study &mdash; MCR through PFAR</span>
+          </span>
+          <span class="doc-type">PDF &nearr;</span>
         </a>
-        
-        <a href="URCA_Poster_2025.pdf" class="doc-card" target="_blank">
-          <div class="doc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21,15 16,10 5,21"/>
-            </svg>
-          </div>
-          <h3>Research Poster</h3>
-          <p>URCA 2025 propeller research presentation</p>
-          <span class="doc-download">Download PDF →</span>
+        <a href="Letter of Recommendation.pdf" target="_blank" class="doc-row">
+          <span>
+            <span class="doc-name">Letter of Recommendation</span>
+            <span class="doc-desc" style="display:block">From A.A.E.R.O. Team Lead</span>
+          </span>
+          <span class="doc-type">PDF &nearr;</span>
         </a>
-        
+        <a href="Rec Letter Jinwei Shen.pdf" target="_blank" class="doc-row">
+          <span>
+            <span class="doc-name">Letter of Recommendation</span>
+            <span class="doc-desc" style="display:block">From Dr. Jinwei Shen, Associate Professor</span>
+          </span>
+          <span class="doc-type">PDF &nearr;</span>
+        </a>
+        <a href="URCA_Poster_2025.pdf" target="_blank" class="doc-row">
+          <span>
+            <span class="doc-name">Research Poster</span>
+            <span class="doc-desc" style="display:block">URCA 2025 propeller research presentation</span>
+          </span>
+          <span class="doc-type">PDF &nearr;</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section contact">
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="section">
     <div class="container">
-      <h2 class="section-title">Get in Touch</h2>
-      
-      <div class="contact-content">
-        <p class="contact-intro">
-          I'm open to opportunities in aerospace and mechanical engineering. 
+      <div class="section-head">
+        <p class="eyebrow">05 &middot; Comms</p>
+        <h2>Get in Touch</h2>
+      </div>
+
+      <div class="contact-wrap">
+        <p>
+          I'm open to opportunities in aerospace and mechanical engineering.
           Feel free to reach out to discuss potential roles or collaborations.
         </p>
-        
-        <div class="contact-links">
-          <a href="mailto:fourievr1014@gmail.com" class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <div class="contact-list">
+          <a href="mailto:fourievr1014@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
             <span>fourievr1014@gmail.com</span>
           </a>
-          
-          <a href="tel:+16592109953" class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <a href="tel:+16592109953">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <span>+1 659 210 9953</span>
           </a>
-          
-          <a href="https://www.linkedin.com/in/fourie-van-rooyen/" target="_blank" class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <a href="https://www.linkedin.com/in/fourie-van-rooyen/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
               <rect x="2" y="9" width="4" height="12"/>
               <circle cx="4" cy="4" r="2"/>
             </svg>
             <span>LinkedIn Profile</span>
           </a>
-          
-
         </div>
       </div>
     </div>
   </section>
 
-  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
-    <div class="modal-container" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()" aria-label="Close modal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>&copy; 2026 Fourie van Rooyen</span>
+      <span><a href="mailto:fourievr1014@gmail.com">fourievr1014@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL SHELL ================= -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" onclick="if(event.target===this)closeModal()">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
       </button>
-      <div class="modal-content" id="modal-content">
-        </div>
+      <div class="modal-content" id="modal-content"></div>
     </div>
   </div>
 
+  <!-- ================= PROJECT TEMPLATES ================= -->
   <template id="project-capstone">
     <div class="modal-header">
       <img src="evtol.png" alt="eVTOL Reconnaissance UAV" class="modal-hero-image">
       <div class="modal-title-section">
-        <span class="modal-label">Capstone Project • Chief Engineer & CFD Lead</span>
+        <span class="modal-label">Capstone Project &middot; Chief Engineer &amp; CFD Lead</span>
         <h2>eVTOL Reconnaissance UAV (ORCA)</h2>
-        <p class="modal-date">August 2025 – May 2026</p>
+        <p class="modal-date">August 2025 &ndash; May 2026</p>
       </div>
     </div>
     <div class="modal-body">
@@ -649,15 +595,15 @@
       <div class="modal-details">
         <h3>Key Contributions</h3>
         <ul>
-          <li>Led the program through a full NASA NPR 7123.1D design lifecycle (MCR→PDR→CDR→TRR→FRR), achieving stable VTOL hover and a successful VTOL→cruise→VTOL transition in flight testing.</li>
-          <li>Executed full 3-D ANSYS Fluent CFD simulation at cruise (V∞ = 17 m/s) and ANSYS Mechanical FEA; validated aerodynamic L/D ≈ 10.5–11.2 and structural factors of safety above 2.0 on all primary structure.</li>
-          <li>Configured and flight-validated ArduPlane QuadPlane firmware on a Matek F405-Wing V2 flight controller with DSHOT600 ESCs and a PCA9685 I²C tilt-servo expander; resolved TIM8 timer conflict enabling simultaneous DSHOT and PWM operation.</li>
+          <li>Led the program through a full NASA NPR 7123.1D design lifecycle (MCR&rarr;PDR&rarr;CDR&rarr;TRR&rarr;FRR), achieving stable VTOL hover and a successful VTOL&rarr;cruise&rarr;VTOL transition in flight testing.</li>
+          <li>Executed full 3-D ANSYS Fluent CFD simulation at cruise (V&infin; = 17 m/s) and ANSYS Mechanical FEA; validated aerodynamic L/D &asymp; 10.5&ndash;11.2 and structural factors of safety above 2.0 on all primary structure.</li>
+          <li>Configured and flight-validated ArduPlane QuadPlane firmware on a Matek F405-Wing V2 flight controller with DSHOT600 ESCs and a PCA9685 I&sup2;C tilt-servo expander; resolved TIM8 timer conflict enabling simultaneous DSHOT and PWM operation.</li>
           <li>Analyzed ArduPilot DataFlash flight logs from two test campaigns to identify root causes of in-flight anomalies (EKF3 altitude divergence, UV-induced PLA structural softening); produced a 38-page Post-Flight Analysis Report.</li>
           <li>Conducted experimental crush testing on 3D-printed structures, identifying 7% gyroid infill as optimal; oversaw cross-subsystem integration resolving CG, power, and mass tradeoffs through CDR.</li>
         </ul>
       </div>
       <div class="modal-tech">
-        <h3>Technologies & Tools</h3>
+        <h3>Technologies &amp; Tools</h3>
         <div class="modal-tags">
           <span>ANSYS CFD</span>
           <span>ANSYS FEA</span>
@@ -672,7 +618,7 @@
         <h3>Related Documents</h3>
         <div class="modal-doc-grid">
           <a href="ORCA_Portfolio_Project_Documentation.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
@@ -687,37 +633,37 @@
     <div class="modal-header">
       <img src="propeller.png" alt="UAV Propeller Research" class="modal-hero-image">
       <div class="modal-title-section">
-        <span class="modal-label">A.A.E.R.O. • Co-Founder / CFD Lead</span>
+        <span class="modal-label">A.A.E.R.O. &middot; Co-Founder / CFD Lead</span>
         <h2>UAV Propeller Research</h2>
-        <p class="modal-date">January 2025 – May 2026</p>
+        <p class="modal-date">January 2025 &ndash; May 2026</p>
       </div>
     </div>
     <div class="modal-body">
       <div class="modal-description">
         <h3>Project Overview</h3>
         <p>
-          The Alabama Aerodynamics Experimental Research Operations (A.A.E.R.O.) group is dedicated to advancing drone propulsion technology through research and development. The objective is to investigate the aerodynamic performance of four distinct propeller designs—conventional (planar), alular, toroidal, and forward-swept—to determine their impact on thrust generation and noise reduction.
+          The Alabama Aerodynamics Experimental Research Operations (A.A.E.R.O.) group is dedicated to advancing drone propulsion technology through research and development. The objective is to investigate the aerodynamic performance of four distinct propeller designs&mdash;conventional (planar), alular, toroidal, and forward-swept&mdash;to determine their impact on thrust generation and noise reduction.
         </p>
       </div>
       <div class="modal-details">
         <h3>Key Contributions</h3>
         <ul>
           <li>Lead design of drone propeller with vortex inducers to evaluate aerodynamic performance.</li>
-          <li>Simulated propeller thrust and acoustic characteristics using Computational Fluid dynamics (CFD) in ANSYS and SolidWorks and compared with real-world test data.</li>
+          <li>Simulated propeller thrust and acoustic characteristics using Computational Fluid Dynamics (CFD) in ANSYS and SolidWorks and compared with real-world test data.</li>
           <li>Performed Finite Element Analysis (FEA) on designs to assess structural integrity and material performance.</li>
-          <li>Applied Geometric Dimensioning and Tolerancing (GD&T) for precise manufacturing of components.</li>
+          <li>Applied Geometric Dimensioning and Tolerancing (GD&amp;T) for precise manufacturing of components.</li>
           <li>Conducted static test stand experiments measuring thrust, RPM, and acoustics for multiple design iterations.</li>
           <li>Utilized wind tunnel for aerodynamic data collection and model validation.</li>
         </ul>
       </div>
       <div class="modal-tech">
-        <h3>Technologies & Tools</h3>
+        <h3>Technologies &amp; Tools</h3>
         <div class="modal-tags">
           <span>ANSYS CFD</span>
           <span>ANSYS FEA</span>
           <span>SolidWorks</span>
           <span>Wind Tunnel Testing</span>
-          <span>GD&T</span>
+          <span>GD&amp;T</span>
           <span>3D Printing</span>
           <span>Resin Printing</span>
         </div>
@@ -726,7 +672,7 @@
         <h3>Related Documents</h3>
         <div class="modal-doc-grid">
           <a href="URCA_Poster_2025.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
               <polyline points="21,15 16,10 5,21"/>
@@ -738,6 +684,8 @@
     </div>
   </template>
 
+
+  <!-- remaining templates ported verbatim from previous site -->
   <template id="project-rocket">
     <div class="modal-header">
       <img src="rocket.png" alt="Liquid Propellant Rocket" class="modal-hero-image">
@@ -860,14 +808,14 @@
         <h3>Related Documents</h3>
         <div class="modal-doc-grid">
           <a href="CFDMidterm.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
             <span>CFD Midterm</span>
           </a>
           <a href="CFD Final.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
@@ -968,14 +916,14 @@
         <h3>Related Documents</h3>
         <div class="modal-doc-grid">
           <a href="Tensegrity Project Report.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
             <span>Project Report</span>
           </a>
           <a href="Tensegrity Project presentation.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
@@ -1028,7 +976,7 @@
         <h3>Related Documents</h3>
         <div class="modal-doc-grid">
           <a href="BirdStrike project.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
@@ -1081,7 +1029,7 @@
         <h3>Related Documents</h3>
         <div class="modal-doc-grid">
           <a href="Airfoil project.pdf" target="_blank" class="modal-doc-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
             </svg>
@@ -1210,603 +1158,24 @@
     </div>
   </template>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Fourie van Rooyen. All rights reserved.</p>
-    </div>
-  </footer>
-
+  <!-- ================= MISSION CONTROL (hidden visitor counter) ================= -->
   <div id="visitor-counter-overlay" class="visitor-counter-overlay">
     <div class="visitor-counter-panel">
-      <button class="visitor-counter-close" onclick="toggleVisitorCounter()">&times;</button>
-      <div class="visitor-counter-icon">&#128640;</div>
+      <button class="visitor-counter-close" onclick="toggleVisitorCounter()" aria-label="Close">&times;</button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M4 10a7.31 7.31 0 0 0 10 10Z"/>
+        <path d="m9 15 3-3"/>
+        <path d="M17 13a6 6 0 0 0-6-6"/>
+        <path d="M21 13A10 10 0 0 0 11 3"/>
+      </svg>
       <h3 class="visitor-counter-title">Mission Control</h3>
       <p class="visitor-counter-label">Unique Visitors</p>
-      <div id="visitor-count" class="visitor-counter-number">...</div>
+      <div id="visitor-count" class="visitor-counter-number">&hellip;</div>
       <p class="visitor-counter-note">Count excludes site owner</p>
     </div>
   </div>
 
-  <script>
-    // ============ MODAL FUNCTIONS ============
-    function openModal(templateId) {
-      const template = document.getElementById(templateId);
-      const modalOverlay = document.getElementById('modal-overlay');
-      const modalContent = document.getElementById('modal-content');
-      
-      if (template && modalOverlay && modalContent) {
-        modalContent.innerHTML = template.innerHTML;
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    
-    function closeModal() {
-      const modalOverlay = document.getElementById('modal-overlay');
-      modalOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    
-    // Close modal on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    // ============ NAVIGATION ============
-    // Scroll effect for navbar
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Mobile navigation toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      navToggle.classList.toggle('active');
-    });
-
-    // Close mobile menu on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        navToggle.classList.remove('active');
-      });
-    });
-
-    // ============ SMOOTH SCROLL ============
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // ============ SCROLL ANIMATIONS ============
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.project-card, .detail-card, .experience-card, .doc-card').forEach(el => {
-      observer.observe(el);
-    });
-
-    // ============ DEEP SPACE BACKGROUND ============
-    (function() {
-      const starsLayer = document.getElementById('stars-layer');
-      const shootingStarsContainer = document.getElementById('shooting-stars');
-      const nebula1 = document.querySelector('.nebula-1');
-      const nebula2 = document.querySelector('.nebula-2');
-      const nebula3 = document.querySelector('.nebula-3');
-      
-      // Parallax scrolling for stars and nebulas
-      let ticking = false;
-      
-      function updateParallax() {
-        const scrollY = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = scrollY / docHeight;
-        
-        // Stars move at base parallax rate
-        const starsOffset = scrollPercent * 100;
-        if (starsLayer) {
-          starsLayer.style.transform = `translateY(-${starsOffset}%)`;
-        }
-        
-        // Nebulas move at different rates for depth effect
-        if (nebula1) {
-          nebula1.style.transform = `translateY(-${scrollPercent * 30}%) translateX(${scrollPercent * 5}%)`;
-        }
-        if (nebula2) {
-          nebula2.style.transform = `translateY(-${scrollPercent * 50}%) translateX(-${scrollPercent * 8}%)`;
-        }
-        if (nebula3) {
-          nebula3.style.transform = `translateY(-${scrollPercent * 70}%) translateX(${scrollPercent * 3}%)`;
-        }
-        
-        ticking = false;
-      }
-      
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(updateParallax);
-          ticking = true;
-        }
-      });
-
-      // ============ CROSS-FLARE STARS ============
-      function createFlareStars() {
-        const container = starsLayer;
-        if (!container) return;
-        
-        // Create 12 cross-flare stars at random positions
-        for (let i = 0; i < 12; i++) {
-          const flareStar = document.createElement('div');
-          flareStar.className = 'flare-star';
-          
-          // Random position
-          const x = 5 + Math.random() * 90;
-          const y = Math.random() * 100;
-          
-          // Random size (base size for scaling)
-          const baseSize = 15 + Math.random() * 35;
-          const coreSize = baseSize * 0.15;
-          const rayLength = baseSize * 3;
-          const rayWidth = baseSize * 0.08;
-          const diagLength = baseSize * 2;
-          const diagWidth = baseSize * 0.05;
-          
-          // Random animation timing
-          const duration = 2 + Math.random() * 4;
-          const delay = Math.random() * 5;
-          
-          // Random warm color tint
-          const tints = [
-            { r: 255, g: 255, b: 255 },   // Pure white
-            { r: 255, g: 250, b: 220 },   // Warm white
-            { r: 255, g: 240, b: 200 },   // Golden white
-            { r: 220, g: 240, b: 255 },   // Cool white
-            { r: 255, g: 220, b: 255 },   // Pink white
-          ];
-          const tint = tints[Math.floor(Math.random() * tints.length)];
-          
-          flareStar.style.cssText = `
-            position: absolute;
-            left: ${x}%;
-            top: ${y}%;
-            width: ${baseSize}px;
-            height: ${baseSize}px;
-            pointer-events: none;
-          `;
-          
-          // Create the core
-          const core = document.createElement('div');
-          core.className = 'flare-star-core';
-          core.style.cssText = `
-            width: ${coreSize}px;
-            height: ${coreSize}px;
-            box-shadow: 
-              0 0 ${coreSize}px ${coreSize/2}px rgba(${tint.r}, ${tint.g}, ${tint.b}, 0.9),
-              0 0 ${coreSize * 2}px ${coreSize}px rgba(${tint.r}, ${tint.g}, ${tint.b}, 0.5);
-            animation: flarePulse ${duration}s ease-in-out ${delay}s infinite;
-          `;
-          
-          // Create horizontal ray
-          const rayH = document.createElement('div');
-          rayH.className = 'flare-ray-h';
-          rayH.style.cssText = `
-            width: ${rayLength}px;
-            height: ${rayWidth}px;
-            animation: flarePulse ${duration}s ease-in-out ${delay}s infinite;
-          `;
-          
-          // Create vertical ray
-          const rayV = document.createElement('div');
-          rayV.className = 'flare-ray-v';
-          rayV.style.cssText = `
-            width: ${rayWidth}px;
-            height: ${rayLength}px;
-            animation: flarePulse ${duration}s ease-in-out ${delay}s infinite;
-          `;
-          
-          // Create diagonal rays
-          const rayD1 = document.createElement('div');
-          rayD1.className = 'flare-ray-d1';
-          rayD1.style.cssText = `
-            width: ${diagLength}px;
-            height: ${diagWidth}px;
-            animation: flarePulseRotate ${duration}s ease-in-out ${delay}s infinite;
-          `;
-          
-          const rayD2 = document.createElement('div');
-          rayD2.className = 'flare-ray-d2';
-          rayD2.style.cssText = `
-            width: ${diagLength}px;
-            height: ${diagWidth}px;
-            animation: flarePulseRotate2 ${duration}s ease-in-out ${delay}s infinite;
-          `;
-          
-          flareStar.appendChild(rayD1);
-          flareStar.appendChild(rayD2);
-          flareStar.appendChild(rayH);
-          flareStar.appendChild(rayV);
-          flareStar.appendChild(core);
-          
-          container.appendChild(flareStar);
-        }
-      }
-      
-      createFlareStars();
-
-      // ============ RANDOM TWINKLING STARS ============
-      function createTwinklingStars() {
-        const container = starsLayer;
-        if (!container) return;
-        
-        // Create 60 randomly positioned twinkling stars
-        for (let i = 0; i < 60; i++) {
-          const star = document.createElement('div');
-          star.className = 'twinkle-star';
-          
-          // Random position across the tall stars layer
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          
-          // Random size (1-4px)
-          const size = 1 + Math.random() * 3;
-          
-          // Random twinkle duration (1-4 seconds)
-          const duration = 1 + Math.random() * 3;
-          
-          // Random delay so they don't all sync up
-          const delay = Math.random() * 5;
-          
-          // Random color tint
-          const colors = [
-            'rgba(255, 255, 255, 1)',
-            'rgba(200, 220, 255, 1)',
-            'rgba(255, 240, 220, 1)',
-            'rgba(220, 200, 255, 1)',
-            'rgba(200, 255, 255, 1)'
-          ];
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          
-          star.style.cssText = `
-            position: absolute;
-            left: ${x}%;
-            top: ${y}%;
-            width: ${size}px;
-            height: ${size}px;
-            background: ${color};
-            border-radius: 50%;
-            box-shadow: 0 0 ${size * 2}px ${size / 2}px ${color.replace('1)', '0.5)')};
-            animation: randomTwinkle ${duration}s ease-in-out ${delay}s infinite;
-            pointer-events: none;
-          `;
-          
-          container.appendChild(star);
-        }
-      }
-      
-      // Add the CSS animation for random twinkling
-      const styleSheet = document.createElement('style');
-      styleSheet.textContent = `
-        @keyframes randomTwinkle {
-          0%, 100% { opacity: 0.3; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-      `;
-      document.head.appendChild(styleSheet);
-      
-      createTwinklingStars();
-
-      // ============ SHOOTING STARS SYSTEM ============
-      class ShootingStar {
-        constructor(container) {
-          this.container = container;
-          this.element = document.createElement('div');
-          this.element.className = 'shooting-star';
-          this.reset();
-        }
-        
-        reset() {
-          // Random size
-          const sizes = [
-            { length: 100, thickness: 1.5, headSize: 4 },
-            { length: 150, thickness: 2, headSize: 5 },
-            { length: 220, thickness: 2.5, headSize: 7 },
-            { length: 300, thickness: 3, headSize: 9 }
-          ];
-          const size = sizes[Math.floor(Math.random() * sizes.length)];
-          
-          // All stars go top-left to bottom-right at angles between 25-45 degrees
-          this.angle = 25 + Math.random() * 20;
-          
-          // Start from left edge or top edge
-          const startFromTop = Math.random() > 0.4;
-          if (startFromTop) {
-            this.x = Math.random() * window.innerWidth * 0.6;
-            this.y = -50;
-          } else {
-            this.x = -size.length;
-            this.y = Math.random() * window.innerHeight * 0.3;
-          }
-          
-          this.speed = 6 + Math.random() * 8;
-          
-          // Simple setup: star moves down-right, tail trails behind (up-left)
-          // Element is rotated to match angle, gradient fades from left (tail) to right (head)
-          this.element.style.cssText = `
-            position: absolute;
-            width: ${size.length}px;
-            height: ${size.thickness}px;
-            left: ${this.x}px;
-            top: ${this.y}px;
-            transform: rotate(${this.angle}deg);
-            background: linear-gradient(90deg, 
-              transparent 0%,
-              rgba(255,255,255,0.02) 15%,
-              rgba(255,255,255,0.1) 35%,
-              rgba(255,255,255,0.35) 55%,
-              rgba(200,230,255,0.7) 75%,
-              rgba(255,255,255,1) 100%
-            );
-            border-radius: 100px;
-            opacity: 0;
-            pointer-events: none;
-          `;
-          
-          // Glowing head at the right end (leading edge)
-          this.element.innerHTML = `
-            <span style="
-              position: absolute;
-              right: -${size.headSize/2}px;
-              top: 50%;
-              transform: translateY(-50%);
-              width: ${size.headSize}px;
-              height: ${size.headSize}px;
-              background: radial-gradient(circle, 
-                rgba(255,255,255,1) 0%, 
-                rgba(220,240,255,0.8) 40%,
-                transparent 100%
-              );
-              border-radius: 50%;
-              box-shadow: 
-                0 0 ${size.headSize * 2}px ${size.headSize}px rgba(255,255,255,0.9),
-                0 0 ${size.headSize * 4}px ${size.headSize * 1.5}px rgba(180,210,255,0.5);
-            "></span>
-          `;
-          
-          this.length = size.length;
-          this.active = false;
-        }
-        
-        start() {
-          if (!this.container.contains(this.element)) {
-            this.container.appendChild(this.element);
-          }
-          this.active = true;
-          this.element.style.opacity = '1';
-        }
-        
-        update() {
-          if (!this.active) return;
-          
-          const radAngle = this.angle * Math.PI / 180;
-          this.x += Math.cos(radAngle) * this.speed;
-          this.y += Math.sin(radAngle) * this.speed;
-          
-          this.element.style.left = this.x + 'px';
-          this.element.style.top = this.y + 'px';
-          
-          if (this.x > window.innerWidth + this.length || this.y > window.innerHeight + 100) {
-            this.active = false;
-            this.element.style.opacity = '0';
-          }
-        }
-      }
-
-      // Create shooting star pool
-      const shootingStars = [];
-      for (let i = 0; i < 10; i++) {
-        shootingStars.push(new ShootingStar(shootingStarsContainer));
-      }
-      
-      function spawnShootingStar() {
-        const inactiveStar = shootingStars.find(s => !s.active);
-        if (inactiveStar) {
-          inactiveStar.reset();
-          inactiveStar.start();
-        }
-      }
-      
-      function animate() {
-        shootingStars.forEach(star => star.update());
-        requestAnimationFrame(animate);
-      }
-      animate();
-      
-      function scheduleNextShootingStar() {
-        const delay = 2000 + Math.random() * 5000;
-        setTimeout(() => {
-          spawnShootingStar();
-          scheduleNextShootingStar();
-        }, delay);
-      }
-      
-      scheduleNextShootingStar();
-    })();
-
-    // ============ VISITOR COUNTER ============
-    (function() {
-      // CounterAPI V1 is public and works on static sites such as GitHub Pages.
-      // Format: https://api.counterapi.dev/v1/:namespace/:name/:action
-      const COUNTER_API = 'https://api.counterapi.dev/v1/fourievanrooyen-portfolio/visitors';
-      const SECRET_WORD = 'counter';
-      const OWNER_KEY = 'portfolio_owner';
-      const COUNTED_KEY = 'portfolio_unique_visitor_counted';
-
-      let typedKeys = '';
-      let counterVisible = false;
-
-      const visitorCountElement = document.getElementById('visitor-count');
-      const overlay = document.getElementById('visitor-counter-overlay');
-
-      function setCounterDisplay(value) {
-        if (!visitorCountElement) return;
-        visitorCountElement.textContent = Number.isFinite(value) ? value.toLocaleString() : '—';
-      }
-
-      function setCounterError() {
-        setCounterDisplay(NaN);
-      }
-
-      function extractCounterValue(payload) {
-        if (typeof payload === 'number') return payload;
-        if (!payload || typeof payload !== 'object') return NaN;
-
-        // CounterAPI responses have changed over time. Support the common shapes:
-        // { count: 12 }, { value: 12 }, { data: 12 }, and nested result/data objects.
-        const directKeys = ['count', 'value', 'data'];
-        for (const key of directKeys) {
-          const value = payload[key];
-          if (typeof value === 'number') return value;
-          if (typeof value === 'string' && value.trim() !== '' && !Number.isNaN(Number(value))) {
-            return Number(value);
-          }
-        }
-
-        for (const key of ['result', 'counter']) {
-          const nestedValue = extractCounterValue(payload[key]);
-          if (Number.isFinite(nestedValue)) return nestedValue;
-        }
-
-        return NaN;
-      }
-
-      async function requestCounter(action = '') {
-        const url = action ? `${COUNTER_API}/${action}` : COUNTER_API;
-        const response = await fetch(url, { cache: 'no-store' });
-        if (!response.ok) {
-          throw new Error(`Counter request failed: ${response.status}`);
-        }
-        const payload = await response.json();
-        const value = extractCounterValue(payload);
-        if (!Number.isFinite(value)) {
-          console.warn('Unexpected counter response:', payload);
-        }
-        return value;
-      }
-
-      function isOwner() {
-        return localStorage.getItem(OWNER_KEY) === 'true';
-      }
-
-      function hasAlreadyBeenCounted() {
-        return localStorage.getItem(COUNTED_KEY) === 'true';
-      }
-
-      function markAsCounted() {
-        localStorage.setItem(COUNTED_KEY, 'true');
-      }
-
-      function enableOwnerMode() {
-        const wasOwner = isOwner();
-        const hadBeenCounted = hasAlreadyBeenCounted();
-
-        localStorage.setItem(OWNER_KEY, 'true');
-        localStorage.removeItem(COUNTED_KEY);
-
-        // If this browser was counted before owner mode was enabled, reverse that count once.
-        if (!wasOwner && hadBeenCounted) {
-          requestCounter('down')
-            .then(setCounterDisplay)
-            .catch(() => requestCounter().then(setCounterDisplay).catch(setCounterError));
-        } else {
-          requestCounter().then(setCounterDisplay).catch(setCounterError);
-        }
-      }
-
-      function checkOwnerUrlFlag() {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('owner') === 'true' || window.location.hash === '#owner') {
-          localStorage.setItem(OWNER_KEY, 'true');
-        }
-      }
-
-      async function initializeVisitorCounter() {
-        checkOwnerUrlFlag();
-
-        try {
-          let count;
-          if (isOwner() || hasAlreadyBeenCounted()) {
-            count = await requestCounter();
-          } else {
-            count = await requestCounter('up');
-            markAsCounted();
-          }
-          setCounterDisplay(count);
-        } catch (error) {
-          console.error('Visitor counter failed:', error);
-          setCounterError();
-        }
-      }
-
-      initializeVisitorCounter();
-
-      // Type the secret word anywhere on the page to reveal Mission Control.
-      // Owner shortcut: visit the site with ?owner=true once, or type the secret word.
-      document.addEventListener('keydown', function(e) {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-        typedKeys += e.key.toLowerCase();
-        if (typedKeys.length > SECRET_WORD.length) {
-          typedKeys = typedKeys.slice(-SECRET_WORD.length);
-        }
-
-        if (typedKeys === SECRET_WORD) {
-          typedKeys = '';
-          enableOwnerMode();
-          toggleVisitorCounter();
-        }
-      });
-
-      window.toggleVisitorCounter = function() {
-        if (!overlay) return;
-
-        counterVisible = !counterVisible;
-        overlay.classList.toggle('active', counterVisible);
-        document.body.style.overflow = counterVisible ? 'hidden' : '';
-      };
-
-      if (overlay) {
-        overlay.addEventListener('click', function(e) {
-          if (e.target === this) {
-            toggleVisitorCounter();
-          }
-        });
-      }
-    })();
-  </script>
+  <script src="sky.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
