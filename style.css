@@ -114,7 +114,15 @@ ul { list-style: none; }
 
 /* ---------- layout ---------- */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--s-6); }
-.section { padding: var(--s-24) 0; }
+.section { padding: var(--s-16) 0; }
+
+/* content panel — lifts each section off the starfield */
+.section > .container {
+  background: rgba(8, 12, 20, 0.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s-12);
+}
 
 /* ---------- nav ---------- */
 .main-nav {
@@ -231,43 +239,6 @@ ul { list-style: none; }
 .hero-photo .tick::before { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
 .hero-photo .tick::after  { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
 
-/* flight-data stat strip */
-.hero-stats {
-  margin-top: var(--s-16);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.hero-stats > div {
-  padding: var(--s-6) var(--s-6) var(--s-6) 0;
-  border-right: 1px solid var(--line);
-}
-.hero-stats > div:last-child { border-right: 0; }
-.hero-stats > div + div { padding-left: var(--s-6); }
-.hero-stats .stat-v {
-  font-family: var(--mono); font-size: 1.35rem; color: var(--ink);
-}
-.hero-stats .stat-l {
-  font-family: var(--mono); font-size: 0.68rem;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-3); margin-top: var(--s-1);
-}
-
-/* live sky readout — ties the page to the render behind it */
-.sky-readout {
-  margin-top: var(--s-8);
-  font-family: var(--mono); font-size: 0.7rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink-3);
-  display: flex; align-items: center; gap: var(--s-3);
-}
-.sky-readout .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent);
-}
-.sky-readout span[id] { color: var(--ink-2); }
-
 /* ---------- about ---------- */
 .about-grid {
   display: grid;
@@ -279,7 +250,7 @@ ul { list-style: none; }
 .about-text p + p { margin-top: var(--s-4); }
 
 .panel {
-  background: var(--surface);
+  background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: var(--s-6);
@@ -618,20 +589,25 @@ ul { list-style: none; }
 }
 .visitor-counter-note { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-3); }
 
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+}
+.reveal.in { opacity: 1; transform: none; }
+
 /* ---------- motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
 }
 
 /* ---------- responsive ---------- */
 @media (max-width: 920px) {
   .hero-grid { grid-template-columns: 1fr; gap: var(--s-12); }
   .hero-photo { justify-self: start; max-width: 280px; order: -1; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  .hero-stats > div:nth-child(2) { border-right: 0; }
-  .hero-stats > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .hero-stats > div:nth-child(3) { padding-left: 0; }
 
   .about-grid, .about-extras { grid-template-columns: 1fr; gap: var(--s-8); }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
@@ -642,7 +618,8 @@ ul { list-style: none; }
 }
 
 @media (max-width: 720px) {
-  .section { padding: var(--s-16) 0; }
+  .section { padding: var(--s-8) 0; }
+  .section > .container { padding: var(--s-6); }
 
   .nav-toggle { display: flex; }
   .nav-links {
