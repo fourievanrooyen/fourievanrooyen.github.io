@@ -222,9 +222,9 @@
     var ctx = galaxyCtx, fullH = H + OVERDRAW;
     var area = W * fullH / (1280 * 800);
 
-    GALAXY.x = W * 0.80;
-    GALAXY.y = fullH * 0.15;
-    GALAXY.r = Math.min(W, fullH) * 0.46;
+    GALAXY.x = W * 0.76;
+    GALAXY.y = fullH * 0.19;
+    GALAXY.r = Math.min(W, fullH) * 0.64;
     galaxyCanvas.style.transformOrigin = GALAXY.x + 'px ' + GALAXY.y + 'px';
 
     // Render at full resolution into an offscreen buffer first, then blur it
@@ -256,7 +256,7 @@
     // grand-design arms: soft glow ribbon (tapered) + resolved point stars
     for (var arm = 0; arm < arms; arm++) {
       var armOffset = arm * Math.PI;
-      var ribbonSteps = Math.round(90 * Math.sqrt(area));
+      var ribbonSteps = Math.round(130 * Math.sqrt(area));
       for (var s = 0; s < ribbonSteps; s++) {
         var us = s / ribbonSteps, thetaS = us * maxTheta, rS = a * Math.exp(b * thetaS);
         if (rS > GALAXY.r) break;
@@ -272,7 +272,7 @@
         octx.fillStyle = rg;
         octx.beginPath(); octx.arc(xS, yS, wS, 0, 6.2832); octx.fill();
       }
-      var perArm = Math.round(520 * area);
+      var perArm = Math.round(760 * area);
       for (var i = 0; i < perArm; i++) {
         var u2 = Math.random(), theta2 = u2 * maxTheta, r2 = a * Math.exp(b * theta2);
         if (r2 > GALAXY.r) continue;
@@ -289,8 +289,31 @@
       }
     }
 
-    // diffuse disk / halo field stars
-    var field = Math.round(650 * area);
+    // minor spurs: short offshoot branches partway along each main arm —
+    // real spiral galaxies feather and branch rather than tracing one clean line
+    for (var arm2 = 0; arm2 < arms; arm2++) {
+      var armOffset2 = arm2 * Math.PI;
+      var spurStartU = 0.30 + Math.random() * 0.12;
+      var spurThetaStart = spurStartU * maxTheta;
+      var spurLen = maxTheta * (0.22 + Math.random() * 0.1);
+      var spurPts = Math.round(150 * area);
+      for (var sp = 0; sp < spurPts; sp++) {
+        var us2 = sp / spurPts;
+        var thetaSp = spurThetaStart + us2 * spurLen;
+        var rSp = a * Math.exp(b * thetaSp) * (0.94 + us2 * 0.2);
+        if (rSp > GALAXY.r) break;
+        var angSp = thetaSp + armOffset2 + 0.30 + (Math.random() - 0.5) * 0.1;
+        var spreadSp = 0.35 * rSp * (Math.random() - 0.5) * (0.3 + us2);
+        var xSp = Math.cos(angSp) * rSp + Math.cos(angSp) * spreadSp;
+        var ySp = Math.sin(angSp) * rSp + Math.sin(angSp) * spreadSp;
+        var tKsp = Math.max(3400, Math.min(12000, 4600 + us2 * 6000));
+        var rgbSp = kelvinToRGB(tKsp);
+        var alphaSp = (0.10 + 0.28 * (1 - us2)) * (0.4 + Math.random() * 0.6);
+        octx.fillStyle = 'rgba(' + rgbSp[0] + ',' + rgbSp[1] + ',' + rgbSp[2] + ',' + alphaSp.toFixed(3) + ')';
+        octx.beginPath(); octx.arc(xSp, ySp, 0.3 + (1 - us2) * 0.5, 0, 6.2832); octx.fill();
+      }
+    }
+    var field = Math.round(950 * area);
     for (var j = 0; j < field; j++) {
       var rj = Math.pow(Math.random(), 0.55) * GALAXY.r;
       var aj = Math.random() * 6.2832;
@@ -303,7 +326,7 @@
     }
 
     // HII regions (pink / violet star-forming clouds along the arms)
-    var blobs = Math.round(9 * area) + 5;
+    var blobs = Math.round(13 * area) + 6;
     for (var k = 0; k < blobs; k++) {
       var armk = Math.floor(Math.random() * arms);
       var uk = 0.12 + Math.random() * 0.62;
@@ -337,9 +360,23 @@
 
     octx.restore(); // undo translate/rotate/scale
 
-    // soft-focus composite: blur the supersampled buffer onto the real canvas
+    // extended halo: very soft, no hard edge — real galaxies fade into their
+    // surroundings rather than stopping at a disc boundary
     ctx.clearRect(0, 0, W, fullH);
-    ctx.filter = 'blur(1.1px)';
+    var haloR = GALAXY.r * 1.55;
+    var halo = ctx.createRadialGradient(GALAXY.x, GALAXY.y, GALAXY.r * 0.25, GALAXY.x, GALAXY.y, haloR);
+    halo.addColorStop(0, 'rgba(210,190,220,0.05)');
+    halo.addColorStop(0.5, 'rgba(180,170,210,0.025)');
+    halo.addColorStop(1, 'rgba(180,170,210,0)');
+    ctx.save();
+    ctx.translate(GALAXY.x, GALAXY.y); ctx.rotate(-24 * Math.PI / 180); ctx.scale(1, 0.34);
+    ctx.translate(-GALAXY.x, -GALAXY.y);
+    ctx.fillStyle = halo;
+    ctx.beginPath(); ctx.arc(GALAXY.x, GALAXY.y, haloR, 0, 6.2832); ctx.fill();
+    ctx.restore();
+
+    // soft-focus composite: blur the supersampled buffer onto the real canvas
+    ctx.filter = 'blur(1.6px)';
     ctx.drawImage(off, 0, 0, off.width, off.height, 0, 0, W, fullH);
     ctx.filter = 'none';
 
@@ -348,7 +385,7 @@
     ctx.save();
     ctx.translate(GALAXY.x, GALAXY.y); ctx.rotate(-24 * Math.PI / 180); ctx.scale(1, 0.34);
     ctx.globalCompositeOperation = 'lighter';
-    var sharp = Math.round(70 * area);
+    var sharp = Math.round(105 * area);
     for (var m = 0; m < sharp; m++) {
       var um = Math.random() * 0.72, thetam = um * maxTheta;
       var rm = a * Math.exp(b * thetam) * (0.4 + Math.random() * 0.6);
