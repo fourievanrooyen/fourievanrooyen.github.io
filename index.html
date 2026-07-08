@@ -14,11 +14,24 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Night sky: far field + Milky Way / bright stars / scintillation + meteors -->
+  <!-- Night sky: distant spiral galaxy + far field / Milky Way + planets + bright stars / scintillation + meteors -->
   <div id="sky" aria-hidden="true">
+    <canvas id="sky-galaxy"></canvas>
     <canvas id="sky-far"></canvas>
+    <div class="planet-field" id="planet-field">
+      <div class="planet-layer" id="planet-a" style="left:6%; top:60%;" data-scroll="0.05" data-mx="14" data-my="9">
+        <div class="planet planet-rust"></div>
+      </div>
+      <div class="planet-layer" id="planet-b" style="left:90%; top:11%;" data-scroll="0.03" data-mx="6" data-my="4">
+        <div class="planet planet-slate"></div>
+      </div>
+      <div class="planet-layer" id="planet-c" style="left:68%; top:80%;" data-scroll="0.075" data-mx="20" data-my="13">
+        <div class="planet planet-ringed"><span class="ring" aria-hidden="true"></span></div>
+      </div>
+    </div>
     <canvas id="sky-near"></canvas>
     <canvas id="sky-anim"></canvas>
+    <div class="cursor-glow" id="cursor-glow"></div>
   </div>
 
   <nav class="main-nav" id="navbar">
@@ -399,6 +412,17 @@
       </div>
 
       <div class="timeline">
+        <div class="timeline-item reveal">
+          <p class="timeline-date">June 2026 &mdash; Present</p>
+          <h3>Mechanical Engineer I</h3>
+          <p class="org">Raytheon (RTX) &middot; Tactical Radars and Effectors &middot; Tucson, AZ</p>
+          <p>
+            Support mechanical design and integration of the aft-section assembly for the Coyote counter-UAS
+            effector platform &mdash; jet engine interface, fuel bladder assembly, and metal container structure.
+          </p>
+          <button class="btn-details" onclick="openModal('exp-rtx')">Details</button>
+        </div>
+
         <div class="timeline-item reveal">
           <p class="timeline-date">Aug 2025 &mdash; May 2026</p>
           <h3>Lab Technician</h3>
@@ -1011,6 +1035,53 @@
             </svg>
             <span>Airfoil Project Report</span>
           </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="exp-rtx">
+    <div class="modal-header">
+      <div class="modal-hero-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="5.5"/>
+          <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+          <path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+          <path d="M12 12 L19 6" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <div class="modal-title-section">
+        <span class="modal-label">Work Experience</span>
+        <h2>Mechanical Engineer I</h2>
+        <p class="modal-company">Raytheon (RTX) &middot; Tactical Radars and Effectors &middot; Tucson, AZ</p>
+        <p class="modal-date">June 2026 &ndash; Present</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-description">
+        <h3>Role Overview</h3>
+        <p>
+          Support mechanical design and integration on the Tactical Radars and Effectors program, focused on the
+          aft-section assembly of the Coyote counter-UAS effector platform.
+        </p>
+      </div>
+      <div class="modal-details">
+        <h3>Responsibilities</h3>
+        <ul>
+          <li>Support mechanical design and integration of the aft-section assembly for the Coyote counter-UAS effector platform, including the jet engine interface, fuel bladder assembly, and metal container structure.</li>
+          <li>Develop and revise CAD models and technical drawings per GD&amp;T (ASME Y14.5-2018) standards for jet engine mounting, fuel bladder, and metal container hardware to support manufacturability and tolerance stack-up.</li>
+          <li>Collaborate with cross-functional engineering teams across structures, integration, and manufacturing to support design reviews and production readiness.</li>
+        </ul>
+      </div>
+      <div class="modal-tech">
+        <h3>Skills Applied</h3>
+        <div class="modal-tags">
+          <span>CAD</span>
+          <span>GD&amp;T (ASME Y14.5)</span>
+          <span>Tolerance Stack-Up</span>
+          <span>Design Reviews</span>
+          <span>Cross-Functional Integration</span>
         </div>
       </div>
     </div>

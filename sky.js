@@ -1,26 +1,36 @@
 /* ============================================================
-   SKY ENGINE — physically motivated night sky
+   SKY ENGINE — physically motivated deep-space background
    ------------------------------------------------------------
+   - Distant spiral galaxy: log-spiral arms, blackbody star color
+     gradient (warm core -> hot blue tips), HII nebula blobs,
+     slow idle rotation
+   - Milky Way band: density gradient, cloud structure, dust lanes
    - Star colors from blackbody temperature by spectral class
      (O/B/A/F/G/K/M, visible-sky weighted frequencies)
    - Apparent-magnitude distribution: many faint, few bright
-   - Milky Way band: density gradient, cloud structure, dust lanes
    - Atmospheric scintillation (twinkle) on brighter stars only
    - Diffraction spikes on the brightest few stars
-   - Meteors emanating from a radiant, additive-blended trails
-   - Two-layer scroll parallax; honors prefers-reduced-motion
+   - Meteors emanating from a radiant, additive-blended trails;
+     click anywhere on the empty field to launch one on demand
+   - Ambient planet field with independent slow drift
+   - Cursor-follow parallax (2.5D depth) on every layer, plus a
+     faint hand-held light that tracks the pointer
+   - Scroll parallax across layers; honors prefers-reduced-motion
    ============================================================ */
 (function () {
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var DPR = Math.min(window.devicePixelRatio || 1, 2);
 
+  var galaxyCanvas = document.getElementById('sky-galaxy');
   var farCanvas = document.getElementById('sky-far');
   var nearCanvas = document.getElementById('sky-near');
   var animCanvas = document.getElementById('sky-anim');
   if (!farCanvas || !nearCanvas || !animCanvas) return;
 
+  var galaxyCtx = galaxyCanvas ? galaxyCanvas.getContext('2d') : null;
   var farCtx = farCanvas.getContext('2d');
   var nearCtx = nearCanvas.getContext('2d');
   var animCtx = animCanvas.getContext('2d');
@@ -30,7 +40,9 @@
   var twinkleStars = [];          // animated subset
   var meteors = [];
   var nextMeteorAt = 0;
+  var lastClickMeteor = 0;
   var running = true;
+  var GALAXY = { x: 0, y: 0, r: 0 };
 
   window.SKY = { stars: 0, meteors: 0 };
 
@@ -143,6 +155,92 @@
     return ctx;
   }
 
+  /* ---------- distant spiral galaxy ---------- */
+  function buildGalaxy() {
+    if (!galaxyCanvas) return;
+    galaxyCtx = size(galaxyCanvas);
+    var ctx = galaxyCtx, fullH = H + OVERDRAW;
+    var area = W * fullH / (1280 * 800);
+
+    GALAXY.x = W * 0.80;
+    GALAXY.y = fullH * 0.15;
+    GALAXY.r = Math.min(W, fullH) * 0.44;
+    galaxyCanvas.style.transformOrigin = GALAXY.x + 'px ' + GALAXY.y + 'px';
+
+    ctx.save();
+    ctx.translate(GALAXY.x, GALAXY.y);
+    ctx.rotate(-24 * Math.PI / 180);
+    ctx.scale(1, 0.36);
+    ctx.globalCompositeOperation = 'lighter';
+
+    // core glow
+    var coreR = GALAXY.r * 0.5;
+    var coreG = ctx.createRadialGradient(0, 0, 0, 0, 0, coreR);
+    coreG.addColorStop(0, 'rgba(255, 238, 210, 0.16)');
+    coreG.addColorStop(0.35, 'rgba(240, 200, 160, 0.06)');
+    coreG.addColorStop(1, 'rgba(240, 200, 160, 0)');
+    ctx.fillStyle = coreG;
+    ctx.beginPath(); ctx.arc(0, 0, coreR, 0, 6.2832); ctx.fill();
+
+    // log-spiral arms: core (cool orange) -> tip (hot blue-white)
+    var arms = 3, a = GALAXY.r * 0.05, b = 0.185, maxTheta = 3.35 * Math.PI;
+    var perArm = Math.round(420 * area);
+    for (var arm = 0; arm < arms; arm++) {
+      var armOffset = arm * (6.2832 / arms);
+      for (var i = 0; i < perArm; i++) {
+        var u = i / perArm;
+        var theta = u * maxTheta;
+        var r = a * Math.exp(b * theta);
+        if (r > GALAXY.r) break;
+        var spread = (0.06 + u * 0.5) * r * (Math.random() - 0.5) * 0.7;
+        var ang = theta + armOffset + (Math.random() - 0.5) * 0.12;
+        var rr = r + spread;
+        var x = Math.cos(ang) * rr, y = Math.sin(ang) * rr;
+        var tK = Math.max(2400, Math.min(15000, 4200 + u * 9500 + (Math.random() - 0.5) * 1400));
+        var rgb = kelvinToRGB(tK);
+        var alpha = (0.10 + 0.5 * (1 - u)) * (0.5 + Math.random() * 0.5) * Math.max(0.15, 1 - u * 0.6);
+        var rad = 0.35 + (1 - u) * 0.9 + Math.random() * 0.5;
+        ctx.fillStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + alpha.toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832); ctx.fill();
+      }
+    }
+
+    // faint bulge / disk field stars
+    var field = Math.round(500 * area);
+    for (var j = 0; j < field; j++) {
+      var rj = Math.pow(Math.random(), 0.6) * GALAXY.r;
+      var aj = Math.random() * 6.2832;
+      var xj = Math.cos(aj) * rj, yj = Math.sin(aj) * rj;
+      var rgbj = kelvinToRGB(sampleTemp());
+      var alphaj = (0.05 + 0.10 * Math.random()) * (1 - rj / GALAXY.r);
+      var sizej = 0.3 + Math.random() * 0.5;
+      ctx.fillStyle = 'rgba(' + rgbj[0] + ',' + rgbj[1] + ',' + rgbj[2] + ',' + alphaj.toFixed(3) + ')';
+      ctx.fillRect(xj, yj, sizej, sizej);
+    }
+
+    // HII nebula blobs along the arms (pink / violet star-forming regions)
+    var blobs = Math.round(10 * area) + 4;
+    for (var k = 0; k < blobs; k++) {
+      var armk = Math.floor(Math.random() * arms);
+      var uk = 0.15 + Math.random() * 0.6;
+      var thetak = uk * maxTheta;
+      var rk = a * Math.exp(b * thetak);
+      if (rk > GALAXY.r) continue;
+      var angk = thetak + armk * (6.2832 / arms);
+      var xk = Math.cos(angk) * rk, yk = Math.sin(angk) * rk;
+      var rad2 = 8 + Math.random() * 22;
+      var hue = Math.random() < 0.5 ? '255,150,195' : '175,155,255';
+      var g2 = ctx.createRadialGradient(xk, yk, 0, xk, yk, rad2);
+      g2.addColorStop(0, 'rgba(' + hue + ',0.05)');
+      g2.addColorStop(1, 'rgba(' + hue + ',0)');
+      ctx.fillStyle = g2;
+      ctx.beginPath(); ctx.arc(xk, yk, rad2, 0, 6.2832); ctx.fill();
+    }
+
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.restore();
+  }
+
   function buildFar() {
     farCtx = size(farCanvas);
     var ctx = farCtx, fullH = H + OVERDRAW;
@@ -232,21 +330,30 @@
   }
 
   /* ---------- meteors ---------- */
-  function spawnMeteor(now) {
-    // Radiant in the upper-right quadrant; tracks point away from it.
-    var rx = W * (0.65 + Math.random() * 0.4), ry = -40 + Math.random() * H * 0.18;
-    var ang = Math.PI * (0.62 + Math.random() * 0.22); // down-left
-    var sp = 850 + Math.random() * 650;
+  function spawnMeteor(now, originX, originY) {
+    var rx, ry, ang, sp;
+    if (originX != null) {
+      // click-triggered: burst outward from the pointer in a random direction
+      rx = originX; ry = originY;
+      ang = Math.random() * 6.2832;
+      sp = 700 + Math.random() * 500;
+    } else {
+      // ambient: radiant in the upper-right quadrant, tracks down-left
+      rx = W * (0.65 + Math.random() * 0.4);
+      ry = -40 + Math.random() * H * 0.18;
+      ang = Math.PI * (0.62 + Math.random() * 0.22);
+      sp = 850 + Math.random() * 650;
+    }
     meteors.push({
       x: rx, y: ry,
-      vx: Math.cos(ang) * sp, vy: -Math.sin(ang) * sp * -1,
+      vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp,
       life: 0, maxLife: 0.7 + Math.random() * 0.5,
       len: sp * 0.13
     });
     window.SKY.meteors++;
     var el = document.getElementById('sky-meteors');
     if (el) el.textContent = window.SKY.meteors;
-    nextMeteorAt = now + 7000 + Math.random() * 14000;
+    if (originX == null) nextMeteorAt = now + 7000 + Math.random() * 14000;
   }
 
   function drawMeteors(dt) {
@@ -254,7 +361,7 @@
       var mt = meteors[i];
       mt.life += dt;
       mt.x += mt.vx * dt; mt.y += mt.vy * dt;
-      if (mt.life > mt.maxLife || mt.x < -200 || mt.y > H + OVERDRAW + 200) { meteors.splice(i, 1); continue; }
+      if (mt.life > mt.maxLife || mt.x < -200 || mt.x > W + 200 || mt.y < -200 || mt.y > H + OVERDRAW + 200) { meteors.splice(i, 1); continue; }
       var fade = Math.sin(Math.min(1, mt.life / mt.maxLife) * Math.PI); // ramp in/out
       var nx = mt.vx / Math.hypot(mt.vx, mt.vy), ny = mt.vy / Math.hypot(mt.vx, mt.vy);
       var tx = mt.x - nx * mt.len, ty = mt.y - ny * mt.len;
@@ -290,22 +397,93 @@
     if (t > nextMeteorAt) spawnMeteor(t);
     drawMeteors(dt);
     animCtx.globalCompositeOperation = 'source-over';
+
+    // galaxy: continuous slow idle rotation about its own core, layered on
+    // top of the same translate every other layer receives
+    if (galaxyCanvas) {
+      var rot = Math.sin(t / 480000) * 1.6; // imperceptibly slow oscillation
+      galaxyCanvas.style.transform = galaxyBaseTransform() + ' rotate(' + rot.toFixed(3) + 'deg)';
+    }
   }
 
-  /* ---------- parallax ---------- */
+  /* ---------- interactive parallax: scroll + cursor depth ---------- */
+  var mouseNX = 0, mouseNY = 0; // normalized -1..1, viewport-relative
+  var parallaxLayers = [];
   var ticking = false;
-  function parallax() {
+
+  function buildParallaxLayers() {
+    parallaxLayers = [
+      { el: farCanvas, scroll: 0.035, mx: 6, my: 4, clamp: true },
+      { el: nearCanvas, scroll: 0.085, mx: 10, my: 7, clamp: true },
+      { el: animCanvas, scroll: 0.085, mx: 10, my: 7, clamp: true }
+    ];
+    var planetEls = document.querySelectorAll('.planet-layer');
+    for (var i = 0; i < planetEls.length; i++) {
+      var el = planetEls[i];
+      parallaxLayers.push({
+        el: el,
+        scroll: parseFloat(el.dataset.scroll) || 0.05,
+        mx: parseFloat(el.dataset.mx) || 10,
+        my: parseFloat(el.dataset.my) || 6,
+        clamp: false
+      });
+    }
+  }
+
+  function galaxyBaseTransform() {
     var y = window.scrollY || 0;
     var max = OVERDRAW - 16;
-    farCanvas.style.transform  = 'translateY(' + (-Math.min(max, y * 0.035)) + 'px)';
-    var nearOff = -Math.min(max, y * 0.085);
-    nearCanvas.style.transform = 'translateY(' + nearOff + 'px)';
-    animCanvas.style.transform = 'translateY(' + nearOff + 'px)';
+    var gsy = -Math.min(max, y * 0.015);
+    var gmx = hasHover ? mouseNX * 4 : 0;
+    var gmy = hasHover ? mouseNY * 3 : 0;
+    return 'translate3d(' + gmx.toFixed(1) + 'px,' + (gsy + gmy).toFixed(1) + 'px,0)';
+  }
+
+  function applyParallax() {
+    var y = window.scrollY || 0;
+    var max = OVERDRAW - 16;
+    for (var i = 0; i < parallaxLayers.length; i++) {
+      var L = parallaxLayers[i];
+      var scrollOff = L.clamp ? -Math.min(max, y * L.scroll) : -(y * L.scroll);
+      var mx = hasHover ? mouseNX * L.mx : 0;
+      var my = hasHover ? mouseNY * L.my : 0;
+      L.el.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,' + (scrollOff + my).toFixed(1) + 'px,0)';
+    }
+    if (galaxyCanvas && (reduceMotion || !running)) {
+      galaxyCanvas.style.transform = galaxyBaseTransform();
+    }
     ticking = false;
   }
-  function onScroll() {
-    if (!ticking) { ticking = true; requestAnimationFrame(parallax); }
+
+  function queueParallax() {
+    if (!ticking) { ticking = true; requestAnimationFrame(applyParallax); }
   }
+
+  var cursorGlow = document.getElementById('cursor-glow');
+  function onPointerMove(e) {
+    W = W || window.innerWidth; H = H || window.innerHeight;
+    mouseNX = (e.clientX / W - 0.5) * 2;
+    mouseNY = (e.clientY / H - 0.5) * 2;
+    queueParallax();
+    if (cursorGlow) {
+      cursorGlow.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)';
+      cursorGlow.classList.add('active');
+    }
+  }
+  function hideGlow() { if (cursorGlow) cursorGlow.classList.remove('active'); }
+
+  /* ---------- click anywhere on the empty field: launch a meteor ---------- */
+  function isInteractiveTarget(el) {
+    return !!el.closest('a, button, input, textarea, select, .modal-overlay.active, .visitor-counter-overlay.active, .main-nav');
+  }
+  document.addEventListener('click', function (e) {
+    if (reduceMotion || !running) return;
+    if (isInteractiveTarget(e.target)) return;
+    var now = performance.now();
+    if (now - lastClickMeteor < 450) return;
+    lastClickMeteor = now;
+    spawnMeteor(now, e.clientX, e.clientY);
+  });
 
   /* ---------- lifecycle ---------- */
   function rebuild() {
@@ -313,6 +491,7 @@
     H = window.innerHeight;
     setBand();
     window.SKY.stars = 0;
+    buildGalaxy();
     buildFar();
     buildNear();
     animCtx = size(animCanvas);
@@ -321,6 +500,7 @@
       twinkleStars.forEach(function (s) { drawStar(nearCtx, s); });
       twinkleStars.length = 0;
     }
+    queueParallax();
   }
 
   var resizeTimer;
@@ -334,9 +514,15 @@
     else if (!reduceMotion) { running = true; lastT = performance.now(); requestAnimationFrame(frame); }
   });
 
+  buildParallaxLayers();
   rebuild();
+  window.addEventListener('scroll', queueParallax, { passive: true });
   if (!reduceMotion) {
-    window.addEventListener('scroll', onScroll, { passive: true });
+    if (hasHover) {
+      document.addEventListener('pointermove', onPointerMove, { passive: true });
+      document.addEventListener('mouseleave', hideGlow);
+      window.addEventListener('blur', hideGlow);
+    }
     nextMeteorAt = performance.now() + 4000 + Math.random() * 6000;
     requestAnimationFrame(frame);
   }
