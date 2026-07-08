@@ -89,57 +89,6 @@ ul { list-style: none; }
   will-change: transform;
 }
 
-/* ---------- planet field (interactive parallax) ---------- */
-.planet-field { position: absolute; inset: 0; overflow: hidden; }
-.planet-layer {
-  position: absolute; will-change: transform;
-  transform: translate3d(0, 0, 0);
-}
-.planet {
-  border-radius: 50%;
-  animation: planet-drift 46s ease-in-out infinite alternate;
-}
-.planet-layer:nth-child(2) .planet { animation-duration: 64s; animation-delay: -12s; }
-.planet-layer:nth-child(3) .planet { animation-duration: 38s; animation-delay: -22s; }
-
-.planet-rust {
-  width: 58px; height: 58px;
-  background:
-    radial-gradient(circle at 34% 32%, #ffd9a0 0%, #f0a850 24%, #b8611f 58%, #5a2a0c 100%);
-  box-shadow: 0 0 34px 6px rgba(240, 168, 80, 0.16);
-}
-.planet-slate {
-  width: 26px; height: 26px;
-  background:
-    radial-gradient(circle at 32% 30%, #d7e3f2 0%, #93a8c4 30%, #4c5c74 65%, #232c3a 100%);
-  box-shadow: 0 0 18px 4px rgba(147, 168, 196, 0.14);
-}
-.planet-ringed {
-  position: relative;
-  width: 42px; height: 42px;
-  background:
-    radial-gradient(circle at 34% 30%, #fff3d8 0%, #e8c98a 28%, #a9793f 62%, #4a3117 100%);
-  box-shadow: 0 0 26px 5px rgba(232, 201, 138, 0.14);
-}
-.planet-ringed .ring {
-  position: absolute; left: 50%; top: 50%;
-  width: 92px; height: 26px;
-  border: 1.5px solid rgba(232, 201, 138, 0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(-18deg);
-  pointer-events: none;
-}
-.planet-ringed .ring::after {
-  content: ""; position: absolute; inset: -1.5px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 1px rgba(232, 201, 138, 0.18);
-}
-
-@keyframes planet-drift {
-  0%   { transform: translate(0, 0); }
-  100% { transform: translate(10px, -14px); }
-}
-
 /* ---------- cursor glow: faint hand-held light through the field ---------- */
 .cursor-glow {
   position: absolute; left: 0; top: 0; width: 420px; height: 420px;
@@ -150,10 +99,6 @@ ul { list-style: none; }
   will-change: transform;
 }
 .cursor-glow.active { opacity: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-  .planet { animation: none; }
-}
 
 /* ---------- typography helpers ---------- */
 .eyebrow {

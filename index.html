@@ -14,21 +14,11 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Night sky: distant spiral galaxy + far field / Milky Way + planets + bright stars / scintillation + meteors -->
+  <!-- Night sky: distant spiral galaxy + far field / Milky Way + rendered planets + bright stars / scintillation + meteors -->
   <div id="sky" aria-hidden="true">
     <canvas id="sky-galaxy"></canvas>
     <canvas id="sky-far"></canvas>
-    <div class="planet-field" id="planet-field">
-      <div class="planet-layer" id="planet-a" style="left:6%; top:60%;" data-scroll="0.05" data-mx="14" data-my="9">
-        <div class="planet planet-rust"></div>
-      </div>
-      <div class="planet-layer" id="planet-b" style="left:90%; top:11%;" data-scroll="0.03" data-mx="6" data-my="4">
-        <div class="planet planet-slate"></div>
-      </div>
-      <div class="planet-layer" id="planet-c" style="left:68%; top:80%;" data-scroll="0.075" data-mx="20" data-my="13">
-        <div class="planet planet-ringed"><span class="ring" aria-hidden="true"></span></div>
-      </div>
-    </div>
+    <canvas id="sky-planets"></canvas>
     <canvas id="sky-near"></canvas>
     <canvas id="sky-anim"></canvas>
     <div class="cursor-glow" id="cursor-glow"></div>
