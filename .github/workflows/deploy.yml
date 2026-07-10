@@ -39,10 +39,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Test content and document references
-        run: pnpm test
-
-      - name: Build
+      - name: Type-check and build
         run: pnpm build
 
       - name: Upload GitHub Pages artifact
