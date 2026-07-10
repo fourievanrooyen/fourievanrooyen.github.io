@@ -1,0 +1,37 @@
+---
+import type { ImageAsset } from '@/data/site';
+
+interface Props {
+  asset: ImageAsset;
+  sizes?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+
+const {
+  asset,
+  sizes = '(max-width: 720px) 100vw, 50vw',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className,
+} = Astro.props;
+const source = (format: 'avif' | 'webp') =>
+  asset.widths.map((width) => `/images/${asset.base}-${width}.${format} ${width}w`).join(', ');
+---
+
+<picture class:list={['responsive-picture', className]}>
+  <source type="image/avif" srcset={source('avif')} {sizes} />
+  <source type="image/webp" srcset={source('webp')} {sizes} />
+  <img
+    src={`/images/${asset.base}.${asset.fallback}`}
+    alt={asset.alt}
+    width={asset.width}
+    height={asset.height}
+    {loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+    draggable="false"
+    style={`object-position: ${asset.position ?? '50% 50%'}`}
+  />
+</picture>
