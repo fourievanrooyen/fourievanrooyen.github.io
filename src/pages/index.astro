@@ -1,0 +1,262 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ResponsiveImage from '@/components/ResponsiveImage.astro';
+import {
+  archiveProjects,
+  capabilityGroups,
+  credentials,
+  education,
+  experiences,
+  featuredMissions,
+  profileImage,
+  site,
+} from '@/data/site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.name,
+    jobTitle: 'Aerospace Engineer',
+    url: site.url,
+    email: `mailto:${site.email}`,
+    telephone: site.phoneDisplay,
+    worksFor: { '@type': 'Organization', name: 'Raytheon (RTX)' },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: education.institution },
+    sameAs: [site.linkedin],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Selected aerospace engineering missions',
+    itemListElement: featuredMissions.map((mission, index) => ({
+      '@type': 'ListItem', position: index + 1,
+      url: `${site.url}/missions/${mission.slug}/`, name: mission.title,
+    })),
+  },
+];
+---
+
+<BaseLayout schema={schema} preloadProfile>
+  <section class="hero" data-orbit-zone aria-labelledby="hero-title">
+    <div class="page-width hero-grid">
+      <div class="hero-copy" data-reveal>
+        <div class="hero-status">
+          <span>Systems online</span><span>{site.currentRole}</span><span>Tucson, Arizona</span>
+        </div>
+        <span class="eyebrow">Aerospace engineering · Mission control</span>
+        <h1 id="hero-title">Fourie <span class="outline">van Rooyen</span></h1>
+        <div class="hero-deck">
+          <p>
+            I bridge high-fidelity analysis with physical hardware—moving from CAD, CFD, and FEA
+            through manufacturing, integration, and flight-tested performance.
+          </p>
+          <span class="hero-orbit-hint" aria-hidden="true">Drag to look around</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button primary" href="#missions">Explore missions <span aria-hidden="true">↓</span></a>
+          <a class="button" href="/docs/fourie-van-rooyen-resume.pdf" target="_blank" rel="noopener">
+            Open résumé <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-portrait" data-reveal>
+        <div class="portrait-frame">
+          <ResponsiveImage asset={profileImage} sizes="(max-width: 620px) 82vw, 390px" loading="eager" fetchpriority="high" />
+          <div class="portrait-readout"><span>ID · FVR-2026</span><span>AERO / MECH</span></div>
+        </div>
+        <span class="portrait-coordinates">32.2226° N · 110.9747° W</span>
+      </div>
+    </div>
+    <span class="hero-scroll" aria-hidden="true">Initiate scroll</span>
+  </section>
+
+  <section id="missions" class="content-section" aria-labelledby="missions-title">
+    <div class="page-width">
+      <header class="section-heading" data-reveal>
+        <span class="section-index">01 / Selected missions</span>
+        <div class="section-heading-copy">
+          <div>
+            <h2 id="missions-title">Built to leave the screen.</h2>
+            <p>Three systems where analysis met hardware, test evidence, or real-time control.</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="missions-stack">
+        {featuredMissions.map((mission) => (
+          <article class="mission-dossier" data-reveal data-orbit-zone>
+            <div class="mission-visual">
+              <a class="mission-image" href={`/missions/${mission.slug}/`} aria-label={`Open ${mission.title} case study`}>
+                <ResponsiveImage asset={mission.image} sizes="(max-width: 880px) 100vw, 58vw" />
+                <span class="mission-frame-label"><span>MISSION {mission.index}</span><span>DATA LINK · VERIFIED</span></span>
+              </a>
+              <span class="mission-node" aria-hidden="true"></span>
+            </div>
+            <div class="mission-copy">
+              <span class="eyebrow">{mission.eyebrow}</span>
+              <h3>{mission.shortTitle}</h3>
+              <div class="mission-meta"><span>{mission.role}</span><span>{mission.dates}</span></div>
+              <p>{mission.summary}</p>
+              <div class="metric-strip">
+                {mission.metrics.slice(0, 3).map((metric) => (
+                  <div class="metric"><b>{metric.value}</b><span>{metric.label}</span></div>
+                ))}
+              </div>
+              <a class="text-link" href={`/missions/${mission.slug}/`}>Open mission dossier <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="archive" class="content-section" aria-labelledby="archive-title">
+    <div class="page-width">
+      <header class="section-heading" data-reveal>
+        <span class="section-index">02 / Flight archive</span>
+        <div class="section-heading-copy">
+          <div><h2 id="archive-title">More work. Same rigor.</h2><p>Supporting projects across propulsion, aerodynamics, dynamics, and structures.</p></div>
+        </div>
+      </header>
+      <div class="archive-grid">
+        {archiveProjects.map((project, index) => (
+          <article class="archive-card" data-reveal>
+            <div class="archive-thumb">
+              {project.video ? (
+                <video controls preload="none" poster={project.video.poster} playsinline aria-label={project.video.label}>
+                  <source src={project.video.webm} type="video/webm" />
+                  <source src={project.video.mp4} type="video/mp4" />
+                  Your browser does not support embedded video.
+                </video>
+              ) : project.image && (
+                <ResponsiveImage asset={project.image} sizes={index === 0 || index === 5 ? '(max-width: 620px) 100vw, (max-width: 880px) 50vw, 66vw' : '(max-width: 620px) 100vw, (max-width: 880px) 50vw, 33vw'} />
+              )}
+            </div>
+            <div class="archive-content">
+              <span class="archive-kicker">{String(index + 4).padStart(2, '0')} · {project.category}</span>
+              <h3>{project.title}</h3><p>{project.summary}</p>
+              <ul class="tag-list" aria-label={`${project.title} tools`}>{project.tools.map((tool) => <li>{tool}</li>)}</ul>
+              {project.documents.length > 0 && (
+                <div class="archive-links">
+                  {project.documents.map((document) => (
+                    <a href={document.href} target="_blank" rel="noopener" aria-label={`${document.label} for ${project.title} (opens in a new tab)`}>{document.label} ↗</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="capabilities" class="content-section" aria-labelledby="capabilities-title">
+    <div class="page-width">
+      <header class="section-heading" data-reveal>
+        <span class="section-index">03 / Engineering profile</span>
+        <div><h2 id="capabilities-title">Analysis to hardware.</h2><p>A multidisciplinary toolkit for closing the gap between predicted and physical behavior.</p></div>
+      </header>
+      <div class="capabilities-layout">
+        <aside class="engineering-profile" data-reveal>
+          <span class="telemetry-label">Operating profile</span>
+          <h3>Aerospace systems, validated.</h3>
+          <p>Recent aerospace engineering graduate working best in hands-on, multidisciplinary environments where design decisions can be tested and improved.</p>
+          <div class="education-card">
+            <span class="telemetry-label">Education</span>
+            <strong>{education.institution}</strong>
+            <span>{education.degree} · {education.minor}</span>
+            <span>{education.date} · {education.honors}</span>
+          </div>
+        </aside>
+        <div class="capability-grid">
+          {capabilityGroups.map((group, index) => (
+            <article class="capability-card" data-reveal>
+              <span class="telemetry-label">SYS-{String(index + 1).padStart(2, '0')}</span>
+              <h3>{group.title}</h3>
+              <ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="content-section" aria-labelledby="experience-title">
+    <div class="page-width">
+      <header class="section-heading" data-reveal>
+        <span class="section-index">04 / Career trajectory</span>
+        <div><h2 id="experience-title">Field record.</h2><p>Professional engineering, advanced manufacturing, and hands-on mechanical work.</p></div>
+      </header>
+      <div class="timeline">
+        {experiences.map((experience) => (
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">{experience.dates}</div>
+            <div class="timeline-body">
+              <h3>{experience.role}</h3>
+              <div class="timeline-org">{experience.organization}{experience.location && ` · ${experience.location}`}</div>
+              <p class="timeline-summary">{experience.summary}</p>
+              <details class="timeline-details">
+                <summary>Role details</summary>
+                <ul>{experience.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+              </details>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials" class="content-section" aria-labelledby="credentials-title">
+    <div class="page-width">
+      <header class="section-heading" data-reveal>
+        <span class="section-index">05 / Credentials vault</span>
+        <div><h2 id="credentials-title">Source documents.</h2><p>Résumé, project documentation, research evidence, and recommendations.</p></div>
+      </header>
+      <div class="credentials-grid">
+        {credentials.map((credential, index) => (
+          <a class="credential" href={credential.href} target="_blank" rel="noopener" data-reveal>
+            <div class="credential-top"><span>DOC-{String(index + 1).padStart(2, '0')}</span><span>↗</span></div>
+            <div><h3>{credential.label}</h3><p>{credential.meta}</p></div>
+            <span class="sr-only">Opens in a new tab</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="content-section" aria-labelledby="contact-title">
+    <div class="page-width">
+      <div class="contact-panel" data-reveal data-orbit-zone>
+        <div>
+          <span class="eyebrow">Open communications channel</span>
+          <h2 id="contact-title">Let’s build what flies next.</h2>
+          <p>I’m open to aerospace and mechanical engineering conversations, technical collaboration, and ambitious systems work.</p>
+        </div>
+        <div class="contact-links">
+          <a href={`mailto:${site.email}`}><span class="contact-label">Email</span><span class="contact-value">{site.email}</span></a>
+          <a href={site.phoneHref}><span class="contact-label">Phone</span><span class="contact-value">{site.phoneDisplay}</span></a>
+          <a href={site.linkedin} target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span class="contact-value">View profile ↗<span class="sr-only"> (opens in a new tab)</span></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const reveal = document.querySelectorAll<HTMLElement>('[data-reveal]');
+    if (!('IntersectionObserver' in window) || document.documentElement.dataset.motion === 'reduced') {
+      reveal.forEach((element) => element.classList.add('is-visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+      reveal.forEach((element) => observer.observe(element));
+    }
+  </script>
+</BaseLayout>
