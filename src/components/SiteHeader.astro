@@ -1,0 +1,92 @@
+---
+import { site } from '@/data/site';
+---
+
+<a class="skip-link" href="#main">Skip to mission content</a>
+<header class="site-header" data-site-header>
+  <a class="brand" href="/" aria-label={`${site.name} home`}>
+    <span class="brand-mark" aria-hidden="true">FVR</span>
+    <span class="brand-copy"><b>{site.name}</b><small>Flight systems portfolio</small></span>
+  </a>
+
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+    <span class="nav-toggle-label">Menu</span><span class="nav-toggle-lines" aria-hidden="true"></span>
+  </button>
+
+  <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+    <a href="/#missions">Missions</a>
+    <a href="/#archive">Archive</a>
+    <a href="/#capabilities">Capabilities</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#credentials">Credentials</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+
+  <div class="header-actions">
+    <button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false">
+      <span class="signal-dot" aria-hidden="true"></span><span data-motion-label>Motion on</span>
+    </button>
+    <a class="header-resume" href="/docs/fourie-van-rooyen-resume.pdf" target="_blank" rel="noopener">
+      Resume <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+    </a>
+  </div>
+</header>
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const nav = document.querySelector<HTMLElement>('#primary-nav');
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const progress = document.querySelector<HTMLElement>('.scroll-progress span');
+  const motionButton = document.querySelector<HTMLButtonElement>('#motion-toggle');
+  const motionLabel = motionButton?.querySelector<HTMLElement>('[data-motion-label]');
+
+  const closeMenu = () => {
+    header?.classList.remove('nav-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle?.addEventListener('click', () => {
+    const open = !header?.classList.contains('nav-open');
+    header?.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  nav?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', (event) => {
+    if (header && !header.contains(event.target as Node)) closeMenu();
+  });
+
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const ratio = max > 0 ? Math.min(1, scrollY / max) : 0;
+    progress?.style.setProperty('transform', `scaleX(${ratio})`);
+    header?.classList.toggle('is-scrolled', scrollY > 20);
+  };
+  updateProgress();
+  addEventListener('scroll', updateProgress, { passive: true });
+
+  const systemReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let reduced = systemReduced;
+  try {
+    const saved = localStorage.getItem('fvr-motion');
+    if (saved) reduced = saved === 'reduced';
+  } catch {}
+
+  const applyMotion = () => {
+    document.documentElement.dataset.motion = reduced ? 'reduced' : 'full';
+    motionButton?.setAttribute('aria-pressed', String(reduced));
+    if (motionLabel) motionLabel.textContent = reduced ? 'Motion off' : 'Motion on';
+    dispatchEvent(new CustomEvent('fvr:motion', { detail: { reduced } }));
+  };
+  motionButton?.addEventListener('click', () => {
+    reduced = !reduced;
+    try { localStorage.setItem('fvr-motion', reduced ? 'reduced' : 'full'); } catch {}
+    applyMotion();
+  });
+  applyMotion();
+</script>
