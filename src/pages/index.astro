@@ -38,20 +38,20 @@ const schema = [
 ---
 
 <BaseLayout schema={schema} preloadProfile>
-  <section class="hero" data-orbit-zone aria-labelledby="hero-title">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="page-width hero-grid">
       <div class="hero-copy" data-reveal>
         <div class="hero-status">
-          <span>Systems online</span><span>{site.currentRole}</span><span>Tucson, Arizona</span>
+          <span>Aerospace Engineer</span><span>{site.currentRole}</span><span>Tucson, Arizona</span>
         </div>
-        <span class="eyebrow">Aerospace engineering · Mission control</span>
+        <span class="eyebrow">Aerospace &amp; Mechanical Engineering</span>
         <h1 id="hero-title">Fourie <span class="outline">van Rooyen</span></h1>
         <div class="hero-deck">
           <p>
             I bridge high-fidelity analysis with physical hardware—moving from CAD, CFD, and FEA
             through manufacturing, integration, and flight-tested performance.
           </p>
-          <span class="hero-orbit-hint" aria-hidden="true">Drag to look around</span>
+          <span class="hero-orbit-hint" aria-hidden="true">Scroll to orbit the scene</span>
         </div>
         <div class="hero-actions">
           <a class="button primary" href="#missions">Explore missions <span aria-hidden="true">↓</span></a>
@@ -69,13 +69,13 @@ const schema = [
         <span class="portrait-coordinates">32.2226° N · 110.9747° W</span>
       </div>
     </div>
-    <span class="hero-scroll" aria-hidden="true">Initiate scroll</span>
+    <span class="hero-scroll" aria-hidden="true">Explore selected work</span>
   </section>
 
   <section id="missions" class="content-section" aria-labelledby="missions-title">
     <div class="page-width">
       <header class="section-heading" data-reveal>
-        <span class="section-index">01 / Selected missions</span>
+        <span class="section-index">01 / Selected work</span>
         <div class="section-heading-copy">
           <div>
             <h2 id="missions-title">Built to leave the screen.</h2>
@@ -86,11 +86,11 @@ const schema = [
 
       <div class="missions-stack">
         {featuredMissions.map((mission) => (
-          <article class="mission-dossier" data-reveal data-orbit-zone>
+          <article class="mission-dossier" data-reveal>
             <div class="mission-visual">
               <a class="mission-image" href={`/missions/${mission.slug}/`} aria-label={`Open ${mission.title} case study`}>
                 <ResponsiveImage asset={mission.image} sizes="(max-width: 880px) 100vw, 58vw" />
-                <span class="mission-frame-label"><span>MISSION {mission.index}</span><span>DATA LINK · VERIFIED</span></span>
+                <span class="mission-frame-label"><span>CASE STUDY {mission.index}</span><span>ANALYSIS · TEST · RESULTS</span></span>
               </a>
               <span class="mission-node" aria-hidden="true"></span>
             </div>
@@ -104,7 +104,7 @@ const schema = [
                   <div class="metric"><b>{metric.value}</b><span>{metric.label}</span></div>
                 ))}
               </div>
-              <a class="text-link" href={`/missions/${mission.slug}/`}>Open mission dossier <span aria-hidden="true">→</span></a>
+              <a class="text-link" href={`/missions/${mission.slug}/`}>View case study <span aria-hidden="true">→</span></a>
             </div>
           </article>
         ))}
@@ -115,7 +115,7 @@ const schema = [
   <section id="archive" class="content-section" aria-labelledby="archive-title">
     <div class="page-width">
       <header class="section-heading" data-reveal>
-        <span class="section-index">02 / Flight archive</span>
+        <span class="section-index">02 / Project archive</span>
         <div class="section-heading-copy">
           <div><h2 id="archive-title">More work. Same rigor.</h2><p>Supporting projects across propulsion, aerodynamics, dynamics, and structures.</p></div>
         </div>
@@ -211,7 +211,7 @@ const schema = [
   <section id="credentials" class="content-section" aria-labelledby="credentials-title">
     <div class="page-width">
       <header class="section-heading" data-reveal>
-        <span class="section-index">05 / Credentials vault</span>
+        <span class="section-index">05 / Credentials</span>
         <div><h2 id="credentials-title">Source documents.</h2><p>Résumé, project documentation, research evidence, and recommendations.</p></div>
       </header>
       <div class="credentials-grid">
@@ -228,9 +228,9 @@ const schema = [
 
   <section id="contact" class="content-section" aria-labelledby="contact-title">
     <div class="page-width">
-      <div class="contact-panel" data-reveal data-orbit-zone>
+      <div class="contact-panel" data-reveal>
         <div>
-          <span class="eyebrow">Open communications channel</span>
+          <span class="eyebrow">Contact</span>
           <h2 id="contact-title">Let’s build what flies next.</h2>
           <p>I’m open to aerospace and mechanical engineering conversations, technical collaboration, and ambitious systems work.</p>
         </div>

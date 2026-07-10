@@ -157,48 +157,18 @@ export function initSpaceScene(root: HTMLElement) {
   const orbitInner = new THREE.Mesh(new THREE.TorusGeometry(5.5, .006, 5, mobile ? 80 : 180), orbitMaterial.clone());
   orbitInner.rotation.set(1.05, -.4, .1); orbitInner.position.set(1, 0, -16); scene.add(orbitInner);
 
-  const guideCurve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0, .2, 9.5), new THREE.Vector3(1.2, .6, 8.2), new THREE.Vector3(-1.1, -.25, 7.5),
-    new THREE.Vector3(1.6, .35, 8.3), new THREE.Vector3(-.4, .1, 7.8), new THREE.Vector3(.2, -.2, 8.8),
-  ]);
-  const lookCurve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0, 0, -10), new THREE.Vector3(4, -.4, -15), new THREE.Vector3(-3, 1, -13),
-    new THREE.Vector3(5, -1, -17), new THREE.Vector3(-2, 0, -14), new THREE.Vector3(0, 0, -15),
-  ]);
+  const orbitCenter = new THREE.Vector3(1.2, -.2, -17.2);
+  const orbitPosition = new THREE.Vector3();
+  const orbitLook = new THREE.Vector3();
+  const orbitRadius = mobile ? 16.5 : 18.5;
 
   let scrollTarget = 0;
   let scrollSmooth = 0;
-  let yaw = 0, pitch = 0, yawVelocity = 0, pitchVelocity = 0;
-  let dragging = false, dragPointer = -1, dragStartX = 0, dragStartY = 0, dragYaw = 0, dragPitch = 0;
-  let touchIntent: 'pending' | 'horizontal' | 'vertical' = 'pending';
   const updateScroll = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     scrollTarget = max > 0 ? THREE.MathUtils.clamp(scrollY / max, 0, 1) : 0;
   };
   updateScroll(); addEventListener('scroll', updateScroll, { passive: true });
-
-  const isOrbitTarget = (target: EventTarget | null) => {
-    const element = target instanceof Element ? target : null;
-    return Boolean(element?.closest('[data-orbit-zone]') && !element.closest('a,button,input,summary,details'));
-  };
-  const onPointerDown = (event: PointerEvent) => {
-    if (!isOrbitTarget(event.target) || dragging) return;
-    dragging = true; dragPointer = event.pointerId; dragStartX = event.clientX; dragStartY = event.clientY; dragYaw = yaw; dragPitch = pitch; touchIntent = 'pending';
-  };
-  const onPointerMove = (event: PointerEvent) => {
-    if (!dragging || event.pointerId !== dragPointer) return;
-    const dx = event.clientX - dragStartX, dy = event.clientY - dragStartY;
-    if (event.pointerType === 'touch' && touchIntent === 'pending' && Math.hypot(dx, dy) > 8) touchIntent = Math.abs(dx) > Math.abs(dy) * 1.18 ? 'horizontal' : 'vertical';
-    if (touchIntent === 'vertical') { dragging = false; return; }
-    if (event.pointerType === 'touch' && touchIntent === 'horizontal') event.preventDefault();
-    yaw = THREE.MathUtils.clamp(dragYaw - dx * .0018, -.14, .14);
-    pitch = THREE.MathUtils.clamp(dragPitch - dy * .00135, -.075, .075);
-  };
-  const onPointerUp = (event: PointerEvent) => { if (event.pointerId === dragPointer) { dragging = false; dragPointer = -1; } };
-  addEventListener('pointerdown', onPointerDown, { passive: true });
-  addEventListener('pointermove', onPointerMove, { passive: false });
-  addEventListener('pointerup', onPointerUp, { passive: true });
-  addEventListener('pointercancel', onPointerUp, { passive: true });
 
   const meteors: Meteor[] = [];
   let nextMeteor = 4 + random() * 4;
@@ -231,15 +201,20 @@ export function initSpaceScene(root: HTMLElement) {
     elapsed += delta;
     scrollSmooth += (scrollTarget - scrollSmooth) * (1 - Math.exp(-delta * 3.2));
 
-    if (!dragging) {
-      yawVelocity += (0 - yaw) * delta * 5.5; pitchVelocity += (0 - pitch) * delta * 5.5;
-      yawVelocity *= Math.exp(-delta * 6.5); pitchVelocity *= Math.exp(-delta * 6.5);
-      yaw += yawVelocity; pitch += pitchVelocity;
-    }
-    cameraRig.position.copy(guideCurve.getPointAt(scrollSmooth));
+    const orbitAngle = scrollSmooth * Math.PI * 2;
+    orbitPosition.set(
+      orbitCenter.x + Math.sin(orbitAngle) * orbitRadius,
+      orbitCenter.y + 1.6 + Math.sin(orbitAngle * 2 - .45) * 2.25,
+      orbitCenter.z + Math.cos(orbitAngle) * orbitRadius,
+    );
+    orbitLook.set(
+      orbitCenter.x + 2.2 + Math.sin(orbitAngle * .5) * 1.1,
+      orbitCenter.y + Math.cos(orbitAngle * 2) * .45,
+      orbitCenter.z,
+    );
+    cameraRig.position.copy(orbitPosition);
     camera.rotation.set(0, 0, 0);
-    camera.lookAt(lookCurve.getPointAt(scrollSmooth));
-    camera.rotation.y += yaw; camera.rotation.x += pitch;
+    camera.lookAt(orbitLook);
 
     starsFar.rotation.y = elapsed * .006; starsNear.rotation.y = -elapsed * .009;
     nebulaBlue.rotation.z = elapsed * .002; nebulaViolet.rotation.z = -elapsed * .0015;
@@ -282,8 +257,6 @@ export function initSpaceScene(root: HTMLElement) {
     destroy() {
       cancelAnimationFrame(frameId); observer.disconnect();
       removeEventListener('scroll', updateScroll); removeEventListener('resize', resize);
-      removeEventListener('pointerdown', onPointerDown); removeEventListener('pointermove', onPointerMove);
-      removeEventListener('pointerup', onPointerUp); removeEventListener('pointercancel', onPointerUp);
       document.removeEventListener('visibilitychange', visibility);
       canvas.removeEventListener('webglcontextlost', onContextLost); canvas.removeEventListener('webglcontextrestored', onContextRestored);
       disposeScene(); renderer.dispose();
