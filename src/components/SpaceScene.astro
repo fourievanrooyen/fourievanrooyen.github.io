@@ -1,0 +1,56 @@
+<div id="space-scene" class="space-scene" aria-hidden="true">
+  <div class="space-fallback"><span></span><i></i></div>
+  <canvas data-space-canvas></canvas>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('#space-scene');
+  if (root) {
+    let controller: { destroy(): void } | undefined;
+    let loading = false;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const start = async () => {
+      if (controller || loading || connection?.saveData || document.documentElement.dataset.motion === 'reduced') return;
+      loading = true;
+      try {
+        const { initSpaceScene } = await import('@/scripts/space-scene');
+        controller = initSpaceScene(root);
+      } catch {
+        root.dataset.quality = 'static';
+      } finally {
+        loading = false;
+      }
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => void start(), { timeout: 900 });
+    } else {
+      setTimeout(() => void start(), 220);
+    }
+    addEventListener('fvr:motion', ((event: CustomEvent<{ reduced: boolean }>) => {
+      if (event.detail.reduced) {
+        controller?.destroy();
+        controller = undefined;
+        root.classList.remove('is-ready');
+      } else {
+        void start();
+      }
+    }) as EventListener);
+  }
+</script>
+
+<style>
+  .space-scene { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; background: #02050b; }
+  .space-scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; }
+  .space-scene.is-ready canvas { opacity: .95; }
+  .space-fallback { position: absolute; inset: -8%; background:
+    radial-gradient(ellipse at 78% 24%, rgba(37,112,155,.28), transparent 26%),
+    radial-gradient(ellipse at 22% 64%, rgba(76,47,109,.18), transparent 30%),
+    radial-gradient(circle at 74% 70%, rgba(244,163,64,.09), transparent 16%); }
+  .space-fallback::before, .space-fallback::after { content: ''; position: absolute; border-radius: 50%; border: 1px solid rgba(122,215,255,.11); transform: rotate(-18deg); }
+  .space-fallback::before { width: 50vmax; height: 20vmax; right: -22vmax; top: 7vh; box-shadow: 0 0 80px rgba(122,215,255,.04); }
+  .space-fallback::after { width: 36vmax; height: 15vmax; left: -18vmax; bottom: 12vh; border-color: rgba(244,163,64,.1); }
+  .space-fallback span { position: absolute; width: min(45vmin, 460px); aspect-ratio: 1; right: -11vmin; top: 8vh; border-radius: 50%; background: radial-gradient(circle at 31% 27%, #6b8fac 0 3%, #25465e 22%, #0c1f32 58%, #040914 72%); box-shadow: inset -50px -40px 90px #010208, -16px -10px 48px rgba(122,215,255,.08), 0 0 0 1px rgba(122,215,255,.12); opacity: .6; }
+  .space-fallback i { position: absolute; width: 20vmin; aspect-ratio: 1; left: 5vw; bottom: 8vh; border-radius: 50%; background: radial-gradient(circle at 32% 30%, #9d9588, #393d45 52%, #080b11 72%); opacity: .25; }
+  html[data-motion='reduced'] .space-scene canvas { display: none; }
+  @media (max-width: 720px) { .space-fallback span { right: -25vmin; top: 14vh; opacity: .45; } }
+</style>
