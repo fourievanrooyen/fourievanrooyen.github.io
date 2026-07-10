@@ -1,0 +1,85 @@
+---
+import '@/styles/global.css';
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SpaceScene from '@/components/SpaceScene.astro';
+import { site } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  image?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+  preloadProfile?: boolean;
+}
+
+const {
+  title = `${site.name} — Aerospace Engineer`,
+  description = site.description,
+  canonicalPath = Astro.url.pathname,
+  image = '/og.png',
+  schema,
+  bodyClass = '',
+  preloadProfile = false,
+} = Astro.props;
+const canonical = new URL(canonicalPath, site.url).toString();
+const socialImage = new URL(image, site.url).toString();
+const currentYear = new Date().getFullYear();
+const defaultSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'Aerospace Engineer',
+  url: site.url,
+  email: `mailto:${site.email}`,
+  telephone: site.phoneDisplay,
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'The University of Alabama' },
+  sameAs: [site.linkedin],
+};
+---
+
+<!doctype html>
+<html lang="en" data-motion="full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#02050b" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    {preloadProfile && <link rel="preload" href="/images/profile-480.avif" as="image" type="image/avif" media="(max-width: 720px)" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${site.name} · Aerospace Engineering`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content="Fourie van Rooyen aerospace engineering portfolio mission control" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema ?? defaultSchema)}></script>
+  </head>
+  <body class={bodyClass}>
+    <SpaceScene />
+    <div class="site-shell">
+      <SiteHeader />
+      <main id="main"><slot /></main>
+      <footer class="site-footer">
+        <div><span class="footer-kicker">END OF TRANSMISSION</span><b>{site.name}</b></div>
+        <p>Aerospace engineering · Tucson, Arizona · {currentYear}</p>
+      </footer>
+    </div>
+  </body>
+</html>
