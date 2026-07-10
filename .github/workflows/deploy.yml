@@ -39,8 +39,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Type-check and build
-        run: pnpm build
+      - name: Type-check
+        run: pnpm exec astro check
+
+      - name: Build production site
+        run: pnpm exec astro build
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
