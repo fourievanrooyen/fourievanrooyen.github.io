@@ -1,0 +1,37 @@
+{
+  "name": "fourie-portfolio",
+  "version": "1.0.0",
+  "description": "Fourie van Rooyen's cinematic aerospace engineering portfolio.",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/run-astro.mjs dev --host 127.0.0.1",
+    "build": "node scripts/run-astro.mjs check && node scripts/run-astro.mjs build && node scripts/validate-build.mjs",
+    "preview": "node scripts/run-astro.mjs preview --host 127.0.0.1",
+    "check": "node scripts/run-astro.mjs check",
+    "test": "vitest run"
+  },
+  "keywords": [],
+  "author": "Fourie van Rooyen",
+  "license": "UNLICENSED",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.7.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/space-grotesk": "^5.2.10",
+    "astro": "^7.0.7",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/three": "^0.185.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}
